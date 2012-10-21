@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /** @author tom-trix */
 public class EventList
 {
-	private final Map<Double, String>	_eventList	= new ConcurrentHashMap<>();
+	private final Map<Double, Function>	_eventList	= new ConcurrentHashMap<>();
 	private final TransformFunctions	_transformFunctions;
 
 	public EventList(TransformFunctions functions)
@@ -18,9 +18,11 @@ public class EventList
 		_transformFunctions = functions;
 	}
 
-	public void addEvent(Double timestamp, String f) throws Exception
+	public void addEvent(Double timestamp, String fid, Object ... pars) throws Exception
 	{
-		_eventList.put(timestamp, f);
-		_transformFunctions.invokeMethod(f);
+		//if (!_transformFunctions.parametersCorrespondToClasses(fid, pars)) throw new IllegalArgumentException("fuck");
+		_eventList.put(timestamp, new Function(fid, pars));
+		//temp
+		_transformFunctions.invokeMethod(new Function(fid, pars));
 	}
 }
