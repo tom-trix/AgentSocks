@@ -4,21 +4,17 @@ import javax.xml.bind.TypeConstraintException;
 
 public class StateItem
 {
-	/**
-	 * 
-	 */
+	/** value of the variable */
 	private Object			_value;
-	/**
-	 * 
-	 */
+	/** type of the variable */
 	private Class<?>		_class;
-	/**
-	 * 
-	 */
+	/** level of the access */
 	private StateItemAccess	_access;
 
-	/** @param _class
-	 * @param _access */
+	/** creates a new variable
+	 * @param _class - type of the variable
+	 * @param _access - level of the access
+	 * @param initialValue - initial value of the variable */
 	public StateItem(Class<?> clazz, StateItemAccess access, Object initialValue)
 	{
 		_class = clazz;
