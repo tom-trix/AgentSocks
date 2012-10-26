@@ -9,10 +9,13 @@ public abstract class Agent
 	protected final TransformFunctions	_transformFunctions	= new TransformFunctions();
 	/** list of events that harness the transformfunctions */
 	protected final EventList			_eventList			= new EventList(_transformFunctions);
-
-	/** @return the state */
+	
+	/**
+	 * @return the _state
+	 */
 	public State get_state()
 	{
 		return _state;
 	}
+	
 }

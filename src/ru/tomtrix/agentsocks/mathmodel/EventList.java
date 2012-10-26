@@ -26,9 +26,23 @@ public class EventList
 	 * @throws Exception - if something goes wrong */
 	public void addEvent(Double timestamp, String fid, Object... pars) throws Exception
 	{
-		if (!_transformFunctions.parametersCorrespondToClasses(fid, pars)) throw new IllegalArgumentException(String.format("Parameters \"pars\" don't correspond for invoking %s", fid));
+		if (!_transformFunctions.parametersCorrespondToClasses(fid, pars)) throw new IllegalArgumentException(String.format("Parameters \"pars\" don't correspond for invoking \"%s\"", fid));
 		_eventList.put(timestamp, new Function(fid, pars));
-		// temp
-		_transformFunctions.invokeMethod(new Function(fid, pars));
+	}
+
+	/** @return timestamp of the nearest event in the event list (or <b>NULL</b> if there are no events presented) */
+	public Double getNextEventTime()
+	{
+		if (_eventList.isEmpty()) return null;
+		return _eventList.keySet().iterator().next();
+	}
+	
+	public boolean executeNextEvent() throws Exception
+	{
+		if (_eventList.isEmpty()) return false;
+		Double d = _eventList.keySet().iterator().next();
+		_transformFunctions.invokeMethod(_eventList.get(d));
+		_eventList.remove(d);
+		return true;
 	}
 }
