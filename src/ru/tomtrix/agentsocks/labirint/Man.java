@@ -16,9 +16,8 @@ public class Man extends Agent
 			"{" +
 				"Integer d = man.get_state().get(\"x\"); " + 
 				"man.get_state().set(\"y\", 1+7); " +
-				"System.out.println(\"Бля\");" +
 			"}";
-		_transformFunctions.addNewMethod("go", code, "go", Man.class);
-		_eventList.addEvent(2d, "go", this);
+		get_transformFunctions().addNewMethod("go", code, "go", Man.class);
+		get_eventList().addEvent(2d, "go", this);
 	}
 }

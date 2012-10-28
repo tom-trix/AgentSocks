@@ -1,6 +1,7 @@
 package ru.tomtrix.agentsocks.mathmodel;
 
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /** @author tom-trix */
@@ -44,5 +45,10 @@ public class EventList
 		_transformFunctions.invokeMethod(_eventList.get(d));
 		_eventList.remove(d);
 		return true;
+	}
+	
+	public Set<Double> getAllTimestamps()
+	{
+		return _eventList.keySet();
 	}
 }

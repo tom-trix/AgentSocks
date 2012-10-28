@@ -1,9 +1,6 @@
-/**
- * 
- */
 package ru.tomtrix.agentsocks.mathmodel;
 
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -20,6 +17,11 @@ public class State
 		if (access != StateItemAccess.PUBLIC) throw new IllegalArgumentException("Not implemented");
 		if (_state.containsKey(key)) throw new IllegalArgumentException(String.format("State has already got variable \"%s\"", key));
 		_state.put(key, initialValue);
+	}
+	
+	public Set<String> getStateItems()
+	{
+		return _state.keySet();
 	}
 
 	/**
