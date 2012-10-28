@@ -22,7 +22,7 @@ public class LogicProcess
 		_agents.add(agent);
 	}
 
-	public boolean next() throws Exception
+	public boolean nextStep() throws Exception
 	{
 		// TODO: можеть быть такое, что состояние агентов изменится, пока ищем минимум
 		if (_agents.isEmpty()) return false;

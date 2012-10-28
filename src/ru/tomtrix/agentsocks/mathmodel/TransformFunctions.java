@@ -8,14 +8,17 @@ import javassist.*;
 /** @author tom-trix */
 public class TransformFunctions
 {
-	/** unique number that is to be added to the name of a new runtime generated class (to avoid the same names) */
-	private static int					_currentClass	= 0;
 	/** container for methods */
-	private final Map<String, Method>	_methods		= new ConcurrentHashMap<>();
+	private final Map<String, Method>	_methods	= new ConcurrentHashMap<>();
 	/** class whose instance generates new methods at the runtime */
-	private final CtClass				_class			= ClassPool.getDefault().makeClass("RuntimeClass" + _currentClass++);
+	private final CtClass				_class;
 	/** instance that generates new methods at the runtime */
 	private Object						_instance;
+
+	public TransformFunctions(Agent agent)
+	{
+		_class = ClassPool.getDefault().makeClass("$Runtime" + agent._name);
+	}
 
 	/** adds new method to the internal class
 	 * @param fid - function id (<b>MUST</b> be unique)

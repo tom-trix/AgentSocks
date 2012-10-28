@@ -16,6 +16,7 @@ public class Container
 		for (int i = 0; i < threads; i++)
 		{
 			final String threadName = String.format("%s.thread%d", name, i);
+			// create a thread that picks logic processes from the queue and calls their "next" method
 			new Thread(new Runnable()
 			{
 				@Override
@@ -23,26 +24,21 @@ public class Container
 				{
 					while (_alive)
 					{
+						LogicProcess process = null;
 						try
 						{
 							Thread.sleep(50);
-						}
-						catch (InterruptedException e)
-						{}
-						LogicProcess process = _processes.pollFirst();
-						if (process == null) continue;
-						try
-						{
-							process.next();
+							process = _processes.pollFirst();
+							if (process == null) continue;
+							process.nextStep();
+							_processes.add(process);
 							Logger.getLogger(getClass()).debug("next() done");
 						}
+						catch (InterruptedException e) 		//done specially to avoid NullPointerException!
+						{}
 						catch (Exception e)
 						{
 							Logger.getLogger(getClass()).error(String.format("Error in a logical process \"%s\" (thread \"%s\"):", process.get_name(), threadName), e);
-						}
-						finally
-						{
-							_processes.add(process);
 						}
 					}
 				}

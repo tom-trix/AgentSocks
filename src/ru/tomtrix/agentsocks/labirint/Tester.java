@@ -9,7 +9,7 @@ public class Tester
 	{
 		Container container = new Container(1, "MainContainer");
 		LogicProcess process = new LogicProcess("fuck");
-		process.addAgent(new Man());
+		process.addAgent(new Man("Man"));
 		container.addLogicProcess(process);
 		Logger.getLogger(Tester.class).info("Всё ОК");
 		System.in.read();

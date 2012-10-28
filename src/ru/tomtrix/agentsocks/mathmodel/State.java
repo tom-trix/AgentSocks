@@ -1,39 +1,96 @@
+/**
+ * 
+ */
 package ru.tomtrix.agentsocks.mathmodel;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-/** @author tom-trix */
+/**
+ * @author tom-trix
+ *
+ */
 public class State
 {
-	/** list of variables */
-	private final Map<String, StateItem>	_list	= new ConcurrentHashMap<>();
-
-	/** adds new variable to the state
-	 * @param name - variable name
-	 * @param clazz - variable type
-	 * @param access - access level of the variable
-	 * @param initialValue - the initial value of the variable
-	 * @throws Exception - if something goes wrong */
-	public void addStateItem(String name, Class<?> clazz, StateItemAccess access, Object initialValue) throws Exception
+	private final static String noSuchVariable = "Agent's state hasn't got variable \"%s\""; 
+	private final Map<String, Object> _state = new ConcurrentHashMap<>();
+	
+	public void addStateItem(String key, StateItemAccess access, Object initialValue)
 	{
-		if (_list.containsKey(name)) throw new IllegalArgumentException("Such name already exists");
-		_list.put(name, new StateItem(clazz, access, initialValue));
+		if (access != StateItemAccess.PUBLIC) throw new IllegalArgumentException("Not implemented");
+		if (_state.containsKey(key)) throw new IllegalArgumentException(String.format("State has already got variable \"%s\"", key));
+		_state.put(key, initialValue);
 	}
 
-	/** returns the value of the variable
-	 * @param item
-	 * @return */
-	public Object get(String item)
+	/**
+	 * @param key
+	 * @return value of the variable (<b>be careful, this retrieves only objects, not primitive types!</b>)
+	 */
+	public Object get(String key)
 	{
-		return _list.get(item).get_value();
+		return _state.get(key);
 	}
 
-	/** sets a new state for the variable
-	 * @param item
-	 * @param value */
-	public void set(String item, Object value)
+
+	/**
+	 * @param key
+	 * @param value
+	 */
+	public void set(String key, Object value)
 	{
-		_list.get(item).set_value(value);
+		if (!_state.containsKey(key)) throw new IllegalArgumentException(String.format(noSuchVariable, key));
+		_state.put(key, value);
+	}
+	
+	/** this method is used for the compability with the javassist library (cause it's not able to autopack primitive types)
+	 * @param key
+	 * @param value
+	 */
+	public void set(String key, boolean value)
+	{
+		if (!_state.containsKey(key)) throw new IllegalArgumentException(String.format(noSuchVariable, key));
+		_state.put(key, value);
+	}
+	
+	public void set(String key, byte value)
+	{
+		if (!_state.containsKey(key)) throw new IllegalArgumentException(String.format(noSuchVariable, key));
+		_state.put(key, value);
+	}
+	
+	public void set(String key, char value)
+	{
+		if (!_state.containsKey(key)) throw new IllegalArgumentException(String.format(noSuchVariable, key));
+		_state.put(key, value);
+	}
+	
+	public void set(String key, short value)
+	{
+		if (!_state.containsKey(key)) throw new IllegalArgumentException(String.format(noSuchVariable, key));
+		_state.put(key, value);
+	}
+	
+	public void set(String key, int value)
+	{
+		if (!_state.containsKey(key)) throw new IllegalArgumentException(String.format(noSuchVariable, key));
+		_state.put(key, value);
+	}
+	
+	public void set(String key, long value)
+	{
+		if (!_state.containsKey(key)) throw new IllegalArgumentException(String.format(noSuchVariable, key));
+		_state.put(key, value);
+	}
+	
+	public void set(String key, float value)
+	{
+		if (!_state.containsKey(key)) throw new IllegalArgumentException(String.format(noSuchVariable, key));
+		_state.put(key, value);
+	}
+	
+	public void set(String key, double value)
+	{
+		if (!_state.containsKey(key)) throw new IllegalArgumentException(String.format(noSuchVariable, key));
+		_state.put(key, value);
 	}
 }
