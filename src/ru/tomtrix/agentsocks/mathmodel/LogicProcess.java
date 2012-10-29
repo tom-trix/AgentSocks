@@ -21,12 +21,6 @@ public class LogicProcess
 		if (agent == null) throw new IllegalArgumentException("Agent can't be equal to null");
 		_agents.add(agent);
 	}
-	
-	public void addAgents(Collection<Agent> agents)
-	{
-		if (agents == null || agents.size() == 0) throw new IllegalArgumentException("Agent list must contain at least 1 element");
-		_agents.addAll(agents);
-	}
 
 	public boolean nextStep() throws Exception
 	{
@@ -49,10 +43,18 @@ public class LogicProcess
 	}
 
 	/**
-	 * @return the name
+	 * @return the _name
 	 */
 	public String get_name()
 	{
 		return _name;
+	}
+
+	/**
+	 * @return the _agents
+	 */
+	public List<Agent> get_agents()
+	{
+		return _agents;
 	}
 }

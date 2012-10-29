@@ -1,6 +1,8 @@
 package ru.tomtrix.agentsocks.mathmodel;
 
 import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import org.apache.log4j.Logger;
 
@@ -8,6 +10,7 @@ import org.apache.log4j.Logger;
 public class Container
 {
 	private final Deque<LogicProcess>	_processes	= new ConcurrentLinkedDeque<>();
+	private final List<Thread> _threads = new LinkedList<>();
 	private boolean						_alive		= true;
 
 	public Container(int threads, String name)
@@ -17,7 +20,7 @@ public class Container
 		{
 			final String threadName = String.format("%s.thread%d", name, i);
 			// create a thread that picks logic processes from the queue and calls their "next" method
-			new Thread(new Runnable()
+			_threads.add(new Thread(new Runnable()
 			{
 				@Override
 				public void run()
@@ -42,12 +45,18 @@ public class Container
 						}
 					}
 				}
-			}, threadName).start();
+			}, threadName));
 		}
 	}
 
 	public void addLogicProcess(LogicProcess process)
 	{
 		_processes.add(process);
+	}
+	
+	public void run()
+	{
+		for (Thread th : _threads)
+			th.start();
 	}
 }
