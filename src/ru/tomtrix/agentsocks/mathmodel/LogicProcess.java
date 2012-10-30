@@ -2,8 +2,6 @@ package ru.tomtrix.agentsocks.mathmodel;
 
 import java.util.*;
 
-import org.apache.log4j.Logger;
-
 /** @author tom-trix */
 public class LogicProcess
 {
@@ -38,7 +36,6 @@ public class LogicProcess
 		if (currentAgent == null) return false;
 		// handle the event
 		currentAgent.get_eventList().executeNextEvent();
-		Logger.getLogger(currentAgent.getClass()).debug("x = " + currentAgent._state.get("x"));
 		return true;
 	}
 

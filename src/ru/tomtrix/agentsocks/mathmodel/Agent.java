@@ -1,23 +1,37 @@
 package ru.tomtrix.agentsocks.mathmodel;
 
-import ru.tomtrix.agentsocks.mathmodel.State;
+import ru.tomtrix.javassistwraper.Compiler;
 
 /** @author tom-trix */
 public abstract class Agent
 {
-	protected final String				_name;
-	/** state of an agent */
-	protected final State				_state	= new State();
-	/** set of functions that transform the state of an agent */
-	private final TransformFunctions	_transformFunctions;
+	private final String				_name;
+	public Object				State	= null;
 	/** list of events that harness the transformfunctions */
 	private final EventList			_eventList;
 
-	public Agent(String name)
+	public Agent(String name) throws Exception
 	{
 		_name = name;
-		_transformFunctions = new TransformFunctions(this);		//be careful! This object must be created AFTER the _name is assigned
-		_eventList = new EventList(get_transformFunctions());
+		_eventList = new EventList();
+		Compiler.getInstance().addClass(name, null, null);
+	}
+	
+	public void addVariable(String code) throws Exception
+	{
+		if (State != null) throw new IllegalAccessException("frrs");
+		Compiler.getInstance().addField(_name, code);
+	}
+	
+	public void addFunction(String code) throws Exception
+	{
+		if (State != null) throw new IllegalAccessException("frrs");
+		Compiler.getInstance().addMethod(_name, code);
+	}
+	
+	public void compileAgent() throws Exception
+	{
+		_eventList.setFunctionKeeper(Compiler.getInstance().compile(_name));
 	}
 
 	/**
@@ -26,22 +40,6 @@ public abstract class Agent
 	public String get_name()
 	{
 		return _name;
-	}
-
-	/**
-	 * @return the _state
-	 */
-	public State get_state()
-	{
-		return _state;
-	}
-
-	/**
-	 * @return the _transformFunctions
-	 */
-	public TransformFunctions get_transformFunctions()
-	{
-		return _transformFunctions;
 	}
 
 	/**

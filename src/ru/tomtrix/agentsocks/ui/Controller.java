@@ -17,22 +17,19 @@ public class Controller
 		_container.addLogicProcess(_process);
 	}
 	
-	public String createAgent(String name)
+	public String createAgent(String name) throws Exception
 	{
 		_process.addAgent(new DefaultAgent(name));
 		return String.format("Agent \"%s\" added successfully", name);
 	}
 	
-	public String addVariable(String variable, Object initialValue)
+	public String addVariable(String variable, int initialValue)
 	{
 		try
 		{
 			Agent agent = _process.get_agents().get(_process.get_agents().size()-1);
-			agent.get_state().addStateItem(variable, StateItemAccess.PUBLIC, initialValue);
-			StringBuffer sb = new StringBuffer(String.format("Done...\nNow agent \"%s\" contains variables: ", agent.get_name()));
-			for (String s : agent.get_state().getStateItems())
-				sb.append(s + ", ");
-			return sb.substring(0, sb.length()-2);
+			agent.addVariable("int " + variable + " = " + initialValue + ";");
+			return "OK";
 		}
 		catch (Exception e)
 		{
@@ -41,17 +38,14 @@ public class Controller
 		}
 	}
 	
-	public String addFunction(String fid, String name, String code, Class<?> ... argTypes)
+	public String addFunction(String code)
 	{
 		try
 		{
 			System.out.println(code);
 			Agent agent = _process.get_agents().get(_process.get_agents().size()-1);
-			agent.get_transformFunctions().addNewMethod(fid, code, name, argTypes);
-			StringBuffer sb = new StringBuffer(String.format("Done...\nNow agent \"%s\" contains functions: ", agent.get_name()));
-			for (String s : agent.get_transformFunctions().getAllFids())
-				sb.append(s + ", ");
-			return sb.substring(0, sb.length()-2);
+			agent.addFunction(code);
+			return "OK";
 		}
 		catch (Exception e)
 		{
@@ -65,7 +59,7 @@ public class Controller
 		try
 		{
 			Agent agent = _process.get_agents().get(_process.get_agents().size()-1);
-			agent.get_eventList().addEvent(Double.parseDouble(timestamp), fid, agent);
+			agent.get_eventList().addEvent(Double.parseDouble(timestamp), fid);
 			StringBuffer sb = new StringBuffer(String.format("Done...\nNow agent \"%s\" contains event list with timestamps: ", agent.get_name()));
 			for (Double d : agent.get_eventList().getAllTimestamps())
 				sb.append(d + ", ");
@@ -78,8 +72,9 @@ public class Controller
 		}
 	}
 	
-	public void run()
+	public void run() throws Exception
 	{
+		_process.get_agents().get(_process.get_agents().size()-1).compileAgent();
 		_container.run();
 	}
 }

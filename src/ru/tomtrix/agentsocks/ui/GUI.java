@@ -1,13 +1,11 @@
 package ru.tomtrix.agentsocks.ui;
 
-import java.awt.EventQueue;
 import java.awt.event.*;
+import java.awt.EventQueue;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import org.apache.log4j.Logger;
-
-import ru.tomtrix.agentsocks.mathmodel.DefaultAgent;
 
 public class GUI extends JFrame
 {
@@ -68,7 +66,15 @@ public class GUI extends JFrame
 			{
 				String s = textAgentName.getText().trim();
 				if (s.isEmpty()) return;
-				JOptionPane.showMessageDialog(contentPane, _controller.createAgent(s));
+				try
+				{
+					JOptionPane.showMessageDialog(contentPane, _controller.createAgent(s));
+				}
+				catch (Exception e)
+				{
+					JOptionPane.showMessageDialog(contentPane, e);
+					e.printStackTrace();
+				}
 			}
 		});
 		contentPane.add(btnCreateAgent);
@@ -112,7 +118,7 @@ public class GUI extends JFrame
 				String fid = textFidName.getText().trim();
 				String code = textCode.getText().trim();
 				if (fid.isEmpty() || code.isEmpty()) return;
-				JOptionPane.showMessageDialog(contentPane, _controller.addFunction(fid, fid, code, DefaultAgent.class));
+				JOptionPane.showMessageDialog(contentPane, _controller.addFunction(code));
 			}
 		});
 		btnAddFunction.setBounds(350, 235, 128, 25);
@@ -184,7 +190,15 @@ public class GUI extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				_controller.run();
+				try
+				{
+					_controller.run();
+				}
+				catch (Exception ex)
+				{
+					JOptionPane.showMessageDialog(contentPane, ex);
+					ex.printStackTrace();
+				}
 			}
 		});
 		btnRun.setBounds(229, 309, 117, 25);

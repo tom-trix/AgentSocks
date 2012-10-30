@@ -1,24 +1,27 @@
-package ru.tomtrix.agentsocks.mathmodel;
+package ru.tomtrix.agentsocks.mathmodel.obsolete;
 
+import java.util.*;
+////import javassist.*;
 import java.lang.reflect.Method;
-import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import javassist.*;
+
+import ru.tomtrix.agentsocks.mathmodel.Agent;
+import ru.tomtrix.agentsocks.mathmodel.Function;
 
 /** @author tom-trix */
+@Deprecated
 public class TransformFunctions
 {
 	/** container for methods */
 	private final Map<String, Method>	_methods	= new ConcurrentHashMap<>();
 	/** class whose instance generates new methods at the runtime */
-	private final CtClass				_class;
+	////private final CtClass				_class;
 	/** instance that generates new methods at the runtime */
 	private Object						_instance;
 
 	public TransformFunctions(Agent agent)
 	{
-		_class = ClassPool.getDefault().makeClass("$Runtime" + agent._name);
+		////_class = ClassPool.getDefault().makeClass("$Runtime" + agent._name);
 	}
 
 	/** adds new method to the internal class
@@ -29,8 +32,8 @@ public class TransformFunctions
 	 * @throws Exception - if something goes wrong, i.e. if code can't be compiled */
 	public void addNewMethod(String fid, String code, String name, Class<?>... argTypes) throws Exception
 	{
-		_class.addMethod(CtNewMethod.make(code, _class));
-		_instance = _class.toClass().newInstance();
+		////_class.addMethod(CtNewMethod.make(code, _class));
+		////_instance = _class.toClass().newInstance();
 		_methods.put(fid, _instance.getClass().getMethod(name, argTypes));
 	}
 

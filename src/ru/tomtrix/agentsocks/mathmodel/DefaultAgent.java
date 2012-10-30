@@ -9,8 +9,9 @@ public class DefaultAgent extends Agent
 
 	/**
 	 * @param name
+	 * @throws Exception 
 	 */
-	public DefaultAgent(String name)
+	public DefaultAgent(String name) throws Exception
 	{
 		super(name);
 	}

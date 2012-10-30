@@ -1,5 +1,7 @@
 package ru.tomtrix.agentsocks.mathmodel;
 
+import java.lang.reflect.Method;
+
 /** @author tom-trix */
 public class Function
 {
@@ -15,6 +17,14 @@ public class Function
 	{
 		_fid = fid;
 		_parameters = parameters;
+	}
+	
+	public Object execute(Object methodKeeper) throws Exception
+	{
+		for (Method m : methodKeeper.getClass().getMethods())
+			if (m.getName().equals(_fid))
+				return m.invoke(methodKeeper, _parameters);
+		return null;
 	}
 
 	/** @return the _name */
