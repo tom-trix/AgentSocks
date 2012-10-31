@@ -1,7 +1,10 @@
 package ru.tomtrix.agentsocks.ui;
 
+import java.io.IOException;
+
 import org.apache.log4j.Logger;
 import ru.tomtrix.agentsocks.mathmodel.*;
+import ru.tomtrix.agentsocks.utils.AgentJsonSerializer;
 
 /**
  * @author tom-trix
@@ -104,6 +107,16 @@ public class MVCmodel
 			Logger.getLogger(getClass()).error("Can't add new event", e);
 			return e.toString();
 		}
+	}
+	
+	/**
+	 * @throws IOException 
+	 * 
+	 */
+	public void saveAgent() throws IOException
+	{
+		Agent agent = _process.get_agents().get(_process.get_agents().size()-1);
+		new AgentJsonSerializer().agentToFile(agent, "/home/tom-trix/agent.txt");
 	}
 	
 	/**

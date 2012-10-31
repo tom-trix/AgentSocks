@@ -1,11 +1,11 @@
 package ru.tomtrix.agentsocks.ui;
 
+import javax.swing.*;
 import java.awt.event.*;
 import java.awt.EventQueue;
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-
+import java.io.IOException;
 import org.apache.log4j.Logger;
+import javax.swing.border.EmptyBorder;
 
 public class GUI extends JFrame
 {
@@ -203,5 +203,25 @@ public class GUI extends JFrame
 		});
 		btnStop.setBounds(263, 309, 117, 25);
 		contentPane.add(btnStop);
+
+		JButton btnSaveagent = new JButton("SaveAgent");
+		btnSaveagent.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				try
+				{
+					_model.saveAgent();
+					JOptionPane.showMessageDialog(contentPane, "The agent is saved successfully");
+				}
+				catch (IOException e)
+				{
+					JOptionPane.showMessageDialog(contentPane, e);
+					e.printStackTrace();
+				}
+			}
+		});
+		btnSaveagent.setBounds(12, 309, 37, 25);
+		contentPane.add(btnSaveagent);
 	}
 }
