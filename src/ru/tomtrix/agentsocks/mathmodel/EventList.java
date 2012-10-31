@@ -1,7 +1,6 @@
 package ru.tomtrix.agentsocks.mathmodel;
 
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /** @author tom-trix */
@@ -24,6 +23,7 @@ public class EventList
 	
 	public void executeNextEvent() throws Exception
 	{
+		if (_funcKeeper == null) throw new NullPointerException("fsfe");
 		if (_eventList.isEmpty()) return;
 		Double d = _eventList.keySet().iterator().next();
 		_eventList.get(d).execute(_funcKeeper);

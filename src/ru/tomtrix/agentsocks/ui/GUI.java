@@ -10,16 +10,14 @@ import org.apache.log4j.Logger;
 public class GUI extends JFrame
 {
 	private static final long	serialVersionUID	= 6208515297698018657L;
-	private final Controller	_controller			= new Controller();
+	private final MVCmodel		_model				= new MVCmodel();
 
 	private JPanel				contentPane;
 	private JTextField			textAgentName;
 	private JTextField			textVarName;
 	private JTextField			textEventFid;
-	private JTextField			textFidName;
 	private JTextField			textTimestamp;
-	private JTextField			textInitValue;
-	private JTextField textArgs;
+	private JTextField			textArgs;
 
 	/** Launch the application. */
 	public static void main(String[] args)
@@ -47,7 +45,7 @@ public class GUI extends JFrame
 	{
 		setTitle("Modelling system");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 570, 370);
+		setBounds(100, 100, 500, 370);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -68,7 +66,7 @@ public class GUI extends JFrame
 				if (s.isEmpty()) return;
 				try
 				{
-					JOptionPane.showMessageDialog(contentPane, _controller.createAgent(s));
+					JOptionPane.showMessageDialog(contentPane, _model.createAgent(s));
 				}
 				catch (Exception e)
 				{
@@ -90,24 +88,15 @@ public class GUI extends JFrame
 			public void actionPerformed(ActionEvent arg0)
 			{
 				String var = textVarName.getText().trim();
-				String initVal = textInitValue.getText().trim();
-				if (var.isEmpty() || initVal.isEmpty()) return;
-				try
-				{
-					Integer.parseInt(initVal);
-				}
-				catch (Exception e)
-				{
-					JOptionPane.showMessageDialog(contentPane, "Initial value must be an integer");
-				}
-				JOptionPane.showMessageDialog(contentPane, _controller.addVariable(var, Integer.parseInt(initVal)));
+				if (var.isEmpty()) return;
+				JOptionPane.showMessageDialog(contentPane, _model.addVariable(var));
 			}
 		});
 		btnAddVariable.setBounds(350, 44, 128, 25);
 		contentPane.add(btnAddVariable);
 
 		final JTextArea textCode = new JTextArea();
-		textCode.setBounds(12, 92, 542, 128);
+		textCode.setBounds(12, 92, 466, 128);
 		contentPane.add(textCode);
 
 		JButton btnAddFunction = new JButton("Add function");
@@ -115,10 +104,9 @@ public class GUI extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				String fid = textFidName.getText().trim();
 				String code = textCode.getText().trim();
-				if (fid.isEmpty() || code.isEmpty()) return;
-				JOptionPane.showMessageDialog(contentPane, _controller.addFunction(code));
+				if (code.isEmpty()) return;
+				JOptionPane.showMessageDialog(contentPane, _model.addFunction(code));
 			}
 		});
 		btnAddFunction.setBounds(350, 235, 128, 25);
@@ -145,16 +133,11 @@ public class GUI extends JFrame
 				{
 					JOptionPane.showMessageDialog(contentPane, "Time must have a double format");
 				}
-				JOptionPane.showMessageDialog(contentPane, _controller.addEvent(fid, time));
+				JOptionPane.showMessageDialog(contentPane, _model.addEvent(fid, time));
 			}
 		});
 		btnAddEvent.setBounds(350, 272, 128, 25);
 		contentPane.add(btnAddEvent);
-
-		textFidName = new JTextField();
-		textFidName.setBounds(36, 241, 122, 19);
-		contentPane.add(textFidName);
-		textFidName.setColumns(10);
 
 		textTimestamp = new JTextField();
 		textTimestamp.setBounds(183, 278, 69, 19);
@@ -165,13 +148,9 @@ public class GUI extends JFrame
 		lblName.setBounds(46, 0, 70, 15);
 		contentPane.add(lblName);
 
-		JLabel lblVariable = new JLabel("Variable");
-		lblVariable.setBounds(46, 37, 70, 15);
+		JLabel lblVariable = new JLabel("Variable code");
+		lblVariable.setBounds(46, 37, 112, 15);
 		contentPane.add(lblVariable);
-
-		JLabel lblFid = new JLabel("Fid");
-		lblFid.setBounds(51, 227, 70, 15);
-		contentPane.add(lblFid);
 
 		JLabel lblFid_1 = new JLabel("Fid");
 		lblFid_1.setBounds(51, 263, 70, 15);
@@ -181,8 +160,8 @@ public class GUI extends JFrame
 		lblTimestamp.setBounds(176, 263, 82, 15);
 		contentPane.add(lblTimestamp);
 
-		JLabel lblCode = new JLabel("Code");
-		lblCode.setBounds(46, 78, 70, 15);
+		JLabel lblCode = new JLabel("Function code");
+		lblCode.setBounds(46, 78, 112, 15);
 		contentPane.add(lblCode);
 
 		JButton btnRun = new JButton("Run");
@@ -192,7 +171,7 @@ public class GUI extends JFrame
 			{
 				try
 				{
-					_controller.run();
+					_model.run();
 				}
 				catch (Exception ex)
 				{
@@ -201,26 +180,28 @@ public class GUI extends JFrame
 				}
 			}
 		});
-		btnRun.setBounds(229, 309, 117, 25);
+		btnRun.setBounds(126, 309, 117, 25);
 		contentPane.add(btnRun);
 
-		textInitValue = new JTextField();
-		textInitValue.setBounds(183, 50, 69, 19);
-		contentPane.add(textInitValue);
-		textInitValue.setColumns(10);
-
-		JLabel lblInitialValue = new JLabel("Initial Value");
-		lblInitialValue.setBounds(176, 37, 91, 15);
-		contentPane.add(lblInitialValue);
-		
 		textArgs = new JTextField();
 		textArgs.setEnabled(false);
 		textArgs.setBounds(269, 278, 69, 19);
 		contentPane.add(textArgs);
 		textArgs.setColumns(10);
-		
+
 		JLabel lblArgs = new JLabel("Args");
 		lblArgs.setBounds(285, 263, 70, 15);
 		contentPane.add(lblArgs);
+
+		JButton btnStop = new JButton("Stop");
+		btnStop.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				_model.stop();
+			}
+		});
+		btnStop.setBounds(263, 309, 117, 25);
+		contentPane.add(btnStop);
 	}
 }

@@ -1,6 +1,5 @@
-package ru.tomtrix.agentsocks.labirint;
+package ru.tomtrix.agentsocks.test;
 
-import org.apache.log4j.Logger;
 import ru.tomtrix.agentsocks.mathmodel.*;
 
 public class Tester
@@ -11,7 +10,6 @@ public class Tester
 		LogicProcess process = new LogicProcess("fuck");
 		process.addAgent(new Man("Man"));
 		container.addLogicProcess(process);
-		Logger.getLogger(Tester.class).info("Всё ОК");
-		System.in.read();
+		container.run();
 	}
 }

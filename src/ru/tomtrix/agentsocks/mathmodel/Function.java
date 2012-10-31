@@ -19,12 +19,22 @@ public class Function
 		_parameters = parameters;
 	}
 	
+	/**
+	 * @param methodKeeper
+	 * @return
+	 * @throws Exception
+	 */
 	public Object execute(Object methodKeeper) throws Exception
 	{
-		for (Method m : methodKeeper.getClass().getMethods())
-			if (m.getName().equals(_fid))
-				return m.invoke(methodKeeper, _parameters);
-		return null;
+		//for each parameter obtain its class
+		Class<?>[] classes = new Class<?>[_parameters.length];
+		for (int i=0; i<_parameters.length; i++)
+			classes[i] = _parameters[i].getClass();
+		//trying to find a method via Reflection
+		Method m = methodKeeper.getClass().getMethod(_fid, classes);
+		if (m == null) throw new NullPointerException("frsfse");
+		//execute one
+		return m.invoke(methodKeeper, _parameters);
 	}
 
 	/** @return the _name */

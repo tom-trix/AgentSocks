@@ -1,4 +1,4 @@
-package ru.tomtrix.agentsocks.mathmodel;
+package ru.tomtrix.agentsocks.mathmodel.obsolete;
 
 /**
  * @author tom-trix

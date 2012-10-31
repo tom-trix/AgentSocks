@@ -2,7 +2,6 @@ package ru.tomtrix.agentsocks.mathmodel.obsolete;
 
 import javax.xml.bind.TypeConstraintException;
 
-import ru.tomtrix.agentsocks.mathmodel.StateItemAccess;
 
 @Deprecated
 public class StateItem

@@ -5,21 +5,40 @@ import java.util.*;
 /** @author tom-trix */
 public class LogicProcess
 {
+	/**
+	 * 
+	 */
 	private static int					_currentName	= 0;
+	/**
+	 * 
+	 */
 	private final String _name;
+	/**
+	 * 
+	 */
 	private final List<Agent>	_agents	= new ArrayList<>();
 	
+	/**
+	 * @param name
+	 */
 	public LogicProcess(String name)
 	{
 		_name = name != null && !name.isEmpty() ? name : String.format("%s%d", getClass(), _currentName);
 	}
 
+	/**
+	 * @param agent
+	 */
 	public void addAgent(Agent agent)
 	{
 		if (agent == null) throw new IllegalArgumentException("Agent can't be equal to null");
 		_agents.add(agent);
 	}
 
+	/**
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean nextStep() throws Exception
 	{
 		// TODO: можеть быть такое, что состояние агентов изменится, пока ищем минимум

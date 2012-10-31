@@ -1,18 +1,29 @@
 package ru.tomtrix.agentsocks.mathmodel;
 
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.concurrent.ConcurrentLinkedDeque;
+import java.util.*;
 import org.apache.log4j.Logger;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 /** @author tom-trix */
 public class Container
 {
+	/**
+	 * 
+	 */
 	private final Deque<LogicProcess>	_processes	= new ConcurrentLinkedDeque<>();
+	/**
+	 * 
+	 */
 	private final List<Thread> _threads = new LinkedList<>();
+	/**
+	 * 
+	 */
 	private boolean						_alive		= true;
 
+	/**
+	 * @param threads
+	 * @param name
+	 */
 	public Container(int threads, String name)
 	{
 		if (threads < 0 || threads > 100) throw new IllegalArgumentException("");
@@ -49,14 +60,28 @@ public class Container
 		}
 	}
 
+	/**
+	 * @param process
+	 */
 	public void addLogicProcess(LogicProcess process)
 	{
 		_processes.add(process);
 	}
 	
+	/**
+	 * 
+	 */
 	public void run()
 	{
 		for (Thread th : _threads)
 			th.start();
+	}
+	
+	/**
+	 * 
+	 */
+	public void stop()
+	{
+		_alive = false;
 	}
 }

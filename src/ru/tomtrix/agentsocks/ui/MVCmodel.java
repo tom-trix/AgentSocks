@@ -7,29 +7,51 @@ import ru.tomtrix.agentsocks.mathmodel.*;
  * @author tom-trix
  *
  */
-public class Controller
+public class MVCmodel
 {
+	/**
+	 * 
+	 */
 	private final Container _container = new Container(1, "MainContainer");
+	/**
+	 * 
+	 */
 	private final LogicProcess _process = new LogicProcess("fuck");
 	
-	public Controller()
+	/**
+	 * 
+	 */
+	public MVCmodel()
 	{
 		_container.addLogicProcess(_process);
 	}
 	
+	/**
+	 * @param name
+	 * @return
+	 * @throws Exception
+	 */
 	public String createAgent(String name) throws Exception
 	{
 		_process.addAgent(new DefaultAgent(name));
 		return String.format("Agent \"%s\" added successfully", name);
 	}
 	
-	public String addVariable(String variable, int initialValue)
+	/**
+	 * @param variable
+	 * @param initialValue
+	 * @return
+	 */
+	public String addVariable(String code)
 	{
 		try
 		{
 			Agent agent = _process.get_agents().get(_process.get_agents().size()-1);
-			agent.addVariable("int " + variable + " = " + initialValue + ";");
-			return "OK";
+			agent.addVariable(code);
+			StringBuilder sb = new StringBuilder(String.format("Now agent \"%s\" contains the following variables: ", agent.get_name()));
+			for (String s : agent.getVariables())
+				sb.append(s + ", ");
+			return sb.substring(0, sb.length()-2);
 		}
 		catch (Exception e)
 		{
@@ -38,6 +60,10 @@ public class Controller
 		}
 	}
 	
+	/**
+	 * @param code
+	 * @return
+	 */
 	public String addFunction(String code)
 	{
 		try
@@ -45,7 +71,10 @@ public class Controller
 			System.out.println(code);
 			Agent agent = _process.get_agents().get(_process.get_agents().size()-1);
 			agent.addFunction(code);
-			return "OK";
+			StringBuilder sb = new StringBuilder(String.format("Now agent \"%s\" contains the following functions: ", agent.get_name()));
+			for (String s : agent.getFunctions())
+				sb.append(s + ", ");
+			return sb.substring(0, sb.length()-2);
 		}
 		catch (Exception e)
 		{
@@ -54,6 +83,11 @@ public class Controller
 		}
 	}
 	
+	/**
+	 * @param fid
+	 * @param timestamp
+	 * @return
+	 */
 	public String addEvent(String fid, String timestamp)
 	{
 		try
@@ -72,9 +106,18 @@ public class Controller
 		}
 	}
 	
+	/**
+	 * @throws Exception
+	 */
 	public void run() throws Exception
 	{
-		_process.get_agents().get(_process.get_agents().size()-1).compileAgent();
+		Agent agent = _process.get_agents().get(_process.get_agents().size()-1);
+		agent.compileAgent();
 		_container.run();
+	}
+	
+	public void stop()
+	{
+		_container.stop();
 	}
 }

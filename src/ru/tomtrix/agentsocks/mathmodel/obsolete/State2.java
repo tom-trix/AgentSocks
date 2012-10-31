@@ -1,13 +1,14 @@
-package ru.tomtrix.agentsocks.mathmodel;
+package ru.tomtrix.agentsocks.mathmodel.obsolete;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+
 
 /**
  * @author tom-trix
  *
  */
-public class State
+public class State2
 {
 	private final static String noSuchVariable = "Agent's state hasn't got variable \"%s\""; 
 	private final Map<String, Object> _state = new ConcurrentHashMap<>();
