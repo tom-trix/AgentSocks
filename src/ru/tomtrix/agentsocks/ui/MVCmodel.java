@@ -1,6 +1,7 @@
 package ru.tomtrix.agentsocks.ui;
 
 import java.io.IOException;
+import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
 import ru.tomtrix.agentsocks.mathmodel.*;
@@ -52,9 +53,9 @@ public class MVCmodel
 			Agent agent = _process.get_agents().get(_process.get_agents().size()-1);
 			agent.addVariable(code);
 			StringBuilder sb = new StringBuilder(String.format("Now agent \"%s\" contains the following variables: ", agent.get_name()));
-			for (String s : agent.getVariables())
-				sb.append(s + ", ");
-			return sb.substring(0, sb.length()-2);
+			for (String s : agent.get_state())
+				sb.append("\n" + s);
+			return sb.toString();
 		}
 		catch (Exception e)
 		{
@@ -75,9 +76,9 @@ public class MVCmodel
 			Agent agent = _process.get_agents().get(_process.get_agents().size()-1);
 			agent.addFunction(code);
 			StringBuilder sb = new StringBuilder(String.format("Now agent \"%s\" contains the following functions: ", agent.get_name()));
-			for (String s : agent.getFunctions())
-				sb.append(s + ", ");
-			return sb.substring(0, sb.length()-2);
+			for (String s : agent.get_transformFunctions())
+				sb.append("\n" + s);
+			return sb.toString();
 		}
 		catch (Exception e)
 		{
@@ -98,9 +99,9 @@ public class MVCmodel
 			Agent agent = _process.get_agents().get(_process.get_agents().size()-1);
 			agent.get_eventList().addEvent(Double.parseDouble(timestamp), fid);
 			StringBuffer sb = new StringBuffer(String.format("Done...\nNow agent \"%s\" contains event list with timestamps: ", agent.get_name()));
-			for (Double d : agent.get_eventList().getAllTimestamps())
-				sb.append(d + ", ");
-			return sb.substring(0, sb.length()-2);
+			for (Entry<Double, String> e : agent.get_eventList().getInfo().entrySet())
+				sb.append(e + ", ");
+			return sb.toString();
 		}
 		catch (Exception e)
 		{
@@ -116,7 +117,31 @@ public class MVCmodel
 	public void saveAgent() throws IOException
 	{
 		Agent agent = _process.get_agents().get(_process.get_agents().size()-1);
-		new AgentJsonSerializer().agentToFile(agent, "/home/tom-trix/agent.txt");
+		AgentJsonSerializer.getInstance().agentToFile(agent, "/home/tom-trix/agent.txt");
+	}
+	
+	/**
+	 * @throws Exception
+	 */
+	public void loadAgent() throws Exception
+	{
+		_process.get_agents().clear();
+		_process.addAgent(AgentJsonSerializer.getInstance().fileToAgent("/home/tom-trix/agent.txt"));
+	}
+	
+	public String getFullAgentInfo()
+	{
+		Agent agent = _process.get_agents().get(_process.get_agents().size()-1);
+		StringBuffer sb = new StringBuffer(String.format("Agent Info:\n\nName: %s\nVariables:", agent.get_name()));
+		for (String s : agent.get_state())
+			sb.append("\n").append(s);
+		sb.append("\nFunctions:");
+		for (String s : agent.get_transformFunctions())
+			sb.append("\n").append(s);
+		sb.append("\nEvents:");
+		for (Entry<Double, String> e : agent.get_eventList().getInfo().entrySet())
+			sb.append("\n").append(e);
+		return sb.toString();
 	}
 	
 	/**

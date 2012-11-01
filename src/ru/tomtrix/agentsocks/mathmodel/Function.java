@@ -1,6 +1,9 @@
 package ru.tomtrix.agentsocks.mathmodel;
 
 import java.lang.reflect.Method;
+import java.nio.file.AccessDeniedException;
+
+import ru.tomtrix.agentsocks.Control;
 
 /** @author tom-trix */
 public class Function
@@ -17,6 +20,12 @@ public class Function
 	{
 		_fid = fid;
 		_parameters = parameters;
+	}
+	
+	public Function() throws AccessDeniedException {
+		if (Control.CONSTRUCTOR_ACCESS_DENIED) throw new AccessDeniedException("fsesf");
+		_fid = null;
+		_parameters = null;
 	}
 	
 	/**

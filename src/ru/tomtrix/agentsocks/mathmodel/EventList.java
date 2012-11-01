@@ -1,6 +1,9 @@
 package ru.tomtrix.agentsocks.mathmodel;
 
 import java.util.*;
+import java.util.Map.Entry;
+import ru.tomtrix.agentsocks.Control;
+import java.nio.file.AccessDeniedException;
 import java.util.concurrent.ConcurrentHashMap;
 
 /** @author tom-trix */
@@ -21,6 +24,9 @@ public class EventList
 		_eventList.put(timestamp, new Function(fid, pars));
 	}
 	
+	/**
+	 * @throws Exception
+	 */
 	public void executeNextEvent() throws Exception
 	{
 		if (_funcKeeper == null) throw new NullPointerException("fsfe");
@@ -30,6 +36,9 @@ public class EventList
 		_eventList.remove(d);
 	}
 	
+	/**
+	 * @param functionKeeper
+	 */
 	public void setFunctionKeeper(Object functionKeeper)
 	{
 		if (functionKeeper == null) throw new NullPointerException("fsf");
@@ -43,8 +52,26 @@ public class EventList
 		return _eventList.keySet().iterator().next();
 	}
 	
-	public Set<Double> getAllTimestamps()
+	/**
+	 * @return
+	 */
+	public Map<Double, String> getInfo()
 	{
-		return _eventList.keySet();
+		Map<Double, String> result = new HashMap<>();
+		for (Entry<Double, Function> e : _eventList.entrySet())
+		{
+			result.put(e.getKey(), e.getValue().get_fid());
+		}
+		return result;
+	}
+
+	/**
+	 * @return the _eventList
+	 * @throws AccessDeniedException 
+	 */
+	public Map<Double, Function> get_eventList() throws AccessDeniedException
+	{
+		if (Control.CONSTRUCTOR_ACCESS_DENIED) throw new AccessDeniedException("fses");
+		return _eventList;
 	}
 }

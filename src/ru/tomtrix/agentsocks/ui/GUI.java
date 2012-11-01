@@ -223,5 +223,23 @@ public class GUI extends JFrame
 		});
 		btnSaveagent.setBounds(12, 309, 37, 25);
 		contentPane.add(btnSaveagent);
+		
+		JButton btnLoadagent = new JButton("LoadAgent");
+		btnLoadagent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try
+				{
+					_model.loadAgent();
+					JOptionPane.showMessageDialog(contentPane, "All correct...\n" + _model.getFullAgentInfo());
+				}
+				catch (Exception e)
+				{
+					JOptionPane.showMessageDialog(contentPane, e);
+					e.printStackTrace();
+				}
+			}
+		});
+		btnLoadagent.setBounds(59, 309, 37, 25);
+		contentPane.add(btnLoadagent);
 	}
 }
