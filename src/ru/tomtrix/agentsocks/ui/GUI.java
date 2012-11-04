@@ -29,8 +29,7 @@ public class GUI extends JFrame
 				try
 				{
 					GUI frame = new GUI();
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
+					frame.setTitle("Modelling system");
 				}
 				catch (Exception e)
 				{
@@ -43,7 +42,6 @@ public class GUI extends JFrame
 	/** Create the frame. */
 	public GUI()
 	{
-		setTitle("Modelling system");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 370);
 		contentPane = new JPanel();
@@ -241,5 +239,7 @@ public class GUI extends JFrame
 		});
 		btnLoadagent.setBounds(59, 309, 37, 25);
 		contentPane.add(btnLoadagent);
+		setVisible(true);
+		setLocationRelativeTo(null);
 	}
 }

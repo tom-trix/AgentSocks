@@ -1,4 +1,0 @@
-AgentBased
-==========
-
-AgentBased repository
