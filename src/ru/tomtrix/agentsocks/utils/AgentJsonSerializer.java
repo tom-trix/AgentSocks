@@ -1,64 +1,58 @@
 package ru.tomtrix.agentsocks.utils;
 
 import java.io.*;
+import java.util.Iterator;
+
 import ru.tomtrix.agentsocks.Control;
 import ru.tomtrix.agentsocks.mathmodel.*;
-import ru.tomtrix.javassistwraper.ClassStore;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-/**
- * @author tom-trix
- *
- */
+/** @author tom-trix */
 public class AgentJsonSerializer
 {
-	private static AgentJsonSerializer _instance = new AgentJsonSerializer();
-	public static AgentJsonSerializer getInstance() {return _instance;}
-	private AgentJsonSerializer() {}
-	
-	/**
-	 * 
-	 */
-	private final ObjectMapper _mapper = new ObjectMapper();
-	
-	/**
-	 * @param agent
+	private static AgentJsonSerializer	_instance	= new AgentJsonSerializer();
+
+	public static AgentJsonSerializer getInstance()
+	{
+		return _instance;
+	}
+
+	private AgentJsonSerializer()
+	{}
+
+	/** feses */
+	private final ObjectMapper	_mapper	= new ObjectMapper();
+
+	/** @param agent
 	 * @param filename
-	 * @throws IOException
-	 */
+	 * @throws IOException */
 	public void agentToFile(Agent agent, String filename) throws IOException
 	{
-		//get a file
+		// get a file
 		File f = new File(filename);
 		if (!f.exists()) f.createNewFile();
-		
-		//serialize
+
+		// serialize
+		Control.CONSTRUCTOR_ACCESS_DENIED = false;
 		_mapper.writeValue(f, agent);
+		Control.CONSTRUCTOR_ACCESS_DENIED = true;
 	}
-	
-	/**
-	 * @param filename
+
+	/** @param filename
 	 * @return
-	 * @throws Exception
-	 */
+	 * @throws Exception */
 	public Agent fileToAgent(String filename) throws Exception
 	{
-		//get a file
+		// get a file
 		File f = new File(filename);
 		if (!f.exists()) throw new FileNotFoundException("fdsfsdr");
-		
-		//deserialize
-		Control.CONSTRUCTOR_ACCESS_DENIED = false;
-		Agent agent = _mapper.readValue(f, DefaultAgent.class);
-		Control.CONSTRUCTOR_ACCESS_DENIED = true;
-		
-		//add fields and methods to a runtime class (that corresponds to an agent)
-		String runtimeClass = agent.get_runtimeClassName();
-		ClassStore.getInstance().addClass(runtimeClass, null, null);
-		for (String s : agent.get_state())
-			ClassStore.getInstance().addField(runtimeClass, s);
-		for (String s : agent.get_transformFunctions())
-			ClassStore.getInstance().addMethod(runtimeClass, s);
-		return agent;
+		JsonNode root = _mapper.readTree(f);
+		Agent result = new Agent(root.path("_name").textValue());
+		for (Iterator<JsonNode> i = root.path("_state").elements(); i.hasNext();)
+			result.addVariable(i.next().textValue());
+		for (Iterator<JsonNode> i = root.path("_transformFunctions").elements(); i.hasNext();)
+			result.addFunction(i.next().textValue());
+		return result;
 	}
 }

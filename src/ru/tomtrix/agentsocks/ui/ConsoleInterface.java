@@ -18,7 +18,7 @@ public class ConsoleInterface
 		try
 		{
 			//TODO относительный адрес
-			ConsoleUI cui = new ConsoleUI("/home/tom-trix/1.txt", new MVCmodel());
+			ConsoleUI cui = new ConsoleUI("/home/tom-trix/1.txt", new MVCmodel(0));
 			cui.run();
 		}
 		catch (IOException e)

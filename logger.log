@@ -872,3 +872,214 @@ Caused by: compile error: syntax error near "int y = 8"
 00:46:54,676 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
 00:46:54,726 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
 00:46:54,777 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:22,545 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:22,613 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:22,664 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:22,714 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:22,765 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:22,816 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:22,868 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:22,919 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:22,970 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:23,021 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:23,072 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:23,122 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:23,173 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:23,224 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:23,274 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:23,325 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:23,382 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:23,433 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:23,484 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:23,535 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:23,585 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:23,636 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:23,687 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:23,738 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:23,788 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:23,839 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:23,890 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:23,940 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:23,991 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:24,042 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:24,092 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:24,143 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:24,194 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:24,245 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:24,306 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:24,357 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:24,408 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:24,458 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:24,509 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:24,560 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:24,610 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:24,661 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:24,712 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:24,763 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:24,813 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:24,864 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:24,915 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:24,965 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:25,016 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:25,066 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:25,117 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:25,168 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:25,218 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:25,269 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:25,320 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:25,370 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:25,421 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:25,472 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:25,522 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:25,573 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:25,624 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:25,674 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:25,724 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:25,775 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:25,826 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:25,876 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:25,927 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:25,978 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:26,029 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:26,080 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:26,130 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:26,181 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:26,232 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:26,282 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:26,333 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:26,384 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:26,434 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:26,485 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:26,536 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:26,587 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:26,637 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:26,688 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:26,739 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:26,789 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:26,840 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:26,891 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:26,942 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:26,992 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:27,043 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:27,094 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:27,145 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:27,195 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:27,246 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:27,297 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:27,348 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:27,398 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:27,449 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:27,500 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:27,550 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:27,601 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:27,652 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:27,703 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:27,753 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+00:44:27,804 DEBUG MainContainer.thread0 Container$1:run:49 - next() done
+18:00:43,286  INFO AWT-EventQueue-0 DefaultAgent:<init>:51 - !!Class = class ru.tomtrix.agentsocks.mathmodel.DefaultAgent
+18:18:24,288  INFO AWT-EventQueue-0 DefaultAgent:<init>:51 - !!Class = class ru.tomtrix.agentsocks.mathmodel.DefaultAgent
+18:18:27,068  INFO AWT-EventQueue-0 DefaultAgent:compileAgent:89 - public void Gtre.setAgent(ru.tomtrix.agentsocks.mathmodel.DefaultAgent)
+18:18:27,068  INFO AWT-EventQueue-0 DefaultAgent:compileAgent:89 - public final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException
+18:18:27,069  INFO AWT-EventQueue-0 DefaultAgent:compileAgent:89 - public final native void java.lang.Object.wait(long) throws java.lang.InterruptedException
+18:18:27,069  INFO AWT-EventQueue-0 DefaultAgent:compileAgent:89 - public final void java.lang.Object.wait() throws java.lang.InterruptedException
+18:18:27,069  INFO AWT-EventQueue-0 DefaultAgent:compileAgent:89 - public boolean java.lang.Object.equals(java.lang.Object)
+18:18:27,069  INFO AWT-EventQueue-0 DefaultAgent:compileAgent:89 - public java.lang.String java.lang.Object.toString()
+18:18:27,069  INFO AWT-EventQueue-0 DefaultAgent:compileAgent:89 - public native int java.lang.Object.hashCode()
+18:18:27,070  INFO AWT-EventQueue-0 DefaultAgent:compileAgent:89 - public final native java.lang.Class java.lang.Object.getClass()
+18:18:27,070  INFO AWT-EventQueue-0 DefaultAgent:compileAgent:89 - public final native void java.lang.Object.notify()
+18:18:27,070  INFO AWT-EventQueue-0 DefaultAgent:compileAgent:89 - public final native void java.lang.Object.notifyAll()
+18:18:27,070  INFO AWT-EventQueue-0 DefaultAgent:compileAgent:89 - public abstract void ru.tomtrix.agentsocks.mathmodel.IAgentable.setAgent(ru.tomtrix.agentsocks.mathmodel.Agent)
+20:24:37,887 ERROR AWT-EventQueue-0 MVCmodel:addVariable:64 - Can't add new variable
+javassist.bytecode.DuplicateMemberException: duplicate field: x
+	at javassist.bytecode.ClassFile.testExistingField(ClassFile.java:598)
+	at javassist.bytecode.ClassFile.addField(ClassFile.java:576)
+	at javassist.CtClassType.addField(CtClassType.java:1252)
+	at javassist.CtClass.addField(CtClass.java:965)
+	at ru.tomtrix.javassistwraper.ClassStore.addField(ClassStore.java:48)
+	at ru.tomtrix.agentsocks.mathmodel.Agent.addVariable(Agent.java:52)
+	at ru.tomtrix.agentsocks.ui.MVCmodel.addVariable(MVCmodel.java:56)
+	at ru.tomtrix.agentsocks.ui.GUI$3.actionPerformed(GUI.java:90)
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2018)
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2341)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
+	at java.awt.Component.processMouseEvent(Component.java:6505)
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3312)
+	at java.awt.Component.processEvent(Component.java:6270)
+	at java.awt.Container.processEvent(Container.java:2229)
+	at java.awt.Component.dispatchEventImpl(Component.java:4861)
+	at java.awt.Container.dispatchEventImpl(Container.java:2287)
+	at java.awt.Component.dispatchEvent(Component.java:4687)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4832)
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4492)
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4422)
+	at java.awt.Container.dispatchEventImpl(Container.java:2273)
+	at java.awt.Window.dispatchEventImpl(Window.java:2719)
+	at java.awt.Component.dispatchEvent(Component.java:4687)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:723)
+	at java.awt.EventQueue.access$200(EventQueue.java:103)
+	at java.awt.EventQueue$3.run(EventQueue.java:682)
+	at java.awt.EventQueue$3.run(EventQueue.java:680)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.awt.EventQueue$4.run(EventQueue.java:696)
+	at java.awt.EventQueue$4.run(EventQueue.java:694)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:693)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:244)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:163)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:151)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:147)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:139)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:97)
+00:55:21,830 ERROR AWT-EventQueue-0 MVCmodel:addVariable:49 - Can't add new variable
+javassist.CannotCompileException: [source error] syntax error near "few"
+	at javassist.CtField.make(CtField.java:167)
+	at ru.tomtrix.javassistwraper.ClassStore.addField(ClassStore.java:48)
+	at ru.tomtrix.agentsocks.mathmodel.Agent.addVariable(Agent.java:48)
+	at ru.tomtrix.agentsocks.ui.MVCmodel.addVariable(MVCmodel.java:41)
+	at ru.tomtrix.agentsocks.ui.GUI$2.actionPerformed(GUI.java:70)
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2018)
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2341)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
+	at java.awt.Component.processMouseEvent(Component.java:6505)
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3312)
+	at java.awt.Component.processEvent(Component.java:6270)
+	at java.awt.Container.processEvent(Container.java:2229)
+	at java.awt.Component.dispatchEventImpl(Component.java:4861)
+	at java.awt.Container.dispatchEventImpl(Container.java:2287)
+	at java.awt.Component.dispatchEvent(Component.java:4687)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4832)
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4492)
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4422)
+	at java.awt.Container.dispatchEventImpl(Container.java:2273)
+	at java.awt.Window.dispatchEventImpl(Window.java:2719)
+	at java.awt.Component.dispatchEvent(Component.java:4687)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:723)
+	at java.awt.EventQueue.access$200(EventQueue.java:103)
+	at java.awt.EventQueue$3.run(EventQueue.java:682)
+	at java.awt.EventQueue$3.run(EventQueue.java:680)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.awt.EventQueue$4.run(EventQueue.java:696)
+	at java.awt.EventQueue$4.run(EventQueue.java:694)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:693)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:244)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:163)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:151)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:147)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:139)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:97)
+Caused by: compile error: syntax error near "few"
+	at javassist.compiler.Parser.parseMember1(Parser.java:55)
+	at javassist.compiler.Javac.compile(Javac.java:90)
+	at javassist.CtField.make(CtField.java:162)
+	... 40 more

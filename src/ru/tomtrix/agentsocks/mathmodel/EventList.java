@@ -6,13 +6,15 @@ import ru.tomtrix.agentsocks.Control;
 import java.nio.file.AccessDeniedException;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /** @author tom-trix */
 public class EventList
 {
 	/** map containing functions & their timestamps */
 	private final Map<Double, Function>	_eventList	= new ConcurrentHashMap<>();
 	/** reference to transform functions */
-	private Object	_funcKeeper;
+	private Object	_runtimeAssistant;
 
 	/** adds new function to the event list
 	 * @param timestamp - time the function to be invoked
@@ -29,23 +31,24 @@ public class EventList
 	 */
 	public void executeNextEvent() throws Exception
 	{
-		if (_funcKeeper == null) throw new NullPointerException("fsfe");
+		if (_runtimeAssistant == null) throw new NullPointerException("fsfe");
 		if (_eventList.isEmpty()) return;
 		Double d = _eventList.keySet().iterator().next();
-		_eventList.get(d).execute(_funcKeeper);
+		_eventList.get(d).execute(_runtimeAssistant);
 		_eventList.remove(d);
 	}
 	
 	/**
-	 * @param functionKeeper
+	 * @param runtimeAssistant
 	 */
-	public void setFunctionKeeper(Object functionKeeper)
+	public void setRuntimeAssistant(Object runtimeAssistant)
 	{
-		if (functionKeeper == null) throw new NullPointerException("fsf");
-		_funcKeeper = functionKeeper;
+		if (runtimeAssistant == null) throw new NullPointerException("fsf");
+		_runtimeAssistant = runtimeAssistant;
 	}
 	
 	/** @return timestamp of the nearest event in the event list (or <b>NULL</b> if there are no events presented) */
+	@JsonIgnore(value = true)
 	public Double getNextEventTime()
 	{
 		if (_eventList.isEmpty()) return null;
@@ -55,6 +58,7 @@ public class EventList
 	/**
 	 * @return
 	 */
+	@JsonIgnore(value = true)
 	public Map<Double, String> getInfo()
 	{
 		Map<Double, String> result = new HashMap<>();

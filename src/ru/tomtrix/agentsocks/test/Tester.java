@@ -1,15 +1,14 @@
 package ru.tomtrix.agentsocks.test;
 
-import ru.tomtrix.agentsocks.mathmodel.*;
+import ru.tomtrix.agentsocks.infrastructure.*;
 
 public class Tester
 {
 	public static void main(String[] args) throws Exception
 	{
-		Container container = new Container(1, "MainContainer");
-		LogicProcess process = new LogicProcess("fuck");
-		process.addAgent(new Man("Man"));
-		container.addLogicProcess(process);
-		container.run();
+		Node node = new Node(0);
+		node.get_container().addLogicProcess("Fuck");
+		node.get_container().getProcessByName("Fuck").addAgent(new Man("Man"));
+		node.run();
 	}
 }

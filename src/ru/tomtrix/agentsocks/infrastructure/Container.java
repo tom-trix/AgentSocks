@@ -1,30 +1,24 @@
-package ru.tomtrix.agentsocks.mathmodel;
+package ru.tomtrix.agentsocks.infrastructure;
 
 import java.util.*;
+
 import org.apache.log4j.Logger;
+
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 /** @author tom-trix */
 public class Container
 {
-	/**
-	 * 
-	 */
-	private final Deque<LogicProcess>	_processes	= new ConcurrentLinkedDeque<>();
-	/**
-	 * 
-	 */
-	private final List<Thread> _threads = new LinkedList<>();
-	/**
-	 * 
-	 */
+	/** wwd */
+	private final Queue<LogicProcess>	_processes	= new ConcurrentLinkedDeque<>();
+	/** fae */
+	private final List<Thread>			_threads	= new LinkedList<>();
+	/** fes */
 	private boolean						_alive		= true;
 
-	/**
-	 * @param threads
-	 * @param name
-	 */
-	public Container(int threads, String name)
+	/** @param threads
+	 * @param name */
+	Container(int threads, String name)
 	{
 		if (threads < 0 || threads > 100) throw new IllegalArgumentException("");
 		for (int i = 0; i < threads; i++)
@@ -42,13 +36,13 @@ public class Container
 						try
 						{
 							Thread.sleep(50);
-							process = _processes.pollFirst();
+							process = _processes.poll();
 							if (process == null) continue;
 							process.nextStep();
 							_processes.add(process);
 							Logger.getLogger(getClass()).debug("next() done");
 						}
-						catch (InterruptedException e) 		//done specially to avoid NullPointerException!
+						catch (InterruptedException e) 		// done specially to avoid NullPointerException!
 						{}
 						catch (Exception e)
 						{
@@ -60,28 +54,31 @@ public class Container
 		}
 	}
 
-	/**
-	 * @param process
-	 */
-	public void addLogicProcess(LogicProcess process)
-	{
-		_processes.add(process);
-	}
-	
-	/**
-	 * 
-	 */
-	public void run()
+	/** fsef */
+	void run()
 	{
 		for (Thread th : _threads)
 			th.start();
 	}
-	
-	/**
-	 * 
-	 */
-	public void stop()
+
+	/** fsef */
+	void stop()
 	{
 		_alive = false;
+	}
+
+	/** @param process */
+	public LogicProcess addLogicProcess(String name)
+	{
+		LogicProcess result = new LogicProcess(name);
+		_processes.add(result);
+		return result;
+	}
+
+	public LogicProcess getProcessByName(String name)
+	{
+		for (LogicProcess p : _processes)
+			if (p.get_name().equals(name)) return p;
+		return null;
 	}
 }

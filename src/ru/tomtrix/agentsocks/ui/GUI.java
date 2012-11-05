@@ -2,15 +2,13 @@ package ru.tomtrix.agentsocks.ui;
 
 import javax.swing.*;
 import java.awt.event.*;
-import java.awt.EventQueue;
 import java.io.IOException;
-import org.apache.log4j.Logger;
 import javax.swing.border.EmptyBorder;
 
 public class GUI extends JFrame
 {
 	private static final long	serialVersionUID	= 6208515297698018657L;
-	private final MVCmodel		_model				= new MVCmodel();
+	private final MVCmodel		_model;
 
 	private JPanel				contentPane;
 	private JTextField			textAgentName;
@@ -19,29 +17,11 @@ public class GUI extends JFrame
 	private JTextField			textTimestamp;
 	private JTextField			textArgs;
 
-	/** Launch the application. */
-	public static void main(String[] args)
-	{
-		EventQueue.invokeLater(new Runnable()
-		{
-			public void run()
-			{
-				try
-				{
-					GUI frame = new GUI();
-					frame.setTitle("Modelling system");
-				}
-				catch (Exception e)
-				{
-					Logger.getLogger(getClass()).error("Can't run user interface", e);
-				}
-			}
-		});
-	}
-
 	/** Create the frame. */
-	public GUI()
+	public GUI(MVCmodel model)
 	{
+		_model = model;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 370);
 		contentPane = new JPanel();
@@ -196,7 +176,15 @@ public class GUI extends JFrame
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				_model.stop();
+				try
+				{
+					_model.stop();
+				}
+				catch (IllegalAccessException e)
+				{
+					JOptionPane.showMessageDialog(contentPane, e);
+					e.printStackTrace();
+				}
 			}
 		});
 		btnStop.setBounds(263, 309, 117, 25);
