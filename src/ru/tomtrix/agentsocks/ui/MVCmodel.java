@@ -24,7 +24,7 @@ public class MVCmodel
 	 * @throws Exception */
 	public String createAgent(String name) throws Exception
 	{
-		_process.addAgent(new Agent(name));
+		_process.addAgent(new DefaultAgent(name));
 		return String.format("Agent \"%s\" added successfully", name);
 	}
 

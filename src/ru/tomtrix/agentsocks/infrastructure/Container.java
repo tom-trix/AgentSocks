@@ -40,7 +40,6 @@ public class Container
 							if (process == null) continue;
 							process.nextStep();
 							_processes.add(process);
-							Logger.getLogger(getClass()).debug("next() done");
 						}
 						catch (InterruptedException e) 		// done specially to avoid NullPointerException!
 						{}

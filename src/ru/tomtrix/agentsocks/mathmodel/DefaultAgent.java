@@ -1,5 +1,7 @@
 package ru.tomtrix.agentsocks.mathmodel;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * @author tom-trix
  *
@@ -7,7 +9,7 @@ package ru.tomtrix.agentsocks.mathmodel;
 public class DefaultAgent extends Agent
 {
 
-	public DefaultAgent(String name) throws Exception
+	public DefaultAgent(@JsonProperty("_name") String name) throws Exception
 	{
 		super(name);
 	}

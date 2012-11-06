@@ -6,7 +6,7 @@ public class Node
 	/** fse */
 	private final Container			_container	= new Container(5, "MainContainer");
 	/** dawfse */
-	private final MPISenderListener	_mpi		= MPISenderListener.getInstance();
+	private final MPIAgent	_mpi		= MPIAgent.getInstance();
 	private final int				_rank;
 
 	/** fs */

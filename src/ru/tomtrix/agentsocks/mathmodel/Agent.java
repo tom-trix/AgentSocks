@@ -1,11 +1,12 @@
 package ru.tomtrix.agentsocks.mathmodel;
 
+import java.io.Serializable;
 import java.util.*;
 import org.apache.log4j.Logger;
 import ru.tomtrix.javassistwraper.ClassStore;
 
 /** @author tom-trix */
-public class Agent
+public abstract class Agent
 {
 	private static final String	RA_AGENTSETTER		= "setAgent";
 
@@ -29,7 +30,8 @@ public class Agent
 		_name = name;
 		_RAClassname = name;
 		_eventList = new EventList();
-		ClassStore.getInstance().addClass(name, Arrays.asList(new String[] { String.format("private %s _agent;", getClass().getName()) }), Arrays.asList(new String[] { String.format("public void %s(Object agent) {_agent = (%s)agent;}", RA_AGENTSETTER, getClass().getName()) }));
+		ClassStore.getInstance().addClass(name, null, null);
+		Logger.getLogger(getClass()).info("Agent created");
 	}
 
 	/** Adds a variable to the agent by adding a new field to the corresponding runtime class
@@ -61,10 +63,9 @@ public class Agent
 		Logger.getLogger(getClass()).info("Compiled");
 	}
 
-	public void notifyAgent(int data[])
+	public void notifyAgent(Serializable data)
 	{
-		for (int i : data)
-			Logger.getLogger(getClass()).info("Message received: " + i);
+		Logger.getLogger(getClass()).info("---> Message received: " + data);
 	}
 
 	/** @return the raAgentsetter */

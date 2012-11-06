@@ -1,11 +1,10 @@
 package ru.tomtrix.agentsocks.utils;
 
 import java.io.*;
-import java.util.Iterator;
-
 import ru.tomtrix.agentsocks.Control;
 import ru.tomtrix.agentsocks.mathmodel.*;
-import com.fasterxml.jackson.databind.JsonNode;
+import ru.tomtrix.javassistwraper.ClassStore;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /** @author tom-trix */
@@ -47,12 +46,17 @@ public class AgentJsonSerializer
 		// get a file
 		File f = new File(filename);
 		if (!f.exists()) throw new FileNotFoundException("fdsfsdr");
-		JsonNode root = _mapper.readTree(f);
-		Agent result = new Agent(root.path("_name").textValue());
-		for (Iterator<JsonNode> i = root.path("_state").elements(); i.hasNext();)
-			result.addVariable(i.next().textValue());
-		for (Iterator<JsonNode> i = root.path("_transformFunctions").elements(); i.hasNext();)
-			result.addFunction(i.next().textValue());
+		
+		// deserialize
+		Control.CONSTRUCTOR_ACCESS_DENIED = false;
+		Agent result = _mapper.readValue(f, DefaultAgent.class);
+		Control.CONSTRUCTOR_ACCESS_DENIED = true;
+		for (String s : result.get_state())
+			ClassStore.getInstance().addField(result.get_RAClassname(), s);
+		for (String s : result.get_transformFunctions())
+			ClassStore.getInstance().addMethod(result.get_RAClassname(), s);
+		
+		//well done
 		return result;
 	}
 }

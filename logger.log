@@ -1083,3 +1083,16 @@ Caused by: compile error: syntax error near "few"
 	at javassist.compiler.Javac.compile(Javac.java:90)
 	at javassist.CtField.make(CtField.java:162)
 	... 40 more
+11:58:19,042  INFO AWT-EventQueue-0 DefaultAgent:<init>:36 - Agent created
+11:58:43,900  INFO AWT-EventQueue-0 DefaultAgent:<init>:36 - Agent created
+11:58:54,479  INFO AWT-EventQueue-0 DefaultAgent:compileAgent:65 - Compiled
+12:01:07,681  INFO AWT-EventQueue-0 DefaultAgent:<init>:33 - Agent created
+12:01:11,821  INFO AWT-EventQueue-0 DefaultAgent:compileAgent:62 - Compiled
+12:01:33,120  INFO AWT-EventQueue-0 DefaultAgent:<init>:33 - Agent created
+12:01:56,167  INFO AWT-EventQueue-0 MVCmodel:addFunction:58 - Code = public void go()
+{
+System.out.println("555");
+}
+12:02:06,798  INFO AWT-EventQueue-0 DefaultAgent:compileAgent:62 - Compiled
+12:03:43,372  INFO AWT-EventQueue-0 DefaultAgent:<init>:33 - Agent created
+12:03:46,330  INFO AWT-EventQueue-0 DefaultAgent:compileAgent:62 - Compiled
