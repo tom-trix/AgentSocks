@@ -5,6 +5,10 @@ import java.awt.event.*;
 import java.io.IOException;
 import javax.swing.border.EmptyBorder;
 
+import mpi.MPI;
+
+import ru.tomtrix.mpiagent.MPIAgent;
+
 public class GUI extends JFrame
 {
 	private static final long	serialVersionUID	= 6208515297698018657L;
@@ -16,14 +20,15 @@ public class GUI extends JFrame
 	private JTextField			textEventFid;
 	private JTextField			textTimestamp;
 	private JTextField			textArgs;
+	private JTextField			textEventMsg;
 
 	/** Create the frame. */
 	public GUI(MVCmodel model)
 	{
 		_model = model;
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 370);
+		setBounds(100, 100, 500, 354);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -74,7 +79,7 @@ public class GUI extends JFrame
 		contentPane.add(btnAddVariable);
 
 		final JTextArea textCode = new JTextArea();
-		textCode.setBounds(12, 92, 466, 128);
+		textCode.setBounds(12, 92, 466, 80);
 		contentPane.add(textCode);
 
 		JButton btnAddFunction = new JButton("Add function");
@@ -87,11 +92,11 @@ public class GUI extends JFrame
 				JOptionPane.showMessageDialog(contentPane, _model.addFunction(code));
 			}
 		});
-		btnAddFunction.setBounds(350, 235, 128, 25);
+		btnAddFunction.setBounds(350, 184, 128, 25);
 		contentPane.add(btnAddFunction);
 
 		textEventFid = new JTextField();
-		textEventFid.setBounds(36, 278, 122, 19);
+		textEventFid.setBounds(36, 227, 122, 19);
 		contentPane.add(textEventFid);
 		textEventFid.setColumns(10);
 
@@ -114,11 +119,11 @@ public class GUI extends JFrame
 				JOptionPane.showMessageDialog(contentPane, _model.addEvent(fid, time));
 			}
 		});
-		btnAddEvent.setBounds(350, 272, 128, 25);
+		btnAddEvent.setBounds(350, 221, 128, 25);
 		contentPane.add(btnAddEvent);
 
 		textTimestamp = new JTextField();
-		textTimestamp.setBounds(183, 278, 69, 19);
+		textTimestamp.setBounds(183, 227, 69, 19);
 		contentPane.add(textTimestamp);
 		textTimestamp.setColumns(10);
 
@@ -131,11 +136,11 @@ public class GUI extends JFrame
 		contentPane.add(lblVariable);
 
 		JLabel lblFid_1 = new JLabel("Fid");
-		lblFid_1.setBounds(51, 263, 70, 15);
+		lblFid_1.setBounds(51, 212, 70, 15);
 		contentPane.add(lblFid_1);
 
 		JLabel lblTimestamp = new JLabel("Timestamp");
-		lblTimestamp.setBounds(176, 263, 82, 15);
+		lblTimestamp.setBounds(176, 212, 82, 15);
 		contentPane.add(lblTimestamp);
 
 		JLabel lblCode = new JLabel("Function code");
@@ -158,17 +163,17 @@ public class GUI extends JFrame
 				}
 			}
 		});
-		btnRun.setBounds(126, 309, 117, 25);
+		btnRun.setBounds(126, 258, 117, 25);
 		contentPane.add(btnRun);
 
 		textArgs = new JTextField();
 		textArgs.setEnabled(false);
-		textArgs.setBounds(269, 278, 69, 19);
+		textArgs.setBounds(269, 227, 69, 19);
 		contentPane.add(textArgs);
 		textArgs.setColumns(10);
 
 		JLabel lblArgs = new JLabel("Args");
-		lblArgs.setBounds(285, 263, 70, 15);
+		lblArgs.setBounds(285, 212, 70, 15);
 		contentPane.add(lblArgs);
 
 		JButton btnStop = new JButton("Stop");
@@ -187,7 +192,7 @@ public class GUI extends JFrame
 				}
 			}
 		});
-		btnStop.setBounds(263, 309, 117, 25);
+		btnStop.setBounds(263, 258, 117, 25);
 		contentPane.add(btnStop);
 
 		JButton btnSaveagent = new JButton("SaveAgent");
@@ -207,12 +212,14 @@ public class GUI extends JFrame
 				}
 			}
 		});
-		btnSaveagent.setBounds(12, 309, 37, 25);
+		btnSaveagent.setBounds(12, 258, 37, 25);
 		contentPane.add(btnSaveagent);
-		
+
 		JButton btnLoadagent = new JButton("LoadAgent");
-		btnLoadagent.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		btnLoadagent.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
 				try
 				{
 					_model.loadAgent();
@@ -225,8 +232,28 @@ public class GUI extends JFrame
 				}
 			}
 		});
-		btnLoadagent.setBounds(59, 309, 37, 25);
+		btnLoadagent.setBounds(59, 258, 37, 25);
 		contentPane.add(btnLoadagent);
+
+		textEventMsg = new JTextField();
+		textEventMsg.setBounds(296, 298, 69, 19);
+		contentPane.add(textEventMsg);
+		textEventMsg.setColumns(10);
+
+		JButton btnSend = new JButton("Send");
+		btnSend.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				String strs[] = textEventMsg.getText().trim().split(" ");
+				byte data[] = new byte[strs.length];
+				for (int i = 0; i < strs.length; i++)
+					data[i] = Byte.parseByte(strs[i]);
+				MPIAgent.getInstance().send(data, MPI.COMM_WORLD.Rank() == 0 ? 1 : 0);
+			}
+		});
+		btnSend.setBounds(396, 295, 82, 25);
+		contentPane.add(btnSend);
 		setVisible(true);
 		setLocationRelativeTo(null);
 	}

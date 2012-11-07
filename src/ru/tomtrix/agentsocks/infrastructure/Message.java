@@ -13,10 +13,10 @@ public class Message implements Serializable
 	private int				_agent;
 	private Serializable	_data;
 
-	/** @param process
-	 * @param agent
-	 * @param data */
-	public Message(String process, int agent, Serializable data)
+	/** @param data 
+	 * @param process
+	 * @param agent*/
+	public Message(Serializable data, String process, int agent)
 	{
 		_process = process;
 		_agent = agent;

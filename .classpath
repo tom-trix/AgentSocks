@@ -5,9 +5,9 @@
 	<classpathentry kind="lib" path="lib/jackson-annotations-2.1.0.jar"/>
 	<classpathentry kind="lib" path="lib/jackson-core-2.1.0.jar"/>
 	<classpathentry kind="lib" path="lib/jackson-databind-2.1.0.jar"/>
-	<classpathentry kind="lib" path="lib/javassistwrapper.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="lib/consoleui.jar"/>
-	<classpathentry kind="lib" path="lib/mpj.jar"/>
+	<classpathentry kind="lib" path="lib/mpiagent.jar"/>
+	<classpathentry kind="lib" path="lib/javassistwrapper.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
