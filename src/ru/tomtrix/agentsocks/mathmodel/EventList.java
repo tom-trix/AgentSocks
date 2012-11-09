@@ -2,8 +2,6 @@ package ru.tomtrix.agentsocks.mathmodel;
 
 import java.util.*;
 import java.util.Map.Entry;
-import ru.tomtrix.agentsocks.Control;
-import java.nio.file.AccessDeniedException;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -72,10 +70,10 @@ public class EventList
 	/**
 	 * @return the _eventList
 	 * @throws AccessDeniedException 
-	 */
+	 *//*
 	public Map<Double, Function> get_eventList() throws AccessDeniedException
 	{
 		if (Control.CONSTRUCTOR_ACCESS_DENIED) throw new AccessDeniedException("fses");
 		return _eventList;
-	}
+	}*/
 }

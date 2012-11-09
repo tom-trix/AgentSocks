@@ -1,25 +1,29 @@
 package ru.tomtrix.agentsocks.mathmodel;
 
-import java.io.Serializable;
 import java.util.*;
+import java.io.Serializable;
 import org.apache.log4j.Logger;
+
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+import java.nio.file.AccessDeniedException;
 import ru.tomtrix.javassistwraper.ClassStore;
 
 /** @author tom-trix */
+@JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
 public abstract class Agent
 {
-	private static final String	RA_AGENTSETTER		= "setAgent";
-
+	// private static final String RA_AGENTSETTER = "setAgent";
 	/** agent's name */
-	private final String		_name;
+	private String				_name;
 	/** fse */
 	private final List<String>	_state				= new ArrayList<>();
 	/** gsrrg */
 	private final List<String>	_transformFunctions	= new ArrayList<>();
 	/** list of events */
-	private final EventList		_eventList;
+	private final EventList		_eventList			= new EventList();
 	/** name of runtime class that corresponds to an agent */
-	private String				_RAClassname;
+	private final String				_RAClassname;
 
 	/** Creates an agent with a specific name; it also builds runtime class that will comrise fields and methods of the agent
 	 * @param name - agent's name (and corresponding runtime class's name)
@@ -29,7 +33,6 @@ public abstract class Agent
 		if (name == null || name.isEmpty()) throw new NullPointerException("iufsdr");
 		_name = name;
 		_RAClassname = name;
-		_eventList = new EventList();
 		ClassStore.getInstance().addClass(name, null, null);
 		Logger.getLogger(getClass()).info("Agent created");
 	}
@@ -67,40 +70,72 @@ public abstract class Agent
 	{
 		Logger.getLogger(getClass()).info("---> Message received: " + data);
 	}
-
-	/** @return the raAgentsetter */
-	public static String getRaAgentsetter()
-	{
-		return RA_AGENTSETTER;
-	}
-
+	
 	/** @return the _name */
 	public String get_name()
 	{
 		return _name;
 	}
 
-	/** @return the _state */
+	/** @param _name the _name to set */
+	public void set_name(String name)
+	{
+		if (name == null || name.isEmpty()) throw new NullPointerException("iufsdr");
+		_name = name;
+	}
+
+	/**
+	 * @return the _state
+	 */
 	public List<String> get_state()
 	{
 		return _state;
 	}
 
-	/** @return the _transformFunctions */
+	/**
+	 * @return the _transformFunctions
+	 */
 	public List<String> get_transformFunctions()
 	{
 		return _transformFunctions;
 	}
 
-	/** @return the _eventList */
-	public EventList get_eventList()
-	{
-		return _eventList;
-	}
-
-	/** @return the _RAClassname */
-	public String get_RAClassname()
+	/**
+	 * @return the _RAClassname
+	 * @throws AccessDeniedException 
+	 */
+	public String get_RAClassname() throws AccessDeniedException
 	{
 		return _RAClassname;
+	}
+	
+	/**
+	 * @throws Exception
+	 * @see ru.tomtrix.agentsocks.mathmodel.EventList#executeNextEvent()
+	 */
+	public void executeNextEvent() throws Exception
+	{
+		_eventList.executeNextEvent();
+	}
+
+	/**
+	 * @return
+	 * @see ru.tomtrix.agentsocks.mathmodel.EventList#getNextEventTime()
+	 */
+	public Double getNextEventTime()
+	{
+		return _eventList.getNextEventTime();
+	}
+
+	/**
+	 * @param timestamp
+	 * @param fid
+	 * @param pars
+	 * @throws Exception
+	 * @see ru.tomtrix.agentsocks.mathmodel.EventList#addEvent(java.lang.Double, java.lang.String, java.lang.Object[])
+	 */
+	public void addEvent(Double timestamp, String fid, Object... pars) throws Exception
+	{
+		_eventList.addEvent(timestamp, fid, pars);
 	}
 }

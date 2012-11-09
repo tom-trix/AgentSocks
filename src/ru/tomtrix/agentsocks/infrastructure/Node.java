@@ -1,34 +1,23 @@
 package ru.tomtrix.agentsocks.infrastructure;
 
+import com.fasterxml.jackson.annotation.*;
+
 /** @author tom-trix */
 public class Node
 {
-	public static final String CONTAINER_NAME = "MainContainer";
-	public static final int BUFFER_SIZE = 256;
-	
 	/** fse */
-	private final Container	_container	= new Container(5, CONTAINER_NAME);
+	private final Container	_container;
 	/** dawfse */
+	@JsonIgnore			//ОБЯЗАТЕЛЬНО!!! (Поскольку ссылка на себя должна назначаться в конструкторе Node)
 	private final Mail 	_mail;
 	private final int		_rank;
 
 	/** fs */
-	public Node(int rank)
+	Node(@JsonProperty("_rank") int rank)
 	{
 		_rank = rank;
-		_mail = new Mail(BUFFER_SIZE, this);
-	}
-
-	/** @throws IllegalAccessException */
-	public void run() throws IllegalAccessException
-	{
-		_container.run();
-	}
-
-	/** @throws IllegalAccessException */
-	public void stop() throws IllegalAccessException
-	{
-		_container.stop();
+		_container = new Container(5, rank);	//TODO 5 потоков
+		_mail = new Mail(this);
 	}
 
 	/** @return the _container */
@@ -37,17 +26,20 @@ public class Node
 		return _container;
 	}
 
-	/** @return the _rank */
-	public int get_rank()
+	/**
+	 * @param bufferSize
+	 * @see ru.tomtrix.agentsocks.infrastructure.Mail#startListening(int)
+	 */
+	public void startListening(int bufferSize)
 	{
-		return _rank;
+		_mail.startListening(bufferSize);
 	}
 
 	/**
-	 * @return the _mail
+	 * @return the _rank
 	 */
-	public Mail get_mail()
+	public int get_rank()
 	{
-		return _mail;
+		return _rank;
 	}
 }

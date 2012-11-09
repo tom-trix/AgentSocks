@@ -1,18 +1,18 @@
 package ru.tomtrix.agentsocks.ui;
 
+import mpi.MPI;
+import java.io.*;
 import javax.swing.*;
 import java.awt.event.*;
-import java.io.IOException;
+import ru.tomtrix.mpiagent.MPIAgent;
 import javax.swing.border.EmptyBorder;
 
-import mpi.MPI;
 
-import ru.tomtrix.mpiagent.MPIAgent;
 
 public class GUI extends JFrame
 {
 	private static final long	serialVersionUID	= 6208515297698018657L;
-	private final MVCmodel		_model;
+	private final MVCmodel		_modelRef;
 
 	private JPanel				contentPane;
 	private JTextField			textAgentName;
@@ -25,7 +25,7 @@ public class GUI extends JFrame
 	/** Create the frame. */
 	public GUI(MVCmodel model)
 	{
-		_model = model;
+		_modelRef = model;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 354);
@@ -49,7 +49,7 @@ public class GUI extends JFrame
 				if (s.isEmpty()) return;
 				try
 				{
-					JOptionPane.showMessageDialog(contentPane, _model.createAgent(s));
+					JOptionPane.showMessageDialog(contentPane, _modelRef.createAgent(s));
 				}
 				catch (Exception e)
 				{
@@ -72,7 +72,7 @@ public class GUI extends JFrame
 			{
 				String var = textVarName.getText().trim();
 				if (var.isEmpty()) return;
-				JOptionPane.showMessageDialog(contentPane, _model.addVariable(var));
+				JOptionPane.showMessageDialog(contentPane, _modelRef.addVariable(var));
 			}
 		});
 		btnAddVariable.setBounds(350, 44, 128, 25);
@@ -89,7 +89,7 @@ public class GUI extends JFrame
 			{
 				String code = textCode.getText().trim();
 				if (code.isEmpty()) return;
-				JOptionPane.showMessageDialog(contentPane, _model.addFunction(code));
+				JOptionPane.showMessageDialog(contentPane, _modelRef.addFunction(code));
 			}
 		});
 		btnAddFunction.setBounds(350, 184, 128, 25);
@@ -116,7 +116,7 @@ public class GUI extends JFrame
 				{
 					JOptionPane.showMessageDialog(contentPane, "Time must have a double format");
 				}
-				JOptionPane.showMessageDialog(contentPane, _model.addEvent(fid, time));
+				JOptionPane.showMessageDialog(contentPane, _modelRef.addEvent(fid, time));
 			}
 		});
 		btnAddEvent.setBounds(350, 221, 128, 25);
@@ -154,7 +154,7 @@ public class GUI extends JFrame
 			{
 				try
 				{
-					_model.run();
+					_modelRef.run();
 				}
 				catch (Exception ex)
 				{
@@ -183,7 +183,7 @@ public class GUI extends JFrame
 			{
 				try
 				{
-					_model.stop();
+					_modelRef.stop();
 				}
 				catch (IllegalAccessException e)
 				{
@@ -202,7 +202,7 @@ public class GUI extends JFrame
 			{
 				try
 				{
-					_model.saveAgent();
+					_modelRef.saveAgent();
 					JOptionPane.showMessageDialog(contentPane, "The agent is saved successfully");
 				}
 				catch (IOException e)
@@ -222,8 +222,8 @@ public class GUI extends JFrame
 			{
 				try
 				{
-					_model.loadAgent();
-					JOptionPane.showMessageDialog(contentPane, "All correct...\n" + _model.getFullAgentInfo());
+					_modelRef.loadAgent();
+					JOptionPane.showMessageDialog(contentPane, "All correct...\n" + _modelRef.getFullAgentInfo());
 				}
 				catch (Exception e)
 				{
@@ -254,6 +254,25 @@ public class GUI extends JFrame
 		});
 		btnSend.setBounds(396, 295, 82, 25);
 		contentPane.add(btnSend);
+		
+		JButton btnSaveNode = new JButton("Save Node");
+		btnSaveNode.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try
+				{
+					//Control.CONSTRUCTOR_ACCESS_DENIED = false;
+					//new ObjectMapper().writeValue(new File("/home/tom-trix/3.txt"), _modelRef.get_node());
+					//Control.CONSTRUCTOR_ACCESS_DENIED = true;
+				}
+				catch (Exception e)
+				{
+					JOptionPane.showMessageDialog(contentPane, e);
+					e.printStackTrace();
+				}
+			}
+		});
+		btnSaveNode.setBounds(12, 298, 109, 25);
+		contentPane.add(btnSaveNode);
 		setVisible(true);
 		setLocationRelativeTo(null);
 	}

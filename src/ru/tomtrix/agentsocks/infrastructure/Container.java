@@ -1,8 +1,9 @@
 package ru.tomtrix.agentsocks.infrastructure;
 
 import java.util.*;
-
 import org.apache.log4j.Logger;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.concurrent.ConcurrentLinkedDeque;
 
@@ -12,20 +13,28 @@ public class Container
 	/** wwd */
 	private final Queue<LogicProcess>	_processes	= new ConcurrentLinkedDeque<>();
 	/** fae */
-	private final List<Thread>			_threads	= new LinkedList<>();
+	private final int					_threads;
+	private final int _node;
 	/** fes */
 	private boolean						_alive		= true;
 
 	/** @param threads
 	 * @param name */
-	Container(int threads, String name)
+	Container(@JsonProperty("_threads") int threads, @JsonProperty("_node") int node)
 	{
 		if (threads < 0 || threads > 100) throw new IllegalArgumentException("");
-		for (int i = 0; i < threads; i++)
+		_threads = threads;
+		_node = node;
+	}
+
+	/** fsef */
+	void run()
+	{
+		for (int i = 0; i < _threads; i++)
 		{
-			final String threadName = String.format("%s.thread%d", name, i);
+			final String threadName = String.format("node%d.thread%d", _node, i);
 			// create a thread that picks logic processes from the queue and calls their "next" method
-			_threads.add(new Thread(new Runnable()
+			new Thread(new Runnable()
 			{
 				@Override
 				public void run()
@@ -49,15 +58,8 @@ public class Container
 						}
 					}
 				}
-			}, threadName));
+			}, threadName);
 		}
-	}
-
-	/** fsef */
-	void run()
-	{
-		for (Thread th : _threads)
-			th.start();
 	}
 
 	/** fsef */
@@ -66,12 +68,19 @@ public class Container
 		_alive = false;
 	}
 
-	/** @param process */
-	public LogicProcess addLogicProcess(String name)
+	public void addLogicProcess(String name)
 	{
-		LogicProcess result = new LogicProcess(name);
-		_processes.add(result);
-		return result;
+		_processes.add(new LogicProcess(name));
+	}
+
+	public void addLogicProcess(LogicProcess process)
+	{
+		_processes.add(process);
+	}
+
+	public void removeProcess(String name)
+	{
+		_processes.remove(getProcessByName(name));
 	}
 
 	public LogicProcess getProcessByName(String name)
@@ -80,4 +89,12 @@ public class Container
 			if (p.get_name().equals(name)) return p;
 		return null;
 	}
+
+	/** @return the _processes
+	 * @throws AccessDeniedException *//*
+	public Queue<LogicProcess> get_processes() throws AccessDeniedException
+	{
+		if (Control.CONSTRUCTOR_ACCESS_DENIED) throw new AccessDeniedException("frfrfr");
+		return _processes;
+	}*/
 }

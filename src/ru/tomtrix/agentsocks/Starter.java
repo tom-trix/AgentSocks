@@ -1,20 +1,24 @@
 package ru.tomtrix.agentsocks;
 
-import mpi.MPI;
-import org.apache.log4j.Logger;
-
-import ru.tomtrix.agentsocks.mathmodel.Agent;
-import ru.tomtrix.agentsocks.ui.GUI;
-import ru.tomtrix.agentsocks.ui.MVCmodel;
-import ru.tomtrix.javassistwraper.ClassStore;
+import java.io.IOException;
+import ru.tomtrix.consoleui.*;
+import ru.tomtrix.agentsocks.modeleditor.MVCModel;
 
 /** @author tom-trix */
 public class Starter
 {
-	/** @param args */
-	public static void main(String[] args)
+	/** @param args 
+	 * @throws IOException */
+	public static void main(String[] args) throws IOException
 	{
-		try
+		if (args != null && args.length > 0 && args[0].trim().toLowerCase().equals("-editor"))
+		{
+			ConsoleUIListener listener = new MVCModel();
+			ConsoleUI cui = new ConsoleUI("/data/Buffer/console.txt", listener);
+			listener.setConsoleUI(cui);
+			cui.run();
+		}
+		/*else try
 		{
 			MPI.Init(args);
 			ClassStore.getInstance().addClassPath(Agent.class);
@@ -27,6 +31,6 @@ public class Starter
 		{
 			GUI frame = new GUI(new MVCmodel(0));
 			frame.setTitle("Modelling system");
-		}
+		}*/
 	}
 }

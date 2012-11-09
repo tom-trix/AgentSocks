@@ -1,9 +1,7 @@
 package ru.tomtrix.agentsocks.mathmodel;
 
 import java.lang.reflect.Method;
-import java.nio.file.AccessDeniedException;
-
-import ru.tomtrix.agentsocks.Control;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** @author tom-trix */
 public class Function
@@ -16,16 +14,10 @@ public class Function
 	/** creates a new function call object
 	 * @param fid - function ID
 	 * @param parameters - parameters for invoking */
-	public Function(String fid, Object... parameters)
+	public Function(@JsonProperty("_fid") String fid, @JsonProperty("_parameters") Object... parameters)
 	{
 		_fid = fid;
 		_parameters = parameters;
-	}
-	
-	public Function() throws AccessDeniedException {
-		if (Control.CONSTRUCTOR_ACCESS_DENIED) throw new AccessDeniedException("fsesf");
-		_fid = null;
-		_parameters = null;
 	}
 	
 	/**
@@ -46,15 +38,11 @@ public class Function
 		return m.invoke(methodKeeper, _parameters);
 	}
 
-	/** @return the _name */
+	/**
+	 * @return the _fid
+	 */
 	public String get_fid()
 	{
 		return _fid;
-	}
-
-	/** @return the _parameters */
-	public Object[] get_parameters()
-	{
-		return _parameters;
 	}
 }

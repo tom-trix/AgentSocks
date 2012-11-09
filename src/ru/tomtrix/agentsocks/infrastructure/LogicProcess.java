@@ -1,22 +1,24 @@
 package ru.tomtrix.agentsocks.infrastructure;
 
 import java.util.*;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import ru.tomtrix.agentsocks.mathmodel.Agent;
 
 /** @author tom-trix */
 public class LogicProcess
 {
-	/** rfgr */
-	private static int			_currentName	= 0;
 	/** efssef */
-	private final String		_name;
+	private String				_name;
 	/** dwaawd */
 	private final List<Agent>	_agents			= new ArrayList<>();
 
 	/** @param name */
-	LogicProcess(String name)
+	LogicProcess(@JsonProperty("_name") String name)
 	{
-		_name = name != null && !name.isEmpty() ? name : String.format("%s%d", getClass(), _currentName);
+		if (name == null || name.trim().isEmpty()) throw new NullPointerException("fsfgrq");
+		_name = name;
 	}
 
 	/** @return
@@ -29,32 +31,57 @@ public class LogicProcess
 		Agent currentAgent = null;
 		for (Agent agent : _agents)
 		{
-			Double time = agent.get_eventList().getNextEventTime();
+			Double time = agent.getNextEventTime();
 			if (time == null) continue;
-			if (currentAgent == null || time < currentAgent.get_eventList().getNextEventTime()) currentAgent = agent;
+			if (currentAgent == null || time < currentAgent.getNextEventTime()) currentAgent = agent;
 		}
 		if (currentAgent == null) return false;
 		// handle the event
-		currentAgent.get_eventList().executeNextEvent();
+		currentAgent.executeNextEvent();
 		return true;
 	}
-	
+
 	/** @param agent */
 	public void addAgent(Agent agent)
 	{
 		if (agent == null) throw new IllegalArgumentException("Agent can't be equal to null");
 		_agents.add(agent);
 	}
+	
+	public Agent getAgentByName(String name)
+	{
+		if (name == null) throw new IllegalArgumentException("Agent can't be equal to null");
+		for (Agent agent : _agents)
+			if (agent.get_name().toLowerCase().trim().equals(name.toLowerCase().trim()))
+				return agent;
+		return null;
+	}
+	
+	public Agent getAgentByNumber(int num)
+	{
+		if (num <0 || num >= _agents.size()) throw new ArrayIndexOutOfBoundsException("Agent can't be equal to null");
+		return _agents.get(num);
+	}
+	
+	public void removeAgent(Agent agent)
+	{
+		_agents.remove(agent);
+	}
 
-	/** @return the _name */
+	/**
+	 * @param _name the _name to set
+	 */
+	public void set_name(String name)
+	{
+		if (name == null || name.trim().isEmpty()) throw new NullPointerException("fsfgrq");
+		_name = name;
+	}
+
+	/**
+	 * @return the _name
+	 */
 	public String get_name()
 	{
 		return _name;
-	}
-
-	/** @return the _agents */
-	public List<Agent> get_agents()
-	{
-		return _agents;
 	}
 }

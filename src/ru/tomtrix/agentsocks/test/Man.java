@@ -9,9 +9,9 @@ public class Man extends Agent
 		super(name);
 		addVariable("int x=3;");
 		addFunction("public void go() {x++; System.out.println(x);}");
-		get_eventList().addEvent(2d, "go");
+		/*get_eventList().addEvent(2d, "go");
 		get_eventList().addEvent(4d, "go");
-		get_eventList().addEvent(7d, "go");
+		get_eventList().addEvent(7d, "go");*/
 		compileAgent();
 	}
 }
