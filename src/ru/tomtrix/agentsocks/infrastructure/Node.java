@@ -1,6 +1,7 @@
 package ru.tomtrix.agentsocks.infrastructure;
 
 import ru.tomtrix.agentsocks.Constants;
+import ru.tomtrix.agentsocks.message.Mail;
 import mpi.MPI;
 
 import com.fasterxml.jackson.annotation.*;
@@ -41,7 +42,7 @@ public class Node
 	/**
 	 * @param bufferSize
 	 * @throws Exception 
-	 * @see ru.tomtrix.agentsocks.infrastructure.Mail#startListening(int)
+	 * @see ru.tomtrix.agentsocks.message.Mail#startListening(int)
 	 */
 	public void run() throws Exception
 	{

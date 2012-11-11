@@ -31,7 +31,7 @@
                         "_name" : "sender",
                         "_state" : [ "public int x = 8;", "int h= 6;" ],
                         "_transformFunctions" : [
-                           "public void go() {ru.tomtrix.agentsocks.infrastructure.Mail.send(\"Fuck me, baby!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\", 1, \"proc\", 0);}"
+                           "public void go() {ru.tomtrix.agentsocks.message.Mail.send(new ru.tomtrix.agentsocks.message.StateChanged(\"x\", \"8\"), 1, \"proc\", \"listener\", \"sender\");}"
                         ]
                      }
                   ],
@@ -67,7 +67,7 @@
                         },
                         "_name" : "listener",
                         "_state" : [ "public int y=9;" ],
-                        "_transformFunctions" : [ "public void fuck() {System.out.println(\"y = \" + y); ru.tomtrix.agentsocks.infrastructure.Mail.send(\"Touch my heart!!!\", 0, \"proc\", 0);}" ]
+                        "_transformFunctions" : [ "public void fuck() {System.out.println(\"y = \" + y); ru.tomtrix.agentsocks.message.Mail.send(new ru.tomtrix.agentsocks.message.StateChanged(\"y\", \"4\"), 0, \"proc\", \"sender\", \"listener\");}" ]
                      }
                   ],
                   "_name" : "proc"

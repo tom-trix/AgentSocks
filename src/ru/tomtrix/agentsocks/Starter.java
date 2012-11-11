@@ -13,8 +13,8 @@ import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
 
 import ru.tomtrix.consoleui.*;
 import ru.tomtrix.javassistwraper.ClassStore;
-import ru.tomtrix.agentsocks.infrastructure.Mail;
 import ru.tomtrix.agentsocks.infrastructure.Model;
+import ru.tomtrix.agentsocks.message.Mail;
 import ru.tomtrix.agentsocks.modeleditor.MVCModel;
 
 /** @author tom-trix */

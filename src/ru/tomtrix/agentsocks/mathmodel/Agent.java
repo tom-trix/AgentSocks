@@ -1,7 +1,6 @@
 package ru.tomtrix.agentsocks.mathmodel;
 
 import java.util.*;
-import java.io.Serializable;
 import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.annotation.*;
@@ -9,6 +8,8 @@ import com.fasterxml.jackson.annotation.*;
 import java.nio.file.AccessDeniedException;
 
 import ru.tomtrix.agentsocks.infrastructure.ICodeLoadable;
+import ru.tomtrix.agentsocks.message.IMessage;
+import ru.tomtrix.agentsocks.message.StateChanged;
 import ru.tomtrix.javassistwraper.ClassStore;
 
 /** @author tom-trix */
@@ -59,9 +60,9 @@ public abstract class Agent implements ICodeLoadable
 		_transformFunctions.add(code);			// д.б. после обращения к ClassStore
 	}
 
-	public void notifyAgent(Serializable data)
+	public void notifyAgent(IMessage data)
 	{
-		Logger.getLogger(getClass()).info("---> Message received: " + data);
+		Logger.getLogger(getClass()).info("---> Message received: " + ((StateChanged)data).get_variable() + " = " + ((StateChanged)data).get_value());
 	}
 
 	@Override
