@@ -1,13 +1,14 @@
 package ru.tomtrix.agentsocks.infrastructure;
 
 import java.util.*;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author tom-trix
  *
  */
-public class Model
+public class Model implements ICodeLoadable
 {
 	@SuppressWarnings("unused")
 	private final String _name;
@@ -34,5 +35,19 @@ public class Model
 	{
 		if (!_nodes.containsKey(num)) throw new NullPointerException("jyfjfh");
 		return _nodes.get(num);
+	}
+
+	@Override
+	public void loadCode() throws Exception
+	{
+		for (Node node : _nodes.values())
+			node.get_container().loadCode();
+	}
+
+	@Override
+	public void compileAgents() throws Exception
+	{
+		for (Node node : _nodes.values())
+			node.get_container().compileAgents();
 	}
 }

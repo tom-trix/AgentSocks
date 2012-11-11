@@ -34,6 +34,7 @@ public class Mail implements MPIAgentListener
 	public void startListening(int bufferSize)
 	{
 		if (bufferSize < 16 || bufferSize > 65536) throw new IllegalArgumentException("aef");
+		Logger.getLogger(getClass()).info(String.format("Listener on node %d OK", _nodeRef.get_rank()));
 		MPIAgent.getInstance().start(this, bufferSize);		
 	}
 

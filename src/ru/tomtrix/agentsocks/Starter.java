@@ -1,7 +1,20 @@
 package ru.tomtrix.agentsocks;
 
+import java.io.File;
 import java.io.IOException;
+import mpi.MPI;
+import org.apache.log4j.Logger;
+
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
+
 import ru.tomtrix.consoleui.*;
+import ru.tomtrix.javassistwraper.ClassStore;
+import ru.tomtrix.agentsocks.infrastructure.Mail;
+import ru.tomtrix.agentsocks.infrastructure.Model;
 import ru.tomtrix.agentsocks.modeleditor.MVCModel;
 
 /** @author tom-trix */
@@ -18,19 +31,26 @@ public class Starter
 			listener.setConsoleUI(cui);
 			cui.run();
 		}
-		/*else try
+		else try
 		{
 			MPI.Init(args);
-			ClassStore.getInstance().addClassPath(Agent.class);
-			GUI frame = new GUI(new MVCmodel(MPI.COMM_WORLD.Rank()));
-			frame.setTitle("Modelling system (process" + MPI.COMM_WORLD.Rank() + ")");
-			Logger.getLogger(Starter.class).info(String.format("Process #%d started (total = %d)", MPI.COMM_WORLD.Rank(), MPI.COMM_WORLD.Size()));
+			//
+			ClassStore.getInstance().addClassPath(Mail.class);
+			//
+			ObjectMapper mapper = new ObjectMapper(); //TODO
+			mapper.setVisibilityChecker(VisibilityChecker.Std.defaultInstance().withFieldVisibility(Visibility.ANY));
+			mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+			mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+			Model _modelRef = mapper.readValue(new File("/home/tom-trix/workspace/AgentSocks/fly.txt"), Model.class);
+			_modelRef.loadCode();
+			Logger.getLogger(Starter.class).info(String.format("Node #%d loaded (total = %d)", MPI.COMM_WORLD.Rank(), MPI.COMM_WORLD.Size()));
+			Thread.sleep(1500);
+			_modelRef.getNodeByNumber(MPI.COMM_WORLD.Rank()).run();
 			MPI.Finalize();
 		}
 		catch (Exception e)
 		{
-			GUI frame = new GUI(new MVCmodel(0));
-			frame.setTitle("Modelling system");
-		}*/
+			Logger.getLogger(Starter.class).error("fedohawo", e);
+		}
 	}
 }

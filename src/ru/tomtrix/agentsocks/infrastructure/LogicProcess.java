@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import ru.tomtrix.agentsocks.mathmodel.Agent;
 
 /** @author tom-trix */
-public class LogicProcess
+public class LogicProcess implements ICodeLoadable
 {
 	/** efssef */
 	private String				_name;
@@ -66,6 +66,20 @@ public class LogicProcess
 	public void removeAgent(Agent agent)
 	{
 		_agents.remove(agent);
+	}
+	
+	@Override
+	public void loadCode() throws Exception
+	{
+		for (ICodeLoadable agent : _agents)
+			agent.loadCode();
+	}
+
+	@Override
+	public void compileAgents() throws Exception
+	{
+		for (ICodeLoadable agent : _agents)
+			agent.compileAgents();
 	}
 
 	/**

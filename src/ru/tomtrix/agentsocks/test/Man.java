@@ -12,6 +12,6 @@ public class Man extends Agent
 		/*get_eventList().addEvent(2d, "go");
 		get_eventList().addEvent(4d, "go");
 		get_eventList().addEvent(7d, "go");*/
-		compileAgent();
+		compileAgents();
 	}
 }

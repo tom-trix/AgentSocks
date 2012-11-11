@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 /** @author tom-trix */
-public class Container
+public class Container implements ICodeLoadable
 {
 	/** wwd */
 	private final Queue<LogicProcess>	_processes	= new ConcurrentLinkedDeque<>();
@@ -58,7 +58,7 @@ public class Container
 						}
 					}
 				}
-			}, threadName);
+			}, threadName).start();
 		}
 	}
 
@@ -88,6 +88,20 @@ public class Container
 		for (LogicProcess p : _processes)
 			if (p.get_name().equals(name)) return p;
 		return null;
+	}
+
+	@Override
+	public void loadCode() throws Exception
+	{
+		for (ICodeLoadable process : _processes)
+			process.loadCode();
+	}
+
+	@Override
+	public void compileAgents() throws Exception
+	{
+		for (ICodeLoadable process : _processes)
+			process.compileAgents();
 	}
 
 	/** @return the _processes

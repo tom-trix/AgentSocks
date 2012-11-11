@@ -2911,3 +2911,347 @@ com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized f
 	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:111)
 	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:83)
 	at ru.tomtrix.agentsocks.Starter.main(Starter.java:19)
+15:43:35,893 ERROR main MVCModel:loadModel:59 - fseedfa
+com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field "_container" (class ru.tomtrix.agentsocks.infrastructure.Model), not marked as ignorable (2 known properties: , "_name", "_nodes"])
+ at [Source: /home/tom-trix/3.txt; line: 1, column: 470] (through reference chain: ru.tomtrix.agentsocks.infrastructure.Model["_container"])
+	at com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException.from(UnrecognizedPropertyException.java:79)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportUnknownProperty(DeserializationContext.java:579)
+	at com.fasterxml.jackson.databind.deser.std.StdDeserializer.handleUnknownProperty(StdDeserializer.java:672)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializerBase.handleUnknownProperty(BeanDeserializerBase.java:906)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializerBase.handleUnknownProperties(BeanDeserializerBase.java:926)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeUsingPropertyBased(BeanDeserializer.java:625)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObjectUsingNonDefault(BeanDeserializer.java:393)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:289)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:121)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:2796)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:1896)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.loadModel(MVCModel.java:54)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:111)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:83)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:19)
+15:44:18,014  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 0
+15:44:18,117  INFO main DefaultAgent:<init>:37 - Agent created
+15:44:18,146 ERROR main MVCModel:loadModel:59 - fseedfa
+com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field "nextEventTime" (class ru.tomtrix.agentsocks.mathmodel.DefaultAgent), not marked as ignorable (5 known properties: , "_state", "_RAClassname", "_eventList", "_name", "_transformFunctions"])
+ at [Source: /home/tom-trix/fly.txt; line: 1, column: 325] (through reference chain: ru.tomtrix.agentsocks.infrastructure.Model["_nodes"]->ru.tomtrix.agentsocks.infrastructure.Node["_container"]->ru.tomtrix.agentsocks.infrastructure.Container["_processes"]->ru.tomtrix.agentsocks.infrastructure.LogicProcess["_agents"]->ru.tomtrix.agentsocks.mathmodel.DefaultAgent["nextEventTime"])
+	at com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException.from(UnrecognizedPropertyException.java:79)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportUnknownProperty(DeserializationContext.java:579)
+	at com.fasterxml.jackson.databind.deser.std.StdDeserializer.handleUnknownProperty(StdDeserializer.java:672)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializerBase.handleUnknownProperty(BeanDeserializerBase.java:906)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:214)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeUsingPropertyBased(BeanDeserializer.java:577)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObjectUsingNonDefault(BeanDeserializer.java:393)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:289)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:150)
+	at com.fasterxml.jackson.databind.jsontype.impl.AsPropertyTypeDeserializer._deserializeTypedForId(AsPropertyTypeDeserializer.java:112)
+	at com.fasterxml.jackson.databind.jsontype.impl.AsPropertyTypeDeserializer.deserializeTypedFromObject(AsPropertyTypeDeserializer.java:82)
+	at com.fasterxml.jackson.databind.deser.AbstractDeserializer.deserializeWithType(AbstractDeserializer.java:104)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:228)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:203)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:23)
+	at com.fasterxml.jackson.databind.deser.SettableBeanProperty.deserialize(SettableBeanProperty.java:375)
+	at com.fasterxml.jackson.databind.deser.impl.FieldProperty.deserializeAndSet(FieldProperty.java:107)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:198)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeUsingPropertyBased(BeanDeserializer.java:577)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObjectUsingNonDefault(BeanDeserializer.java:393)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:289)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:121)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:226)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:203)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:23)
+	at com.fasterxml.jackson.databind.deser.SettableBeanProperty.deserialize(SettableBeanProperty.java:375)
+	at com.fasterxml.jackson.databind.deser.impl.FieldProperty.deserializeAndSet(FieldProperty.java:107)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:198)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeUsingPropertyBased(BeanDeserializer.java:577)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObjectUsingNonDefault(BeanDeserializer.java:393)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:289)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:121)
+	at com.fasterxml.jackson.databind.deser.SettableBeanProperty.deserialize(SettableBeanProperty.java:375)
+	at com.fasterxml.jackson.databind.deser.impl.FieldProperty.deserializeAndSet(FieldProperty.java:107)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:198)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeUsingPropertyBased(BeanDeserializer.java:577)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObjectUsingNonDefault(BeanDeserializer.java:393)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:289)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:121)
+	at com.fasterxml.jackson.databind.deser.std.MapDeserializer._readAndBind(MapDeserializer.java:388)
+	at com.fasterxml.jackson.databind.deser.std.MapDeserializer.deserialize(MapDeserializer.java:313)
+	at com.fasterxml.jackson.databind.deser.std.MapDeserializer.deserialize(MapDeserializer.java:26)
+	at com.fasterxml.jackson.databind.deser.SettableBeanProperty.deserialize(SettableBeanProperty.java:375)
+	at com.fasterxml.jackson.databind.deser.impl.FieldProperty.deserializeAndSet(FieldProperty.java:107)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:198)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeUsingPropertyBased(BeanDeserializer.java:577)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObjectUsingNonDefault(BeanDeserializer.java:393)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:289)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:121)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:2796)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:1896)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.loadModel(MVCModel.java:54)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:111)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:83)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:19)
+15:45:27,910  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 0
+15:45:27,968  INFO main DefaultAgent:<init>:38 - Agent created
+15:52:49,518  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 0
+15:54:20,646  INFO main DefaultAgent:<init>:42 - Agent created
+15:56:02,520 ERROR main MVCModel:addFunction:289 - fseedfa
+javassist.CannotCompileException: [source error] no such class: system.out
+	at javassist.CtNewMethod.make(CtNewMethod.java:79)
+	at javassist.CtNewMethod.make(CtNewMethod.java:45)
+	at javassist.CtMethod.make(CtMethod.java:130)
+	at ru.tomtrix.javassistwraper.ClassStore.addMethod(ClassStore.java:56)
+	at ru.tomtrix.agentsocks.mathmodel.Agent.addFunction(Agent.java:61)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.addFunction(MVCModel.java:284)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:111)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:83)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:19)
+Caused by: compile error: no such class: system.out
+	at javassist.compiler.MemberResolver.searchImports(MemberResolver.java:465)
+	at javassist.compiler.MemberResolver.lookupClass(MemberResolver.java:409)
+	at javassist.compiler.MemberResolver.lookupClassByJvmName(MemberResolver.java:319)
+	at javassist.compiler.TypeChecker.atCallExpr(TypeChecker.java:678)
+	at javassist.compiler.JvstTypeChecker.atCallExpr(JvstTypeChecker.java:157)
+	at javassist.compiler.ast.CallExpr.accept(CallExpr.java:46)
+	at javassist.compiler.CodeGen.doTypeCheck(CodeGen.java:242)
+	at javassist.compiler.CodeGen.atStmnt(CodeGen.java:330)
+	at javassist.compiler.ast.Stmnt.accept(Stmnt.java:50)
+	at javassist.compiler.CodeGen.atStmnt(CodeGen.java:351)
+	at javassist.compiler.ast.Stmnt.accept(Stmnt.java:50)
+	at javassist.compiler.CodeGen.atMethodBody(CodeGen.java:292)
+	at javassist.compiler.CodeGen.atMethodDecl(CodeGen.java:274)
+	at javassist.compiler.ast.MethodDecl.accept(MethodDecl.java:44)
+	at javassist.compiler.Javac.compileMethod(Javac.java:169)
+	at javassist.compiler.Javac.compile(Javac.java:95)
+	at javassist.CtNewMethod.make(CtNewMethod.java:74)
+	... 12 more
+16:20:47,361  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 0
+16:20:47,516  INFO main DefaultAgent:<init>:42 - Agent created
+16:21:11,574  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 0
+16:21:11,630  INFO main DefaultAgent:<init>:42 - Agent created
+16:23:12,901 ERROR main MVCModel:addVariable:261 - fseedfa
+javassist.bytecode.DuplicateMemberException: duplicate field: x
+	at javassist.bytecode.ClassFile.testExistingField(ClassFile.java:598)
+	at javassist.bytecode.ClassFile.addField(ClassFile.java:576)
+	at javassist.CtClassType.addField(CtClassType.java:1252)
+	at javassist.CtClass.addField(CtClass.java:965)
+	at ru.tomtrix.javassistwraper.ClassStore.addField(ClassStore.java:48)
+	at ru.tomtrix.agentsocks.mathmodel.Agent.addVariable(Agent.java:51)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.addVariable(MVCModel.java:256)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:111)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:83)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:19)
+16:35:16,201  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 0
+16:35:16,259  INFO main DefaultAgent:<init>:42 - Agent created
+16:36:18,889  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 0
+16:36:18,944  INFO main DefaultAgent:<init>:42 - Agent created
+16:38:04,246  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 0
+16:38:04,305  INFO main DefaultAgent:<init>:42 - Agent created
+16:38:21,844 ERROR main MVCModel:addEvent:317 - fseedfa
+java.lang.NullPointerException
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.addEvent(MVCModel.java:312)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:118)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:84)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:19)
+16:38:49,159  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 0
+16:38:49,213  INFO main DefaultAgent:<init>:42 - Agent created
+16:39:43,901  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 1
+16:40:15,841  INFO main DefaultAgent:<init>:42 - Agent created
+16:41:07,556 ERROR main MVCModel:addFunction:289 - fseedfa
+javassist.CannotCompileException: [source error] ) is missing
+	at javassist.CtNewMethod.make(CtNewMethod.java:79)
+	at javassist.CtNewMethod.make(CtNewMethod.java:45)
+	at javassist.CtMethod.make(CtMethod.java:130)
+	at ru.tomtrix.javassistwraper.ClassStore.addMethod(ClassStore.java:56)
+	at ru.tomtrix.agentsocks.mathmodel.Agent.addFunction(Agent.java:61)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.addFunction(MVCModel.java:284)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:118)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:84)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:19)
+Caused by: compile error: ) is missing
+	at javassist.compiler.Parser.parseArgumentList(Parser.java:1338)
+	at javassist.compiler.Parser.parseMethodCall(Parser.java:1178)
+	at javassist.compiler.Parser.parsePostfix(Parser.java:1035)
+	at javassist.compiler.Parser.parseUnaryExpr(Parser.java:888)
+	at javassist.compiler.Parser.parseBinaryExpr(Parser.java:775)
+	at javassist.compiler.Parser.parseConditionalExpr(Parser.java:719)
+	at javassist.compiler.Parser.parseExpression(Parser.java:699)
+	at javassist.compiler.Parser.parseDeclarationOrExpression(Parser.java:591)
+	at javassist.compiler.Parser.parseStatement(Parser.java:277)
+	at javassist.compiler.Parser.parseBlock(Parser.java:289)
+	at javassist.compiler.Parser.parseMethod2(Parser.java:152)
+	at javassist.compiler.Javac.compileMethod(Javac.java:149)
+	at javassist.compiler.Javac.compile(Javac.java:95)
+	at javassist.CtNewMethod.make(CtNewMethod.java:74)
+	... 12 more
+16:45:46,526  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 0
+16:45:46,582  INFO main DefaultAgent:<init>:42 - Agent created
+16:45:46,600  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 1
+16:45:46,601  INFO main DefaultAgent:<init>:42 - Agent created
+16:47:27,689  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 0
+16:47:57,693  INFO main DefaultAgent:<init>:42 - Agent created
+16:48:17,600 ERROR main MVCModel:addVariable:261 - fseedfa
+javassist.bytecode.DuplicateMemberException: duplicate field: x
+	at javassist.bytecode.ClassFile.testExistingField(ClassFile.java:598)
+	at javassist.bytecode.ClassFile.addField(ClassFile.java:576)
+	at javassist.CtClassType.addField(CtClassType.java:1252)
+	at javassist.CtClass.addField(CtClass.java:965)
+	at ru.tomtrix.javassistwraper.ClassStore.addField(ClassStore.java:48)
+	at ru.tomtrix.agentsocks.mathmodel.Agent.addVariable(Agent.java:51)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.addVariable(MVCModel.java:256)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:118)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:84)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:19)
+16:48:49,907  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 0
+16:48:49,962  INFO main DefaultAgent:<init>:42 - Agent created
+16:54:37,127  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 0
+16:54:37,182  INFO main DefaultAgent:<init>:42 - Agent created
+16:54:37,185  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 1
+16:54:37,185  INFO main DefaultAgent:<init>:42 - Agent created
+16:54:53,653  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 0
+16:54:53,664  INFO main DefaultAgent:<init>:42 - Agent created
+16:58:31,452  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 0
+16:58:31,508 ERROR main MVCModel:loadModel:61 - fseedfa
+com.fasterxml.jackson.databind.JsonMappingException: Instantiation of [simple type, class ru.tomtrix.agentsocks.mathmodel.DefaultAgent] value failed: null (through reference chain: ru.tomtrix.agentsocks.infrastructure.Model["_nodes"]->ru.tomtrix.agentsocks.infrastructure.Node["_container"]->ru.tomtrix.agentsocks.infrastructure.Container["_processes"]->ru.tomtrix.agentsocks.infrastructure.LogicProcess["_agents"]->ru.tomtrix.agentsocks.mathmodel.DefaultAgent["_name"])
+	at com.fasterxml.jackson.databind.deser.std.StdValueInstantiator.wrapException(StdValueInstantiator.java:434)
+	at com.fasterxml.jackson.databind.deser.std.StdValueInstantiator.createFromObjectWith(StdValueInstantiator.java:243)
+	at com.fasterxml.jackson.databind.deser.impl.PropertyBasedCreator.build(PropertyBasedCreator.java:158)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeUsingPropertyBased(BeanDeserializer.java:564)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObjectUsingNonDefault(BeanDeserializer.java:393)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:289)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:150)
+	at com.fasterxml.jackson.databind.jsontype.impl.AsPropertyTypeDeserializer._deserializeTypedForId(AsPropertyTypeDeserializer.java:112)
+	at com.fasterxml.jackson.databind.jsontype.impl.AsPropertyTypeDeserializer.deserializeTypedFromObject(AsPropertyTypeDeserializer.java:82)
+	at com.fasterxml.jackson.databind.deser.AbstractDeserializer.deserializeWithType(AbstractDeserializer.java:104)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:228)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:203)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:23)
+	at com.fasterxml.jackson.databind.deser.SettableBeanProperty.deserialize(SettableBeanProperty.java:375)
+	at com.fasterxml.jackson.databind.deser.impl.FieldProperty.deserializeAndSet(FieldProperty.java:107)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:198)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeUsingPropertyBased(BeanDeserializer.java:577)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObjectUsingNonDefault(BeanDeserializer.java:393)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:289)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:121)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:226)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:203)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:23)
+	at com.fasterxml.jackson.databind.deser.SettableBeanProperty.deserialize(SettableBeanProperty.java:375)
+	at com.fasterxml.jackson.databind.deser.impl.FieldProperty.deserializeAndSet(FieldProperty.java:107)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:198)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeUsingPropertyBased(BeanDeserializer.java:577)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObjectUsingNonDefault(BeanDeserializer.java:393)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:289)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:121)
+	at com.fasterxml.jackson.databind.deser.SettableBeanProperty.deserialize(SettableBeanProperty.java:375)
+	at com.fasterxml.jackson.databind.deser.impl.FieldProperty.deserializeAndSet(FieldProperty.java:107)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:198)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeUsingPropertyBased(BeanDeserializer.java:577)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObjectUsingNonDefault(BeanDeserializer.java:393)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:289)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:121)
+	at com.fasterxml.jackson.databind.deser.std.MapDeserializer._readAndBind(MapDeserializer.java:388)
+	at com.fasterxml.jackson.databind.deser.std.MapDeserializer.deserialize(MapDeserializer.java:313)
+	at com.fasterxml.jackson.databind.deser.std.MapDeserializer.deserialize(MapDeserializer.java:26)
+	at com.fasterxml.jackson.databind.deser.SettableBeanProperty.deserialize(SettableBeanProperty.java:375)
+	at com.fasterxml.jackson.databind.deser.impl.FieldProperty.deserializeAndSet(FieldProperty.java:107)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:198)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeUsingPropertyBased(BeanDeserializer.java:577)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObjectUsingNonDefault(BeanDeserializer.java:393)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:289)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:121)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:2796)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:1896)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.loadModel(MVCModel.java:56)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:118)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:84)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:19)
+Caused by: java.lang.Exception
+	at ru.tomtrix.agentsocks.mathmodel.Agent.<init>(Agent.java:38)
+	at ru.tomtrix.agentsocks.mathmodel.DefaultAgent.<init>(DefaultAgent.java:12)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at com.fasterxml.jackson.databind.introspect.AnnotatedConstructor.call(AnnotatedConstructor.java:125)
+	at com.fasterxml.jackson.databind.deser.std.StdValueInstantiator.createFromObjectWith(StdValueInstantiator.java:239)
+	... 55 more
+17:12:26,389  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 0
+17:12:26,446  INFO main DefaultAgent:<init>:39 - Agent created
+17:13:15,125 ERROR main MVCModel:addVariable:265 - fseedfa
+javassist.bytecode.DuplicateMemberException: duplicate field: x
+	at javassist.bytecode.ClassFile.testExistingField(ClassFile.java:598)
+	at javassist.bytecode.ClassFile.addField(ClassFile.java:576)
+	at javassist.CtClassType.addField(CtClassType.java:1252)
+	at javassist.CtClass.addField(CtClass.java:965)
+	at ru.tomtrix.javassistwraper.ClassStore.addField(ClassStore.java:48)
+	at ru.tomtrix.agentsocks.mathmodel.Agent.addVariable(Agent.java:48)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.addVariable(MVCModel.java:260)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:118)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:84)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:19)
+17:13:32,745  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 0
+17:13:32,801  INFO main DefaultAgent:<init>:39 - Agent created
+17:13:32,803  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 1
+17:13:32,804  INFO main DefaultAgent:<init>:39 - Agent created
+17:14:50,434  INFO main DefaultAgent:<init>:39 - Agent created
+17:14:50,443  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 0
+17:14:50,444  INFO main DefaultAgent:<init>:39 - Agent created
+17:14:50,444  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 1
+17:14:50,486 ERROR main MVCModel:loadModel:63 - fseedfa
+javassist.bytecode.DuplicateMemberException: duplicate field: x
+	at javassist.bytecode.ClassFile.testExistingField(ClassFile.java:598)
+	at javassist.bytecode.ClassFile.addField(ClassFile.java:576)
+	at javassist.CtClassType.addField(CtClassType.java:1252)
+	at javassist.CtClass.addField(CtClass.java:965)
+	at ru.tomtrix.javassistwraper.ClassStore.addField(ClassStore.java:48)
+	at ru.tomtrix.agentsocks.mathmodel.Agent.loadCode(Agent.java:81)
+	at ru.tomtrix.agentsocks.infrastructure.LogicProcess.loadCode(LogicProcess.java:75)
+	at ru.tomtrix.agentsocks.infrastructure.Container.loadCode(Container.java:97)
+	at ru.tomtrix.agentsocks.infrastructure.Model.loadCode(Model.java:45)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.loadModel(MVCModel.java:58)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:118)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:84)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:19)
+17:15:25,178  INFO main DefaultAgent:<init>:39 - Agent created
+17:15:25,186  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 0
+17:15:25,187  INFO main DefaultAgent:<init>:39 - Agent created
+17:15:25,187  INFO main Mail:<init>:31 - Mail is sucessfully loaded within node 1

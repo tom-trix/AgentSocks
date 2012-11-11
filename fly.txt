@@ -1,0 +1,81 @@
+{
+   "_name" : "trixmodel",
+   "_nodes" : {
+      "0" : {
+         "_container" : {
+            "_alive" : true,
+            "_node" : 0,
+            "_processes" : [
+               {
+                  "_agents" : [
+                     {
+                        "@class" : "ru.tomtrix.agentsocks.mathmodel.DefaultAgent",
+                        "_RAClassname" : "sender",
+                        "_eventList" : {
+                           "_eventList" : {
+                              "4.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "5.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "6.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              }
+                           },
+                           "_runtimeAssistant" : null
+                        },
+                        "_name" : "sender",
+                        "_state" : [ "public int x = 8;", "int h= 6;" ],
+                        "_transformFunctions" : [
+                           "public void go() {ru.tomtrix.agentsocks.infrastructure.Mail.send(\"Fuck me, baby!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\", 1, \"proc\", 0);}"
+                        ]
+                     }
+                  ],
+                  "_name" : "proc"
+               }
+            ],
+            "_threads" : 5
+         },
+         "_rank" : 0
+      },
+      "1" : {
+         "_container" : {
+            "_alive" : true,
+            "_node" : 1,
+            "_processes" : [
+               {
+                  "_agents" : [
+                     {
+                        "@class" : "ru.tomtrix.agentsocks.mathmodel.DefaultAgent",
+                        "_RAClassname" : "listener",
+                        "_eventList" : {
+                           "_eventList" : {
+                              "15.0" : {
+                                 "_fid" : "fuck",
+                                 "_parameters" : []
+                              },
+                              "3.0" : {
+                                 "_fid" : "fuck",
+                                 "_parameters" : []
+                              }
+                           },
+                           "_runtimeAssistant" : null
+                        },
+                        "_name" : "listener",
+                        "_state" : [ "public int y=9;" ],
+                        "_transformFunctions" : [ "public void fuck() {System.out.println(\"y = \" + y); ru.tomtrix.agentsocks.infrastructure.Mail.send(\"Touch my heart!!!\", 0, \"proc\", 0);}" ]
+                     }
+                  ],
+                  "_name" : "proc"
+               }
+            ],
+            "_threads" : 5
+         },
+         "_rank" : 1
+      }
+   }
+}

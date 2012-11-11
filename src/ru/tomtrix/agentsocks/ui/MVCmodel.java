@@ -129,7 +129,7 @@ public class MVCmodel
 	public void run() throws Exception
 	{
 		Agent agent = _process.getAgentByNumber(0);
-		agent.compileAgent();
+		agent.compileAgents();
 		//_node.run();
 	}
 

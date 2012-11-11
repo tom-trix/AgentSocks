@@ -11,6 +11,7 @@ import ru.tomtrix.consoleui.ConsoleUI;
 import ru.tomtrix.consoleui.ConsoleUIListener;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
@@ -51,7 +52,10 @@ public class MVCModel implements ConsoleUIListener
 			ObjectMapper mapper = new ObjectMapper(); //TODO
 			mapper.setVisibilityChecker(VisibilityChecker.Std.defaultInstance().withFieldVisibility(Visibility.ANY));
 			mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+			mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			_modelRef = mapper.readValue(new File(filename), Model.class);
+			//общий загрузчик кода TODO
+			_modelRef.loadCode();
 			return "OK";
 		}
 		catch (Exception e)
@@ -305,7 +309,7 @@ public class MVCModel implements ConsoleUIListener
 		}
 	}
 	
-	public String addEvent(String fid, String timestamp)
+	public String addEvent(String fid, String timestamp, String params)
 	{
 		try
 		{
