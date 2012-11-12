@@ -5,7 +5,7 @@ import ru.tomtrix.mpiagent.*;
 import org.apache.log4j.Logger;
 
 import ru.tomtrix.agentsocks.infrastructure.Node;
-import ru.tomtrix.agentsocks.utils.ArrayTransformer;
+import ru.tomtrix.agentsocks.utils.Collections;
 
 /**
  * @author tom-trix
@@ -16,7 +16,7 @@ public class Mail implements MPIAgentListener
 	{
 		try
 		{
-			MPIAgent.getInstance().send(ArrayTransformer.serialize(new Envelope(data, process, agent, sender)), node);
+			MPIAgent.getInstance().send(Collections.serialize(new Envelope(data, process, agent, sender)), node);
 		}
 		catch (IOException e)
 		{
@@ -44,7 +44,7 @@ public class Mail implements MPIAgentListener
 	{
 		try
 		{
-			Envelope m = (Envelope) ArrayTransformer.deserialize(data);
+			Envelope m = (Envelope) Collections.deserialize(data);
 			_nodeRef.get_container().getProcessByName(m.get_process()).getAgentByName(m.get_agent()).notifyAgent(m.get_data());
 		}
 		catch (Exception e)

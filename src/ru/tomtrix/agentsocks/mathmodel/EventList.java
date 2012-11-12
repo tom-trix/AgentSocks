@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class EventList
 {
 	/** map containing functions & their timestamps */
-	private final Map<Double, Function>	_eventList	= new ConcurrentHashMap<>();
+	private final Map<Double, Function>	_eventList	= new ConcurrentHashMap<>(); //TODO
 	/** reference to transform functions */
 	private Object	_runtimeAssistant;
 

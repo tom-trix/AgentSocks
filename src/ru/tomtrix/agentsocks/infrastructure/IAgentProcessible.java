@@ -1,14 +1,14 @@
-/**
- * 
- */
 package ru.tomtrix.agentsocks.infrastructure;
 
-/**
- * @author tom-trix
- *
- */
-public interface ICodeLoadable
+/** fs
+ * @author tom-trix */
+public interface IAgentProcessible
 {
+	/** sghdr
+	 * @throws Exception */
 	public void loadCode() throws Exception;
+
+	/** sge
+	 * @throws Exception */
 	public void compileAgents() throws Exception;
 }

@@ -2,19 +2,19 @@ package ru.tomtrix.agentsocks.infrastructure;
 
 import java.util.*;
 import org.apache.log4j.Logger;
-
+import ru.tomtrix.agentsocks.Constants;
+import java.util.concurrent.ConcurrentLinkedDeque;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.concurrent.ConcurrentLinkedDeque;
-
 /** @author tom-trix */
-public class Container implements ICodeLoadable
+public class Container implements IAgentProcessible
 {
-	/** wwd */
+	/** fseef */
 	private final Queue<LogicProcess>	_processes	= new ConcurrentLinkedDeque<>();
+	/** wwd */
+	private final int					_node;
 	/** fae */
 	private final int					_threads;
-	private final int _node;
 	/** fes */
 	private boolean						_alive		= true;
 
@@ -22,7 +22,7 @@ public class Container implements ICodeLoadable
 	 * @param name */
 	Container(@JsonProperty("_threads") int threads, @JsonProperty("_node") int node)
 	{
-		if (threads < 0 || threads > 100) throw new IllegalArgumentException("");
+		if (threads < 0 || threads > Constants.MAX_THREADS) throw new IllegalArgumentException(String.format("Container can't contain %d threads", threads));
 		_threads = threads;
 		_node = node;
 	}
@@ -33,7 +33,7 @@ public class Container implements ICodeLoadable
 		for (int i = 0; i < _threads; i++)
 		{
 			final String threadName = String.format("node%d.thread%d", _node, i);
-			// create a thread that picks logic processes from the queue and calls their "next" method
+			// create a thread that picks a logic processes from the queue and calls their "next" method
 			new Thread(new Runnable()
 			{
 				@Override
@@ -44,7 +44,7 @@ public class Container implements ICodeLoadable
 						LogicProcess process = null;
 						try
 						{
-							Thread.sleep(50);
+							Thread.sleep(40);
 							process = _processes.poll();
 							if (process == null) continue;
 							process.nextStep();
@@ -68,23 +68,37 @@ public class Container implements ICodeLoadable
 		_alive = false;
 	}
 
+	/** dae
+	 * @param name */
 	public void addLogicProcess(String name)
 	{
+		if (name == null || name.trim().isEmpty()) throw new NullPointerException("Process must have a correct name");
 		_processes.add(new LogicProcess(name));
 	}
 
+	/** fasef
+	 * @param process */
 	public void addLogicProcess(LogicProcess process)
 	{
+		if (process == null) throw new NullPointerException("Logic process can't be null");
 		_processes.add(process);
 	}
 
+	/** vgfsr
+	 * @param name */
 	public void removeProcess(String name)
 	{
-		_processes.remove(getProcessByName(name));
+		LogicProcess p = getProcessByName(name);
+		if (p == null) throw new NullPointerException("There is no such a process");
+		_processes.remove(p);
 	}
 
+	/** gugu
+	 * @param name
+	 * @return */
 	public LogicProcess getProcessByName(String name)
 	{
+		if (name == null || name.trim().isEmpty()) throw new NullPointerException("Name parameter can't be null");
 		for (LogicProcess p : _processes)
 			if (p.get_name().equals(name)) return p;
 		return null;
@@ -93,22 +107,14 @@ public class Container implements ICodeLoadable
 	@Override
 	public void loadCode() throws Exception
 	{
-		for (ICodeLoadable process : _processes)
+		for (IAgentProcessible process : _processes)
 			process.loadCode();
 	}
 
 	@Override
 	public void compileAgents() throws Exception
 	{
-		for (ICodeLoadable process : _processes)
+		for (IAgentProcessible process : _processes)
 			process.compileAgents();
 	}
-
-	/** @return the _processes
-	 * @throws AccessDeniedException *//*
-	public Queue<LogicProcess> get_processes() throws AccessDeniedException
-	{
-		if (Control.CONSTRUCTOR_ACCESS_DENIED) throw new AccessDeniedException("frfrfr");
-		return _processes;
-	}*/
 }

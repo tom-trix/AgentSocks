@@ -7,14 +7,14 @@ import com.fasterxml.jackson.annotation.*;
 
 import java.nio.file.AccessDeniedException;
 
-import ru.tomtrix.agentsocks.infrastructure.ICodeLoadable;
+import ru.tomtrix.agentsocks.infrastructure.IAgentProcessible;
 import ru.tomtrix.agentsocks.message.IMessage;
 import ru.tomtrix.agentsocks.message.StateChanged;
 import ru.tomtrix.javassistwraper.ClassStore;
 
 /** @author tom-trix */
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "@class")
-public abstract class Agent implements ICodeLoadable
+public abstract class Agent implements IAgentProcessible
 {
 	// private static final String RA_AGENTSETTER = "setAgent";
 	/** agent's name */

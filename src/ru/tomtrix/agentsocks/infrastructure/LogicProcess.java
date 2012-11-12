@@ -1,32 +1,30 @@
 package ru.tomtrix.agentsocks.infrastructure;
 
 import java.util.*;
-
+import ru.tomtrix.agentsocks.mathmodel.Agent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import ru.tomtrix.agentsocks.mathmodel.Agent;
-
 /** @author tom-trix */
-public class LogicProcess implements ICodeLoadable
+public class LogicProcess implements IAgentProcessible
 {
 	/** efssef */
 	private String				_name;
 	/** dwaawd */
-	private final List<Agent>	_agents			= new ArrayList<>();
+	private final List<Agent>	_agents	= new ArrayList<>();
 
-	/** @param name */
+	/** fsvggrdokpo
+	 * @param name */
 	LogicProcess(@JsonProperty("_name") String name)
 	{
-		if (name == null || name.trim().isEmpty()) throw new NullPointerException("fsfgrq");
+		if (name == null || name.trim().isEmpty()) throw new NullPointerException("Logic process must have a name");
 		_name = name;
 	}
 
 	/** @return
 	 * @throws Exception */
-	boolean nextStep() throws Exception
+	void nextStep() throws Exception
 	{
-		// TODO: можеть быть такое, что состояние агентов изменится, пока ищем минимум
-		if (_agents.isEmpty()) return false;
+		if (_agents.isEmpty()) return;
 		// find the minimum of the event timestamps
 		Agent currentAgent = null;
 		for (Agent agent : _agents)
@@ -35,65 +33,72 @@ public class LogicProcess implements ICodeLoadable
 			if (time == null) continue;
 			if (currentAgent == null || time < currentAgent.getNextEventTime()) currentAgent = agent;
 		}
-		if (currentAgent == null) return false;
+		if (currentAgent == null) return;
 		// handle the event
 		currentAgent.executeNextEvent();
-		return true;
 	}
 
-	/** @param agent */
+	/** fes
+	 * @param agent */
 	public void addAgent(Agent agent)
 	{
 		if (agent == null) throw new IllegalArgumentException("Agent can't be equal to null");
 		_agents.add(agent);
 	}
-	
+
+	/** sefef
+	 * @param name
+	 * @return
+	 */
 	public Agent getAgentByName(String name)
 	{
-		if (name == null) throw new IllegalArgumentException("Agent can't be equal to null");
+		if (name == null || name.trim().isEmpty()) throw new IllegalArgumentException("Agent can't be equal to null");
 		for (Agent agent : _agents)
-			if (agent.get_name().toLowerCase().trim().equals(name.toLowerCase().trim()))
-				return agent;
+			if (agent.get_name().toLowerCase().trim().equals(name.toLowerCase().trim())) return agent;
 		return null;
 	}
-	
+
+	/** sefgrs
+	 * @param num
+	 * @return
+	 */
 	public Agent getAgentByNumber(int num)
 	{
-		if (num <0 || num >= _agents.size()) throw new ArrayIndexOutOfBoundsException("Agent can't be equal to null");
+		if (num < 0 || num >= _agents.size()) throw new ArrayIndexOutOfBoundsException(String.format("Wrong number argument: %d", num));
 		return _agents.get(num);
 	}
-	
+
+	/** sge
+	 * @param agent
+	 */
 	public void removeAgent(Agent agent)
 	{
+		if (agent == null || !_agents.contains(agent)) throw new NullPointerException("There is no such an agent!");
 		_agents.remove(agent);
 	}
-	
+
 	@Override
 	public void loadCode() throws Exception
 	{
-		for (ICodeLoadable agent : _agents)
+		for (IAgentProcessible agent : _agents)
 			agent.loadCode();
 	}
 
 	@Override
 	public void compileAgents() throws Exception
 	{
-		for (ICodeLoadable agent : _agents)
+		for (IAgentProcessible agent : _agents)
 			agent.compileAgents();
 	}
 
-	/**
-	 * @param _name the _name to set
-	 */
+	/** @param _name the _name to set */
 	public void set_name(String name)
 	{
-		if (name == null || name.trim().isEmpty()) throw new NullPointerException("fsfgrq");
+		if (name == null || name.trim().isEmpty()) throw new NullPointerException();
 		_name = name;
 	}
 
-	/**
-	 * @return the _name
-	 */
+	/** @return the _name */
 	public String get_name()
 	{
 		return _name;

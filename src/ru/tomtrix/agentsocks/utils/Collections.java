@@ -3,7 +3,7 @@ package ru.tomtrix.agentsocks.utils;
 import java.io.*;
 
 /** @author tom-trix */
-public class ArrayTransformer
+public class Collections
 {
 	public static int[] toIntArray(byte bytes[])
 	{

@@ -10658,3 +10658,199 @@ java.lang.NullPointerException
 00:19:54,671  INFO Thread-0 DefaultAgent:notifyAgent:66 - ---> Message received: state = Green
 00:19:54,696  INFO Thread-0 DefaultAgent:notifyAgent:66 - ---> Message received: state = Red
 00:19:54,722  INFO Thread-0 DefaultAgent:notifyAgent:66 - ---> Message received: state = Green
+01:53:28,516 ERROR main Starter:main:38 - This program MUST be loaded within MPI-software! e.g.
+Linux:   $MPJ_HOME/bin/mpjrun.sh -np 2 -jar agentsocks.jar
+Windows: %MPJ_HOME%\bin\mpjrun.exe -np 2 -jar agentsocks.jar
+
+P.S. You're able to run the program in an editor mode (add "-editor" argument)
+mpi.MPIException: Usage: java MPI <myrank> <conf_file> <device_name> conf_file can be, ../conf/xdev.conf <Local>OR http://holly.dsg.port.ac.uk:15000/xdev.conf <Remote>
+	at mpi.MPI.Init(MPI.java:221)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:33)
+01:53:28,846 ERROR main Starter:main:58 - Error in a global scope
+com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field "_nodes" (class ru.tomtrix.agentsocks.infrastructure.Model), not marked as ignorable (one known property: "_name"])
+ at [Source: lights.txt; line: 3, column: 16] (through reference chain: ru.tomtrix.agentsocks.infrastructure.Model["_nodes"])
+	at com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException.from(UnrecognizedPropertyException.java:79)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportUnknownProperty(DeserializationContext.java:579)
+	at com.fasterxml.jackson.databind.deser.std.StdDeserializer.handleUnknownProperty(StdDeserializer.java:672)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializerBase.handleUnknownProperty(BeanDeserializerBase.java:906)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:214)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeUsingPropertyBased(BeanDeserializer.java:577)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObjectUsingNonDefault(BeanDeserializer.java:393)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:289)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:121)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:2796)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:1896)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:42)
+01:54:35,093 ERROR main Starter:main:38 - 
+Be careful!!! This program MUST be loaded within MPI-software! e.g.
+ - Linux:   $MPJ_HOME/bin/mpjrun.sh -np 2 -jar agentsocks.jar
+ - Windows: %MPJ_HOME%\bin\mpjrun.exe -np 2 -jar agentsocks.jar
+
+P.S. You're able to run the program in an editor mode (add "-editor" argument)
+
+mpi.MPIException: Usage: java MPI <myrank> <conf_file> <device_name> conf_file can be, ../conf/xdev.conf <Local>OR http://holly.dsg.port.ac.uk:15000/xdev.conf <Remote>
+	at mpi.MPI.Init(MPI.java:221)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:33)
+01:54:35,392 ERROR main Starter:main:58 - Error in a global scope
+com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field "_nodes" (class ru.tomtrix.agentsocks.infrastructure.Model), not marked as ignorable (one known property: "_name"])
+ at [Source: lights.txt; line: 3, column: 16] (through reference chain: ru.tomtrix.agentsocks.infrastructure.Model["_nodes"])
+	at com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException.from(UnrecognizedPropertyException.java:79)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportUnknownProperty(DeserializationContext.java:579)
+	at com.fasterxml.jackson.databind.deser.std.StdDeserializer.handleUnknownProperty(StdDeserializer.java:672)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializerBase.handleUnknownProperty(BeanDeserializerBase.java:906)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:214)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeUsingPropertyBased(BeanDeserializer.java:577)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObjectUsingNonDefault(BeanDeserializer.java:393)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:289)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:121)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:2796)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:1896)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:42)
+01:58:35,442  INFO 1 Starter:main:34 - Trying to load 2 nodes
+01:58:35,442  INFO 0 Starter:main:34 - Trying to load 2 nodes
+01:58:35,704 ERROR 0 Starter:main:58 - Error in a global scope
+com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field "_nodes" (class ru.tomtrix.agentsocks.infrastructure.Model), not marked as ignorable (one known property: "_name"])
+ at [Source: lights.txt; line: 3, column: 16] (through reference chain: ru.tomtrix.agentsocks.infrastructure.Model["_nodes"])
+	at com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException.from(UnrecognizedPropertyException.java:79)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportUnknownProperty(DeserializationContext.java:579)
+	at com.fasterxml.jackson.databind.deser.std.StdDeserializer.handleUnknownProperty(StdDeserializer.java:672)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializerBase.handleUnknownProperty(BeanDeserializerBase.java:906)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:214)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeUsingPropertyBased(BeanDeserializer.java:577)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObjectUsingNonDefault(BeanDeserializer.java:393)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:289)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:121)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:2796)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:1896)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:42)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at runtime.starter.MulticoreStarter$1.run(MulticoreStarter.java:289)
+	at java.lang.Thread.run(Thread.java:722)
+01:58:35,704 ERROR 1 Starter:main:58 - Error in a global scope
+com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field "_nodes" (class ru.tomtrix.agentsocks.infrastructure.Model), not marked as ignorable (one known property: "_name"])
+ at [Source: lights.txt; line: 3, column: 16] (through reference chain: ru.tomtrix.agentsocks.infrastructure.Model["_nodes"])
+	at com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException.from(UnrecognizedPropertyException.java:79)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportUnknownProperty(DeserializationContext.java:579)
+	at com.fasterxml.jackson.databind.deser.std.StdDeserializer.handleUnknownProperty(StdDeserializer.java:672)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializerBase.handleUnknownProperty(BeanDeserializerBase.java:906)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:214)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeUsingPropertyBased(BeanDeserializer.java:577)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObjectUsingNonDefault(BeanDeserializer.java:393)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:289)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:121)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:2796)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:1896)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:42)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at runtime.starter.MulticoreStarter$1.run(MulticoreStarter.java:289)
+	at java.lang.Thread.run(Thread.java:722)
+02:00:25,061  INFO 0 Starter:main:34 - Trying to load 2 nodes
+02:00:25,061  INFO 1 Starter:main:34 - Trying to load 2 nodes
+02:00:25,477 ERROR 0 Starter:main:58 - Error in a global scope
+com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field "_nodes" (class ru.tomtrix.agentsocks.infrastructure.Model), not marked as ignorable (one known property: "_name"])
+ at [Source: lights.txt; line: 3, column: 16] (through reference chain: ru.tomtrix.agentsocks.infrastructure.Model["_nodes"])
+	at com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException.from(UnrecognizedPropertyException.java:79)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportUnknownProperty(DeserializationContext.java:579)
+	at com.fasterxml.jackson.databind.deser.std.StdDeserializer.handleUnknownProperty(StdDeserializer.java:672)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializerBase.handleUnknownProperty(BeanDeserializerBase.java:906)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:214)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeUsingPropertyBased(BeanDeserializer.java:577)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObjectUsingNonDefault(BeanDeserializer.java:393)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:289)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:121)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:2796)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:1896)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:42)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at runtime.starter.MulticoreStarter$1.run(MulticoreStarter.java:289)
+	at java.lang.Thread.run(Thread.java:722)
+02:00:25,477 ERROR 1 Starter:main:58 - Error in a global scope
+com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field "_nodes" (class ru.tomtrix.agentsocks.infrastructure.Model), not marked as ignorable (one known property: "_name"])
+ at [Source: lights.txt; line: 3, column: 16] (through reference chain: ru.tomtrix.agentsocks.infrastructure.Model["_nodes"])
+	at com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException.from(UnrecognizedPropertyException.java:79)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportUnknownProperty(DeserializationContext.java:579)
+	at com.fasterxml.jackson.databind.deser.std.StdDeserializer.handleUnknownProperty(StdDeserializer.java:672)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializerBase.handleUnknownProperty(BeanDeserializerBase.java:906)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:214)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeUsingPropertyBased(BeanDeserializer.java:577)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObjectUsingNonDefault(BeanDeserializer.java:393)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:289)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:121)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:2796)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:1896)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:42)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at runtime.starter.MulticoreStarter$1.run(MulticoreStarter.java:289)
+	at java.lang.Thread.run(Thread.java:722)
+02:08:47,072  INFO 1 Starter:main:38 - Trying to load 2 nodes
+02:08:47,072  INFO 0 Starter:main:38 - Trying to load 2 nodes
+02:08:47,463  INFO 1 DefaultAgent:<init>:41 - Agent created
+02:08:47,463  INFO 0 DefaultAgent:<init>:41 - Agent created
+02:08:47,481  INFO 1 DefaultAgent:<init>:41 - Agent created
+02:08:47,481  INFO 0 DefaultAgent:<init>:41 - Agent created
+02:08:47,570  INFO 0 DefaultAgent:compileAgents:87 - Compiled
+02:08:47,570  INFO 1 DefaultAgent:compileAgents:87 - Compiled
+02:08:47,571  INFO 0 DefaultAgent:compileAgents:87 - Compiled
+02:08:47,571  INFO 1 DefaultAgent:compileAgents:87 - Compiled
+02:08:47,571  INFO 0 Starter:main:55 - Node 0 is ready to start
+02:08:47,571  INFO 1 Starter:main:55 - Node 1 is ready to start
+02:08:49,072  INFO 0 Mail:startListening:38 - Listener on node 0 OK
+02:08:49,072  INFO 1 Mail:startListening:38 - Listener on node 1 OK
+02:08:49,191  INFO Thread-1 DefaultAgent:notifyAgent:66 - ---> Message received: state = Red
+02:08:49,205  INFO Thread-1 DefaultAgent:notifyAgent:66 - ---> Message received: state = Green
+02:08:49,231  INFO Thread-1 DefaultAgent:notifyAgent:66 - ---> Message received: state = Red
+02:08:49,256  INFO Thread-1 DefaultAgent:notifyAgent:66 - ---> Message received: state = Green
+02:08:49,282  INFO Thread-1 DefaultAgent:notifyAgent:66 - ---> Message received: state = Red
+02:08:49,307  INFO Thread-1 DefaultAgent:notifyAgent:66 - ---> Message received: state = Green
+02:09:34,445  INFO 1 Starter:main:38 - Trying to load 2 nodes
+02:09:34,445  INFO 0 Starter:main:38 - Trying to load 2 nodes
+02:09:34,793  INFO 1 DefaultAgent:<init>:41 - Agent created
+02:09:34,794  INFO 0 DefaultAgent:<init>:41 - Agent created
+02:09:34,801  INFO 0 DefaultAgent:<init>:41 - Agent created
+02:09:34,801  INFO 1 DefaultAgent:<init>:41 - Agent created
+02:09:34,881  INFO 0 DefaultAgent:compileAgents:87 - Compiled
+02:09:34,881  INFO 1 DefaultAgent:compileAgents:87 - Compiled
+02:09:34,881  INFO 0 DefaultAgent:compileAgents:87 - Compiled
+02:09:34,882  INFO 1 DefaultAgent:compileAgents:87 - Compiled
+02:09:34,882  INFO 0 Starter:main:55 - Node 0 is ready to start
+02:09:34,882  INFO 1 Starter:main:55 - Node 1 is ready to start
+02:09:36,383  INFO 1 Mail:startListening:38 - Listener on node 1 OK
+02:09:36,383  INFO 0 Mail:startListening:38 - Listener on node 0 OK
+02:09:36,471  INFO Thread-0 DefaultAgent:notifyAgent:66 - ---> Message received: state = Red
+02:09:36,487  INFO Thread-0 DefaultAgent:notifyAgent:66 - ---> Message received: state = Green
+02:09:36,512  INFO Thread-0 DefaultAgent:notifyAgent:66 - ---> Message received: state = Red
+02:09:36,538  INFO Thread-0 DefaultAgent:notifyAgent:66 - ---> Message received: state = Green
+02:09:36,564  INFO Thread-0 DefaultAgent:notifyAgent:66 - ---> Message received: state = Red
+02:09:36,590  INFO Thread-0 DefaultAgent:notifyAgent:66 - ---> Message received: state = Green
+02:09:42,348  INFO 1 Starter:main:38 - Trying to load 2 nodes
+02:09:42,348  INFO 0 Starter:main:38 - Trying to load 2 nodes
+02:09:42,705  INFO 1 DefaultAgent:<init>:41 - Agent created
+02:09:42,705  INFO 0 DefaultAgent:<init>:41 - Agent created
+02:09:42,712  INFO 0 DefaultAgent:<init>:41 - Agent created
+02:09:42,712  INFO 1 DefaultAgent:<init>:41 - Agent created
+02:09:42,791  INFO 1 DefaultAgent:compileAgents:87 - Compiled
+02:09:42,791  INFO 0 DefaultAgent:compileAgents:87 - Compiled
+02:09:42,792  INFO 1 DefaultAgent:compileAgents:87 - Compiled
+02:09:42,792  INFO 0 DefaultAgent:compileAgents:87 - Compiled
+02:09:42,792  INFO 1 Starter:main:55 - Node 1 is ready to start
+02:09:42,792  INFO 0 Starter:main:55 - Node 0 is ready to start
+02:09:44,293  INFO 0 Mail:startListening:38 - Listener on node 0 OK
+02:09:44,293  INFO 1 Mail:startListening:38 - Listener on node 1 OK
+02:09:44,389  INFO Thread-1 DefaultAgent:notifyAgent:66 - ---> Message received: state = Red
+02:09:44,400  INFO Thread-1 DefaultAgent:notifyAgent:66 - ---> Message received: state = Green
+02:09:44,426  INFO Thread-1 DefaultAgent:notifyAgent:66 - ---> Message received: state = Red
+02:09:44,452  INFO Thread-1 DefaultAgent:notifyAgent:66 - ---> Message received: state = Green
+02:09:44,478  INFO Thread-1 DefaultAgent:notifyAgent:66 - ---> Message received: state = Red
+02:09:44,503  INFO Thread-1 DefaultAgent:notifyAgent:66 - ---> Message received: state = Green

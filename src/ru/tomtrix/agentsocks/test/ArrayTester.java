@@ -2,7 +2,7 @@ package ru.tomtrix.agentsocks.test;
 
 import java.util.Random;
 
-import ru.tomtrix.agentsocks.utils.ArrayTransformer;
+import ru.tomtrix.agentsocks.utils.Collections;
 
 public class ArrayTester
 {
@@ -19,8 +19,8 @@ public class ArrayTester
 			byte bytes[] = new byte[r.nextInt(2000) + 2];
 			for (int j=0; j< bytes.length; j++)
 				bytes[j] = (byte) (r.nextInt(55)-1);
-			int ints[] = ArrayTransformer.toIntArray(bytes);
-			byte nv[] = ArrayTransformer.toByteArray(ints);
+			int ints[] = Collections.toIntArray(bytes);
+			byte nv[] = Collections.toByteArray(ints);
 			for (int j=0; j<Math.max(bytes.length, nv.length); j++)
 				if (bytes[j] != nv[j]) throw new Exception();
 			System.out.println("Test successful: " + i);

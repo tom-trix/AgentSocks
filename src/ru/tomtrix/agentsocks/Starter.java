@@ -1,57 +1,69 @@
 package ru.tomtrix.agentsocks;
 
-import java.io.File;
-import java.io.IOException;
 import mpi.MPI;
-import org.apache.log4j.Logger;
-
-import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
-
+import java.io.*;
 import ru.tomtrix.consoleui.*;
 import ru.tomtrix.javassistwraper.ClassStore;
-import ru.tomtrix.agentsocks.infrastructure.Model;
+
+import org.apache.log4j.Logger;
+
 import ru.tomtrix.agentsocks.message.Mail;
 import ru.tomtrix.agentsocks.modeleditor.MVCModel;
+import ru.tomtrix.agentsocks.utils.JsonSerializer;
+import ru.tomtrix.agentsocks.infrastructure.Model;
 
-/** @author tom-trix */
+/** cfasfseespok
+ * @author tom-trix */
 public class Starter
 {
-	/** @param args 
+	/** @param args
 	 * @throws IOException */
 	public static void main(String[] args) throws IOException
 	{
+		// run an application in an EDITOR mode
 		if (args != null && args.length > 0 && args[0].trim().toLowerCase().equals("-editor"))
 		{
 			ConsoleUIListener listener = new MVCModel();
-			ConsoleUI cui = new ConsoleUI("/data/Buffer/console.txt", listener);
+			ConsoleUI cui = new ConsoleUI(Constants.REGEXES_FILENAME, listener);
 			listener.setConsoleUI(cui);
 			cui.run();
 		}
+		// run an application in an MPI mode
 		else try
 		{
-			MPI.Init(args);
-			//
+			// initialize MPI
+			try
+			{
+				MPI.Init(args);
+				Logger.getLogger(Starter.class).info(String.format("Trying to load %d nodes", MPI.COMM_WORLD.Size()));
+			}
+			catch (Exception e)
+			{
+				Logger.getLogger(Starter.class).error("\nBe careful!!! This program MUST be loaded within MPI-software! e.g.\n - Linux:   $MPJ_HOME/bin/mpjrun.sh -np 2 -jar agentsocks.jar\n - Windows: %MPJ_HOME%\\bin\\mpjrun.exe -np 2 -jar agentsocks.jar\n\nP.S. You're also able to run the program in an editor mode (add \"-editor\" argument)\n", e);
+			}
+			
+			// let an MPI class loader know the Mail class definition
 			ClassStore.getInstance().addClassPath(Mail.class);
 			ClassStore.getInstance().addImport("ru.tomtrix.agentsocks.message");
-			//
-			ObjectMapper mapper = new ObjectMapper(); //TODO
-			mapper.setVisibilityChecker(VisibilityChecker.Std.defaultInstance().withFieldVisibility(Visibility.ANY));
-			mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-			mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-			Model _modelRef = mapper.readValue(new File("/home/tom-trix/workspace/AgentSocks/lights.txt"), Model.class);
+
+			// load the model
+			Model _modelRef = JsonSerializer.getMapper().readValue(new File(Constants.MODEL_FILENAME), Model.class);
+
+			// compile the agents within runtime classes
 			_modelRef.loadCode();
-			Logger.getLogger(Starter.class).info(String.format("Node #%d loaded (total = %d)", MPI.COMM_WORLD.Rank(), MPI.COMM_WORLD.Size()));
+			_modelRef.compileAgents();
+			Logger.getLogger(Starter.class).info(String.format("Node %d is ready to start", MPI.COMM_WORLD.Rank()));
+
+			// run the specific node
 			Thread.sleep(1500);
 			_modelRef.getNodeByNumber(MPI.COMM_WORLD.Rank()).run();
+
+			// finalize MPI
 			MPI.Finalize();
 		}
 		catch (Exception e)
 		{
-			Logger.getLogger(Starter.class).error("fedohawo", e);
+			Logger.getLogger(Starter.class).error("Error in a global scope", e);
 		}
 	}
 }
