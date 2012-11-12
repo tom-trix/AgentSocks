@@ -27,6 +27,7 @@ public abstract class Agent implements ICodeLoadable
 	private final EventList		_eventList			= new EventList();
 	/** name of runtime class that corresponds to an agent */
 	private final String		_RAClassname;
+	private Object		_runtimeAssistant;
 
 	/** Creates an agent with a specific name; it also builds runtime class that will comrise fields and methods of the agent
 	 * @param name - agent's name (and corresponding runtime class's name)
@@ -60,9 +61,11 @@ public abstract class Agent implements ICodeLoadable
 		_transformFunctions.add(code);			// д.б. после обращения к ClassStore
 	}
 
-	public void notifyAgent(IMessage data)
+	public void notifyAgent(IMessage data) throws Exception
 	{
 		Logger.getLogger(getClass()).info("---> Message received: " + ((StateChanged)data).get_variable() + " = " + ((StateChanged)data).get_value());
+		StateChanged sch = (StateChanged)data;
+		_runtimeAssistant.getClass().getField(sch.get_variable()).set(_runtimeAssistant, sch.get_value());
 	}
 
 	@Override
@@ -79,8 +82,8 @@ public abstract class Agent implements ICodeLoadable
 	 * @throws Exception */
 	public void compileAgents() throws Exception
 	{
-		Object runtimeObj = ClassStore.getInstance().compile(_RAClassname);
-		_eventList.setRuntimeAssistant(runtimeObj);
+		_runtimeAssistant = ClassStore.getInstance().compile(_RAClassname);
+		_eventList.setRuntimeAssistant(_runtimeAssistant);
 		Logger.getLogger(getClass()).info("Compiled");
 	}
 

@@ -36,12 +36,13 @@ public class Starter
 			MPI.Init(args);
 			//
 			ClassStore.getInstance().addClassPath(Mail.class);
+			ClassStore.getInstance().addImport("ru.tomtrix.agentsocks.message");
 			//
 			ObjectMapper mapper = new ObjectMapper(); //TODO
 			mapper.setVisibilityChecker(VisibilityChecker.Std.defaultInstance().withFieldVisibility(Visibility.ANY));
 			mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 			mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-			Model _modelRef = mapper.readValue(new File("/home/tom-trix/workspace/AgentSocks/fly.txt"), Model.class);
+			Model _modelRef = mapper.readValue(new File("/home/tom-trix/workspace/AgentSocks/lights.txt"), Model.class);
 			_modelRef.loadCode();
 			Logger.getLogger(Starter.class).info(String.format("Node #%d loaded (total = %d)", MPI.COMM_WORLD.Rank(), MPI.COMM_WORLD.Size()));
 			Thread.sleep(1500);

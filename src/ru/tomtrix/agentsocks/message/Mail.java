@@ -30,7 +30,6 @@ public class Mail implements MPIAgentListener
 	{
 		if (node == null) throw new NullPointerException("aef");
 		_nodeRef = node;
-		Logger.getLogger(getClass()).info(String.format("Mail is sucessfully loaded within node %d", _nodeRef.get_rank()));
 	}
 	
 	public void startListening(int bufferSize)
@@ -41,7 +40,7 @@ public class Mail implements MPIAgentListener
 	}
 
 	@Override
-	public void messageReceived(byte[] data)
+	public void messageReceived(byte data[], int sender, int tag)
 	{
 		try
 		{

@@ -1,0 +1,209 @@
+{
+   "_name" : "TrafficLights",
+   "_nodes" : {
+      "0" : {
+         "_container" : {
+            "_alive" : true,
+            "_node" : 0,
+            "_processes" : [
+               {
+                  "_agents" : [
+                     {
+                        "@class" : "ru.tomtrix.agentsocks.mathmodel.DefaultAgent",
+                        "_RAClassname" : "TrafficLight",
+                        "_eventList" : {
+                           "_eventList" : {
+                              "10.0" : {
+                                 "_fid" : "changeState",
+                                 "_parameters" : []
+                              },
+                              "20.0" : {
+                                 "_fid" : "changeState",
+                                 "_parameters" : []
+                              },
+                              "30.0" : {
+                                 "_fid" : "changeState",
+                                 "_parameters" : []
+                              },
+                              "40.0" : {
+                                 "_fid" : "changeState",
+                                 "_parameters" : []
+                              },
+                              "50.0" : {
+                                 "_fid" : "changeState",
+                                 "_parameters" : []
+                              },
+                              "60.0" : {
+                                 "_fid" : "changeState",
+                                 "_parameters" : []
+                              }
+                           },
+                           "_runtimeAssistant" : null
+                        },
+                        "_name" : "TrafficLight",
+                        "_state" : [ "public String state = \"Green\";" ],
+                        "_transformFunctions" : [
+                           "public void changeState() {state = state.equals(\"Green\") ? \"Red\" : \"Green\"; Mail.send(new StateChanged(\"state\", state), 1, \"Proc\", \"Pedestrian\", \"TrafficLight\");}"
+                        ],
+                        "nextEventTime" : 10.0
+                     }
+                  ],
+                  "_name" : "Proc"
+               }
+            ],
+            "_threads" : 5
+         },
+         "_rank" : 0
+      },
+      "1" : {
+         "_container" : {
+            "_alive" : true,
+            "_node" : 1,
+            "_processes" : [
+               {
+                  "_agents" : [
+                     {
+                        "@class" : "ru.tomtrix.agentsocks.mathmodel.DefaultAgent",
+                        "_RAClassname" : "Pedestrian",
+                        "_eventList" : {
+                           "_eventList" : {
+                              "10.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "12.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "14.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "16.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "18.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "2.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "20.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "22.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "24.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "26.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "28.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "30.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "32.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "34.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "36.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "38.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "4.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "40.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "42.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "44.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "46.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "48.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "50.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "52.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "54.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "56.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "58.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "6.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "60.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              },
+                              "8.0" : {
+                                 "_fid" : "go",
+                                 "_parameters" : []
+                              }
+                           },
+                           "_runtimeAssistant" : null
+                        },
+                        "_name" : "Pedestrian",
+                        "_state" : [ "public int x = 0;", "public String state = \"Green\";" ],
+                        "_transformFunctions" : [
+                           "public void go() {if (state.equals(\"Green\")) x++; System.out.println(\"state = \" + state + \"; x = \" + x);}"
+                        ],
+                        "nextEventTime" : 10.0
+                     }
+                  ],
+                  "_name" : "Proc"
+               }
+            ],
+            "_threads" : 5
+         },
+         "_rank" : 1
+      }
+   }
+}

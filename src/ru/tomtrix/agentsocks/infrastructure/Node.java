@@ -2,7 +2,6 @@ package ru.tomtrix.agentsocks.infrastructure;
 
 import ru.tomtrix.agentsocks.Constants;
 import ru.tomtrix.agentsocks.message.Mail;
-import mpi.MPI;
 
 import com.fasterxml.jackson.annotation.*;
 
@@ -19,18 +18,9 @@ public class Node
 	/** fs */
 	Node(@JsonProperty("_rank") int rank)
 	{
-		//TODO
-		if (MPI.COMM_WORLD.Rank() == rank)
-		{
 		_rank = rank;
 		_container = new Container(5, rank);	//TODO 5 потоков
 		_mail = new Mail(this);
-		}
-		else {
-			_rank = -1;
-			_container = null;
-			_mail = null;
-		}
 	}
 
 	/** @return the _container */
