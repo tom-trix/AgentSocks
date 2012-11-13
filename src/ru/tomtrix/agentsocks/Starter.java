@@ -4,7 +4,6 @@ import mpi.MPI;
 import java.io.*;
 import ru.tomtrix.consoleui.*;
 import org.apache.log4j.Logger;
-
 import ru.tomtrix.agentsocks.messaging.Mail;
 import ru.tomtrix.javassistwraper.ClassStore;
 import ru.tomtrix.agentsocks.modeleditor.MVCModel;
@@ -43,7 +42,7 @@ public class Starter
 			
 			// let an MPI class loader know the Mail class definition
 			ClassStore.getInstance().addClassPath(Mail.class);
-			ClassStore.getInstance().addImport("ru.tomtrix.agentsocks.message");
+			ClassStore.getInstance().addImport(Mail.class.getPackage().getName());
 
 			// load the model
 			Model _modelRef = JsonSerializer.getMapper().readValue(new File(Constants.MODEL_FILENAME), Model.class);
