@@ -4,7 +4,8 @@ import mpi.MPI;
 import java.io.*;
 import ru.tomtrix.consoleui.*;
 import org.apache.log4j.Logger;
-import ru.tomtrix.agentsocks.message.Mail;
+
+import ru.tomtrix.agentsocks.messaging.Mail;
 import ru.tomtrix.javassistwraper.ClassStore;
 import ru.tomtrix.agentsocks.modeleditor.MVCModel;
 import ru.tomtrix.agentsocks.utils.JsonSerializer;

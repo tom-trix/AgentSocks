@@ -2,7 +2,9 @@ package ru.tomtrix.agentsocks.mathmodel;
 
 import java.util.*;
 import org.apache.log4j.Logger;
-import ru.tomtrix.agentsocks.message.*;
+
+import ru.tomtrix.agentsocks.messaging.*;
+
 import com.fasterxml.jackson.annotation.*;
 import ru.tomtrix.javassistwraper.ClassStore;
 import javax.activation.UnsupportedDataTypeException;
@@ -61,7 +63,7 @@ public abstract class Agent implements IAgentProcessible
 	/** fseef
 	 * @param data
 	 * @throws Exception */
-	public void notifyAgent(IMessage data) throws Exception
+	public void notifyAgent(IMessage data, String sender) throws Exception
 	{
 		if (data instanceof StateChanged)
 		{
@@ -133,7 +135,7 @@ public abstract class Agent implements IAgentProcessible
 	 * @param pars
 	 * @throws Exception
 	 * @see ru.tomtrix.agentsocks.mathmodel.EventList#addEvent(java.lang.Double, java.lang.String, java.lang.Object[]) */
-	public void addEvent(Double timestamp, String fid, Object... pars) throws Exception
+	public void addEvent(double timestamp, String fid, Object... pars) throws Exception
 	{
 		_eventList.addEvent(timestamp, fid, pars);
 	}

@@ -3,7 +3,8 @@ package ru.tomtrix.agentsocks.mathmodel;
 import java.lang.reflect.Method;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** @author tom-trix */
+/** fseqrwer
+ * @author tom-trix */
 public class Function
 {
 	/** function id */
@@ -14,35 +15,32 @@ public class Function
 	/** creates a new function call object
 	 * @param fid - function ID
 	 * @param parameters - parameters for invoking */
-	public Function(@JsonProperty("_fid") String fid, @JsonProperty("_parameters") Object... parameters)
+	Function(@JsonProperty("_fid") String fid, @JsonProperty("_parameters") Object... parameters)
 	{
+		if (fid == null || fid.trim().isEmpty()) throw new NullPointerException("Function id can't be null");
 		_fid = fid;
 		_parameters = parameters;
 	}
-	
-	/**
+
+	/** fgsef
 	 * @param methodKeeper
 	 * @return
-	 * @throws Exception
-	 */
-	public Object execute(Object methodKeeper) throws Exception
+	 * @throws Exception */
+	Object execute(Object methodKeeper) throws Exception
 	{
-		//for each parameter obtain its class
-		Class<?>[] classes = new Class<?>[_parameters.length];
-		for (int i=0; i<_parameters.length; i++)
-			classes[i] = _parameters[i].getClass();
-		//trying to find a method via Reflection
-		Method m = methodKeeper.getClass().getMethod(_fid, classes);
-		if (m == null) throw new NullPointerException("frsfse");
-		//execute one
-		return m.invoke(methodKeeper, _parameters);
-	}
+		// checks
+		if (methodKeeper == null) throw new NullPointerException("Method keeper can't be null");
 
-	/**
-	 * @return the _fid
-	 */
-	public String get_fid()
-	{
-		return _fid;
+		// for each parameter obtain its class
+		Class<?>[] classes = new Class<?>[_parameters.length];
+		for (int i = 0; i < _parameters.length; i++)
+			classes[i] = _parameters[i].getClass();
+
+		// trying to find a method via Java Reflection API
+		Method m = methodKeeper.getClass().getMethod(_fid, classes);
+		if (m == null) throw new NullPointerException(String.format("There are no such a method that corresponds to fid \"%s\" and specified %d parameter(s)", _fid, _parameters.length));
+
+		// execute one
+		return m.invoke(methodKeeper, _parameters);
 	}
 }

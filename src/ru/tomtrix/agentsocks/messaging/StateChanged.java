@@ -1,15 +1,18 @@
-package ru.tomtrix.agentsocks.message;
+package ru.tomtrix.agentsocks.messaging;
 
-/** @author tom-trix */
+/** esfioe
+ * @author tom-trix */
 public class StateChanged implements IMessage
 {
-
 	/** fsefe */
 	private static final long	serialVersionUID	= -705717442418397054L;
+	/** fsefes */
 	private final String		_variable;
+	/** dahjoi */
 	private final Object		_value;
 
-	/** @param _variable
+	/** fmjos
+	 * @param _variable
 	 * @param _value */
 	public StateChanged(String variable, Object value)
 	{

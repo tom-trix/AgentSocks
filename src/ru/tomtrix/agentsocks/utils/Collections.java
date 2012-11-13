@@ -2,15 +2,45 @@ package ru.tomtrix.agentsocks.utils;
 
 import java.io.*;
 
-/** @author tom-trix */
+/** fhuseio
+ * @author tom-trix */
 public class Collections
 {
+	/** dafhihwe
+	 * @param object
+	 * @return
+	 * @throws IOException */
+	public static byte[] serialize(Serializable object) throws IOException
+	{
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		ObjectOutputStream oos = new ObjectOutputStream(baos);
+		oos.writeObject(object);
+		oos.close();
+		return baos.toByteArray();
+	}
+
+	/** dahihfi
+	 * @param buf
+	 * @return
+	 * @throws Exception */
+	public static Serializable deserialize(byte[] buf) throws Exception
+	{
+		ByteArrayInputStream bais = new ByteArrayInputStream(buf);
+		ObjectInputStream ois = new ObjectInputStream(bais);
+		Serializable result = (Serializable) ois.readObject();
+		ois.close();
+		return result;
+	}
+
+	/** fefea
+	 * @param bytes
+	 * @return */
 	public static int[] toIntArray(byte bytes[])
 	{
 		if (bytes == null || bytes.length == 0) throw new IllegalArgumentException("htrjy");
 		int[] ints = new int[bytes.length % 4 == 0 ? bytes.length / 4 + 1 : bytes.length / 4 + 2];
-		int bap = 0;         // byte array pointer
-		int iap = 0;         // int array pointer
+		int bap = 0;         		// byte array pointer
+		int iap = 0;         		// int array pointer
 		ints[iap++] = bytes.length;
 		while (bap < bytes.length)
 		{
@@ -24,14 +54,17 @@ public class Collections
 		return ints;
 	}
 
+	/** fsafe
+	 * @param ints
+	 * @return */
 	public static byte[] toByteArray(int ints[])
 	{
 		if (ints == null || ints.length < 2) throw new IllegalArgumentException("fesfes");
 		int count = ints[0];
 		if (count / 4 != ints.length - (count % 4 == 0 ? 1 : 2)) throw new IllegalArgumentException("fwefwg");
 		byte[] bytes = new byte[count];
-		int bap = 0;         // byte array pointer
-		int iap = 1;         // int array pointer
+		int bap = 0;         		// byte array pointer
+		int iap = 1;         		// int array pointer
 		while (bap < bytes.length)
 		{
 			if (bap < bytes.length) bytes[bap++] = (byte) ((ints[iap] >> 24) - 128);
@@ -41,23 +74,5 @@ public class Collections
 			iap++;
 		}
 		return bytes;
-	}
-
-	public static byte[] serialize(Serializable object) throws IOException
-	{
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		ObjectOutputStream oos = new ObjectOutputStream(baos);
-		oos.writeObject(object);
-		oos.close();
-		return baos.toByteArray();
-	}
-
-	public static Serializable deserialize(byte[] buf) throws Exception
-	{
-		ByteArrayInputStream bais = new ByteArrayInputStream(buf);
-		ObjectInputStream ois = new ObjectInputStream(bais);
-		Serializable result = (Serializable) ois.readObject();
-		ois.close();
-		return result;
 	}
 }

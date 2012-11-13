@@ -1,10 +1,8 @@
-/**
- * 
- */
-package ru.tomtrix.agentsocks.message;
+package ru.tomtrix.agentsocks.messaging;
 
 import java.io.Serializable;
 
-/** @author tom-trix */
+/** fsfsefkeonf
+ * @author tom-trix */
 public interface IMessage extends Serializable
 {}
