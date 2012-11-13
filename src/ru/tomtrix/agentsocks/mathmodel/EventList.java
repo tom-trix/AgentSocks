@@ -6,7 +6,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-/** @author tom-trix */
+/** fvsdfvsejop
+ * @author tom-trix */
 public class EventList
 {
 	/** map containing functions & their timestamps */
@@ -31,7 +32,7 @@ public class EventList
 	{
 		if (_runtimeAssistant == null) throw new NullPointerException("fsfe");
 		if (_eventList.isEmpty()) return;
-		Double d = _eventList.keySet().iterator().next();
+		Double d = _eventList.keySet().iterator().next(); //TODO ТУТ М.Б. ПРОБЛЕМА СОВМ. ДОСТУПА!!!
 		_eventList.get(d).execute(_runtimeAssistant);
 		_eventList.remove(d);
 	}
@@ -66,14 +67,4 @@ public class EventList
 		}
 		return result;
 	}
-
-	/**
-	 * @return the _eventList
-	 * @throws AccessDeniedException 
-	 *//*
-	public Map<Double, Function> get_eventList() throws AccessDeniedException
-	{
-		if (Control.CONSTRUCTOR_ACCESS_DENIED) throw new AccessDeniedException("fses");
-		return _eventList;
-	}*/
 }

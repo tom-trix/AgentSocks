@@ -3,11 +3,9 @@ package ru.tomtrix.agentsocks;
 import mpi.MPI;
 import java.io.*;
 import ru.tomtrix.consoleui.*;
-import ru.tomtrix.javassistwraper.ClassStore;
-
 import org.apache.log4j.Logger;
-
 import ru.tomtrix.agentsocks.message.Mail;
+import ru.tomtrix.javassistwraper.ClassStore;
 import ru.tomtrix.agentsocks.modeleditor.MVCModel;
 import ru.tomtrix.agentsocks.utils.JsonSerializer;
 import ru.tomtrix.agentsocks.infrastructure.Model;
@@ -55,7 +53,6 @@ public class Starter
 			Logger.getLogger(Starter.class).info(String.format("Node %d is ready to start", MPI.COMM_WORLD.Rank()));
 
 			// run the specific node
-			Thread.sleep(1500);
 			_modelRef.getNodeByNumber(MPI.COMM_WORLD.Rank()).run();
 
 			// finalize MPI

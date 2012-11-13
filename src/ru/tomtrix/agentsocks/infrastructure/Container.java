@@ -3,20 +3,23 @@ package ru.tomtrix.agentsocks.infrastructure;
 import java.util.*;
 import org.apache.log4j.Logger;
 import ru.tomtrix.agentsocks.Constants;
+import com.fasterxml.jackson.annotation.*;
 import java.util.concurrent.ConcurrentLinkedDeque;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** @author tom-trix */
 public class Container implements IAgentProcessible
 {
 	/** fseef */
-	private final Queue<LogicProcess>	_processes	= new ConcurrentLinkedDeque<>();
+	private final Queue<LogicProcess>	_processes		= new ConcurrentLinkedDeque<>();
+	/** concurrent troubles! */
+	private Map<String, LogicProcess>	_processNames	= new TreeMap<>();
 	/** wwd */
 	private final int					_node;
 	/** fae */
 	private final int					_threads;
 	/** fes */
-	private boolean						_alive		= true;
+	@JsonIgnore
+	private boolean						_alive			= false;
 
 	/** @param threads
 	 * @param name */
@@ -30,10 +33,15 @@ public class Container implements IAgentProcessible
 	/** fsef */
 	void run()
 	{
+		// reconstruct the map: "processname -> process"
+		_processNames.clear();
+		for (LogicProcess process : _processes)
+			_processNames.put(process.get_name(), process);
+		// create threads that will pick a logic processes from the queue and call their "next" method
+		_alive = true;
 		for (int i = 0; i < _threads; i++)
 		{
 			final String threadName = String.format("node%d.thread%d", _node, i);
-			// create a thread that picks a logic processes from the queue and calls their "next" method
 			new Thread(new Runnable()
 			{
 				@Override
@@ -69,25 +77,31 @@ public class Container implements IAgentProcessible
 	}
 
 	/** dae
-	 * @param name */
-	public void addLogicProcess(String name)
+	 * @param name
+	 * @throws IllegalAccessException */
+	public void addLogicProcess(String name) throws IllegalAccessException
 	{
 		if (name == null || name.trim().isEmpty()) throw new NullPointerException("Process must have a correct name");
+		if (_alive) throw new IllegalAccessException("It's totally forbidden to add a new process while the container is runnung!");
 		_processes.add(new LogicProcess(name));
 	}
 
 	/** fasef
-	 * @param process */
-	public void addLogicProcess(LogicProcess process)
+	 * @param process
+	 * @throws IllegalAccessException */
+	public void addLogicProcess(LogicProcess process) throws IllegalAccessException
 	{
 		if (process == null) throw new NullPointerException("Logic process can't be null");
+		if (_alive) throw new IllegalAccessException("It's totally forbidden to add a new process while the container is runnung!");
 		_processes.add(process);
 	}
 
 	/** vgfsr
-	 * @param name */
-	public void removeProcess(String name)
+	 * @param name
+	 * @throws IllegalAccessException */
+	public void removeProcess(String name) throws IllegalAccessException
 	{
+		if (_alive) throw new IllegalAccessException("It's totally forbidden to remove processes while the container is runnung!");
 		LogicProcess p = getProcessByName(name);
 		if (p == null) throw new NullPointerException("There is no such a process");
 		_processes.remove(p);
@@ -99,14 +113,14 @@ public class Container implements IAgentProcessible
 	public LogicProcess getProcessByName(String name)
 	{
 		if (name == null || name.trim().isEmpty()) throw new NullPointerException("Name parameter can't be null");
-		for (LogicProcess p : _processes)
-			if (p.get_name().equals(name)) return p;
-		return null;
+		if (!_processNames.containsKey(name)) throw new NoSuchElementException(String.format("Process \"%s\" is not found", name));
+		return _processNames.get(name);
 	}
 
 	@Override
 	public void loadCode() throws Exception
 	{
+		if (_alive) throw new IllegalAccessException("The operation is prohibited while the container is runnung!");
 		for (IAgentProcessible process : _processes)
 			process.loadCode();
 	}
@@ -114,6 +128,7 @@ public class Container implements IAgentProcessible
 	@Override
 	public void compileAgents() throws Exception
 	{
+		if (_alive) throw new IllegalAccessException("The operation is prohibited while the container is runnung!");
 		for (IAgentProcessible process : _processes)
 			process.compileAgents();
 	}
