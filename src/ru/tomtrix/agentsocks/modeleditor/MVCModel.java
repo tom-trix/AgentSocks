@@ -1,6 +1,3 @@
-/**
- * 
- */
 package ru.tomtrix.agentsocks.modeleditor;
 
 import java.io.File;
