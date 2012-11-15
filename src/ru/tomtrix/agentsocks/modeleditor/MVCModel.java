@@ -1,339 +1,414 @@
 package ru.tomtrix.agentsocks.modeleditor;
 
 import java.io.File;
+import ru.tomtrix.consoleui.*;
 import org.apache.log4j.Logger;
 import ru.tomtrix.agentsocks.mathmodel.*;
 import ru.tomtrix.agentsocks.infrastructure.*;
-import ru.tomtrix.consoleui.ConsoleUI;
-import ru.tomtrix.consoleui.ConsoleUIListener;
+import ru.tomtrix.agentsocks.utils.JsonSerializer;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
-
-
-/**
- * @author tom-trix
- *
- */
+/** jfsofeos
+ * @author tom-trix */
 public class MVCModel implements ConsoleUIListener
 {
-	private ConsoleUI _cuiRef;
-	private Model _modelRef;
-	private ProcessAndAgent _pa;
-	
+	private static final String	ERROR_STR	= "Error occured";
+
+	/** fnsefnieo */
+	private ConsoleUI			_cuiRef;
+	/** fshisfueih */
+	private Model				_model;
+	/** jdfaiofsoei */
+	private ProcessAndAgent		_pa;
+
+	/** fsemklfel
+	 * @author tom-trix */
 	private class ProcessAndAgent
 	{
-		public LogicProcess process;
-		public Agent agent;
-		
+		public LogicProcess	process;
+		public Agent		agent;
+
 		public ProcessAndAgent(LogicProcess p, Agent a)
 		{
 			process = p;
 			agent = a;
 		}
 	}
-	
+
+	/** fshirfiiu
+	 * @param name
+	 * @return */
 	public String createModel(String name)
 	{
-		_modelRef = new Model(name);
-		return "OK";
+		try
+		{
+			_model = new Model(name);
+			return String.format("OK. Model \"%s\" has been created", name);
+		}
+		catch (Exception e)
+		{
+			Logger.getLogger(getClass()).error(ERROR_STR, e);
+			return e.toString();
+		}
 	}
-	
+
+	/** fsejofhbeui
+	 * @param filename
+	 * @return */
 	public String loadModel(String filename)
 	{
 		try
 		{
-			ObjectMapper mapper = new ObjectMapper(); //TODO
-			mapper.setVisibilityChecker(VisibilityChecker.Std.defaultInstance().withFieldVisibility(Visibility.ANY));
-			mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-			mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-			_modelRef = mapper.readValue(new File(filename), Model.class);
-			//общий загрузчик кода TODO
-			_modelRef.loadCode();
-			return "OK";
+			_model = JsonSerializer.getMapper().readValue(new File(filename), Model.class);
+			_model.loadCode();
+			return String.format("OK. Model \"%s\" has been loaded", _model.get_name());
 		}
 		catch (Exception e)
 		{
-			Logger.getLogger(getClass()).error("fseedfa", e);
+			Logger.getLogger(getClass()).error(ERROR_STR, e);
 			return e.toString();
 		}
 	}
-	
+
+	/** dfahifehui
+	 * @param filename
+	 * @return */
 	public String saveModel(String filename)
 	{
 		try
 		{
-			ObjectMapper mapper = new ObjectMapper(); //TODO
-			mapper.setVisibilityChecker(VisibilityChecker.Std.defaultInstance().withFieldVisibility(Visibility.ANY));
-			mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-			mapper.writeValue(new File(filename), _modelRef);
-			return "OK";
+			JsonSerializer.getMapper().writeValue(new File(filename), _model);
+			return String.format("OK. Model \"%s\" has been saved", _model.get_name());
 		}
 		catch (Exception e)
 		{
-			Logger.getLogger(getClass()).error("fseedfa", e);
+			Logger.getLogger(getClass()).error(ERROR_STR, e);
 			return e.toString();
 		}
 	}
-	
+
+	/** fhisufsei
+	 * @return */
 	public String showModel()
 	{
-		return _modelRef.toString(); //TODO
+		return _model.toString();
 	}
-	
+
+	/** dfaseihfi
+	 * @return */
 	public String createNode()
 	{
 		try
 		{
-			return "OK: " + _modelRef.addNode();
+			return String.format("OK. Node %d has been created", _model.addNode());
 		}
 		catch (Exception e)
 		{
-			Logger.getLogger(getClass()).error("fseedfa", e);
+			Logger.getLogger(getClass()).error(ERROR_STR, e);
 			return e.toString();
 		}
 	}
-	
+
+	/** @return fshoehfeuio */
 	public String deleteLastNode()
 	{
 		try
 		{
-			_modelRef.deleteLastNode();
-			return "OK";
+			_model.deleteLastNode();
+			return String.format("OK. Node and all its logic processes have been removed. There are %d nodes left", _model.getNodesCount());
 		}
 		catch (Exception e)
 		{
-			Logger.getLogger(getClass()).error("fseedfa", e);
+			Logger.getLogger(getClass()).error(ERROR_STR, e);
 			return e.toString();
 		}
 	}
-	
+
+	/** fshjoieio
+	 * @param name
+	 * @param rank
+	 * @return */
 	public String createProcess(String name, String rank)
 	{
 		try
 		{
-			_modelRef.getNodeByNumber(Integer.parseInt(rank)).get_container().addLogicProcess(name);
-			return "OK";
+			_model.getNodeByNumber(Integer.parseInt(rank)).get_container().addLogicProcess(name);
+			return String.format("OK. Logic process \"%s\" has been created on node %d", name, rank);
 		}
 		catch (Exception e)
 		{
-			Logger.getLogger(getClass()).error("fseedfa", e);
+			Logger.getLogger(getClass()).error(ERROR_STR, e);
 			return e.toString();
 		}
 	}
-	
-	public String renameProcess(String name, String rank, String newName)
+
+	/** sfeohis
+	 * @param name
+	 * @param rank
+	 * @param newname
+	 * @return */
+	public String renameProcess(String name, String rank, String newname)
 	{
 		try
 		{
-			_modelRef.getNodeByNumber(Integer.parseInt(rank)).get_container().getProcessByName(name).set_name(newName);
-			return "OK";
+			_model.getNodeByNumber(Integer.parseInt(rank)).get_container().getProcessByName(name).set_name(newname);
+			return String.format("OK. Logic process \"%s\" has been renamed into \"%s\"", name, newname);
 		}
 		catch (Exception e)
 		{
-			Logger.getLogger(getClass()).error("fseedfa", e);
+			Logger.getLogger(getClass()).error(ERROR_STR, e);
 			return e.toString();
 		}
 	}
-	
+
+	/** afjoeefoi
+	 * @param name
+	 * @param rank
+	 * @param newRank
+	 * @return */
 	public String moveProcess(String name, String rank, String newRank)
 	{
 		try
 		{
-			Container c = _modelRef.getNodeByNumber(Integer.parseInt(rank)).get_container();
+			Container c = _model.getNodeByNumber(Integer.parseInt(rank)).get_container();
 			LogicProcess lp = c.getProcessByName(name);
 			c.removeProcess(name);
-			_modelRef.getNodeByNumber(Integer.parseInt(newRank)).get_container().addLogicProcess(lp);
-			return "OK";
+			_model.getNodeByNumber(Integer.parseInt(newRank)).get_container().addLogicProcess(lp);
+			return String.format("OK. Logic process \"%s\" has been moved from %d to %d", name, rank, newRank);
 		}
 		catch (Exception e)
 		{
-			Logger.getLogger(getClass()).error("fseedfa", e);
+			Logger.getLogger(getClass()).error(ERROR_STR, e);
 			return e.toString();
 		}
 	}
-	
+
+	/** fsohjoef
+	 * @param name
+	 * @param rank
+	 * @return */
 	public String deleteProcess(String name, String rank)
 	{
 		try
 		{
-			_modelRef.getNodeByNumber(Integer.parseInt(rank)).get_container().removeProcess(name);
-			return "OK";
+			_model.getNodeByNumber(Integer.parseInt(rank)).get_container().removeProcess(name);
+			return String.format("OK. Logic process \"%s\" and all its agents have been removed from the node %d", name, rank);
 		}
 		catch (Exception e)
 		{
-			Logger.getLogger(getClass()).error("fseedfa", e);
+			Logger.getLogger(getClass()).error(ERROR_STR, e);
 			return e.toString();
 		}
 	}
-	
+
+	/** uafopjafo
+	 * @param name
+	 * @param process
+	 * @param rank
+	 * @return */
 	public String createAgent(String name, String process, String rank)
 	{
 		try
 		{
-			_pa = new ProcessAndAgent(_modelRef.getNodeByNumber(Integer.parseInt(rank)).get_container().getProcessByName(process), new DefaultAgent(name));
+			_pa = new ProcessAndAgent(_model.getNodeByNumber(Integer.parseInt(rank)).get_container().getProcessByName(process), new DefaultAgent(name));
 			_pa.process.addAgent(_pa.agent);
-			//TODO push_greeting
-			return "OK";
+			return String.format("OK. Agent \"%s\" has been created.\nNow it is currently used", name);
 		}
 		catch (Exception e)
 		{
-			Logger.getLogger(getClass()).error("fseedfa", e);
+			Logger.getLogger(getClass()).error(ERROR_STR, e);
 			return e.toString();
 		}
 	}
-	
+
+	/** faseoifeo
+	 * @param name
+	 * @param process
+	 * @param rank
+	 * @return */
 	public String useAgent(String name, String process, String rank)
 	{
 		try
 		{
-			LogicProcess p = _modelRef.getNodeByNumber(Integer.parseInt(rank)).get_container().getProcessByName(process);
+			// push greeting
+			if (_pa != null && _pa.agent != null) _cuiRef.pop_greeting();
+			_cuiRef.push_greeting(name);
+			// create new "_pa" instance
+			LogicProcess p = _model.getNodeByNumber(Integer.parseInt(rank)).get_container().getProcessByName(process);
 			_pa = new ProcessAndAgent(p, p.getAgentByName(name));
-			//TODO push_greeting
-			return "OK";
+			// return
+			return String.format("OK. Now agent \"%s\" is currently used", name);
 		}
 		catch (Exception e)
 		{
-			Logger.getLogger(getClass()).error("fseedfa", e);
+			Logger.getLogger(getClass()).error(ERROR_STR, e);
 			return e.toString();
 		}
 	}
-	
+
+	/** fsvonedpa
+	 * @param newname
+	 * @return */
 	public String renameAgent(String newname)
 	{
 		try
 		{
 			_pa.agent.set_name(newname);
-			//TODO pop_greeting
-			//TODO push_greeting
-			return "OK";
+			_cuiRef.pop_greeting();
+			_cuiRef.push_greeting(newname);
+			return String.format("OK. Agent has been renamed into \"%s\"", newname);
 		}
 		catch (Exception e)
 		{
-			Logger.getLogger(getClass()).error("fseedfa", e);
+			Logger.getLogger(getClass()).error(ERROR_STR, e);
 			return e.toString();
 		}
 	}
-	
+
+	/** fasejoijho
+	 * @param newProcess
+	 * @param newNode
+	 * @return */
 	public String moveAgent(String newProcess, String newNode)
 	{
 		try
 		{
 			_pa.process.removeAgent(_pa.agent);
-			_pa.process = _modelRef.getNodeByNumber(Integer.parseInt(newNode)).get_container().getProcessByName(newProcess);
+			_pa.process = _model.getNodeByNumber(Integer.parseInt(newNode)).get_container().getProcessByName(newProcess);
 			_pa.process.addAgent(_pa.agent);
-			return "OK";
+			return String.format("OK. Agent \"%s\" has been moved to logic process \"%s\" on node %d", _pa.agent.get_name(), newProcess, newNode);
 		}
 		catch (Exception e)
 		{
-			Logger.getLogger(getClass()).error("fseedfa", e);
+			Logger.getLogger(getClass()).error(ERROR_STR, e);
 			return e.toString();
 		}
 	}
-	
+
+	/** fasjoijefo
+	 * @return */
 	public String deleteAgent()
 	{
 		try
 		{
+			String s = String.format("OK. Agent \"%s\" has been removed from process \"%s\"", _pa.agent.get_name(), _pa.process.get_name());
 			_pa.process.removeAgent(_pa.agent);
 			_pa = null;
-			//TODO pop_greeting
-			return "OK";
+			_cuiRef.pop_greeting();
+			return s;
 		}
 		catch (Exception e)
 		{
-			Logger.getLogger(getClass()).error("fseedfa", e);
+			Logger.getLogger(getClass()).error(ERROR_STR, e);
 			return e.toString();
 		}
 	}
-	
+
+	/** fsiefi
+	 * @param code
+	 * @return */
 	public String addVariable(String code)
 	{
 		try
 		{
 			_pa.agent.addVariable(code);
-			return "OK";
+			return String.format("OK. Agent \"%s\" has got the definition changed:\n", _pa.agent.get_name(), _pa.agent);
 		}
 		catch (Exception e)
 		{
-			Logger.getLogger(getClass()).error("fseedfa", e);
+			Logger.getLogger(getClass()).error(ERROR_STR, e);
 			return e.toString();
 		}
 	}
-	
+
+	/** ohfsiohabif
+	 * @param var
+	 * @return */
 	public String deleteVariable(String var)
 	{
 		try
 		{
-			//TODO _pa.agent.deleteVariable(var);
-			return "OK";
+			_pa.agent.removeVariable(var);
+			return String.format("OK. Agent \"%s\" has got the definition changed:\n", _pa.agent.get_name(), _pa.agent);
 		}
 		catch (Exception e)
 		{
-			Logger.getLogger(getClass()).error("fseedfa", e);
+			Logger.getLogger(getClass()).error(ERROR_STR, e);
 			return e.toString();
 		}
 	}
-	
+
+	/** joefai
+	 * @param code
+	 * @return */
 	public String addFunction(String code)
 	{
 		try
 		{
 			_pa.agent.addFunction(code);
-			return "OK";
+			return String.format("OK. Agent \"%s\" has got the definition changed:\n", _pa.agent.get_name(), _pa.agent);
 		}
 		catch (Exception e)
 		{
-			Logger.getLogger(getClass()).error("fseedfa", e);
+			Logger.getLogger(getClass()).error(ERROR_STR, e);
 			return e.toString();
 		}
 	}
-	
-	public String deleteFunction(String var)
+
+	/** pkfoeshui
+	 * @param fid
+	 * @return */
+	public String deleteFunction(String fid)
 	{
 		try
 		{
-			//TODO _pa.agent.deleteFunction(var);
-			return "OK";
+			_pa.agent.removeFunction(fid);
+			return String.format("OK. Agent \"%s\" has got the definition changed:\n", _pa.agent.get_name(), _pa.agent);
 		}
 		catch (Exception e)
 		{
-			Logger.getLogger(getClass()).error("fseedfa", e);
+			Logger.getLogger(getClass()).error(ERROR_STR, e);
 			return e.toString();
 		}
 	}
-	
+
+	/** @param fid
+	 * @param timestamp
+	 * @param params
+	 * @return */
 	public String addEvent(String fid, String timestamp, String params)
 	{
 		try
 		{
 			_pa.agent.addEvent(Double.parseDouble(timestamp), fid);
-			return "OK";
+			return String.format("OK. Agent \"%s\" has got the definition changed:\n", _pa.agent.get_name(), _pa.agent);
 		}
 		catch (Exception e)
 		{
-			Logger.getLogger(getClass()).error("fseedfa", e);
+			Logger.getLogger(getClass()).error(ERROR_STR, e);
 			return e.toString();
 		}
 	}
-	
+
+	/** posijoefjo
+	 * @param fid
+	 * @param timestamp
+	 * @return
+	 */
 	public String deleteEvent(String fid, String timestamp)
 	{
 		try
 		{
-			//TODO _pa.agent.get_eventList().deleteEvent(Double.parseDouble(timestamp), fid);
-			return "OK";
+			_pa.agent.removeEvent(Double.parseDouble(timestamp));
+			return String.format("OK. Agent \"%s\" has got the definition changed:\n", _pa.agent.get_name(), _pa.agent);
 		}
 		catch (Exception e)
 		{
-			Logger.getLogger(getClass()).error("fseedfa", e);
+			Logger.getLogger(getClass()).error(ERROR_STR, e);
 			return e.toString();
 		}
 	}
-	
+
+	/** hcfseaio */
 	public void bye()
 	{
 		_cuiRef.stop();

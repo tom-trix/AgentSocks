@@ -76,6 +76,15 @@ public class Container implements IAgentProcessible
 		_alive = false;
 	}
 
+	/** feno
+	 * @return the _processes 
+	 * @throws IllegalAccessException */
+	Queue<LogicProcess> getProcesses() throws IllegalAccessException
+	{		
+		if (_alive) throw new IllegalAccessException("It's impossible to obtain the processes while the container is runnung!");
+		return _processes;
+	}
+
 	/** dae
 	 * @param name
 	 * @throws IllegalAccessException */

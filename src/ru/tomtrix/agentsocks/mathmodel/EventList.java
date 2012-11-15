@@ -1,6 +1,7 @@
 package ru.tomtrix.agentsocks.mathmodel;
 
 import java.util.*;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 /** fvsdfvsejop
@@ -22,6 +23,15 @@ public class EventList
 		if (timestamp < 0) throw new IllegalArgumentException("Timestamp can't be negative");
 		if (fid == null || fid.trim().isEmpty()) throw new IllegalArgumentException("Function id can't be empty");
 		_eventList.put(timestamp, new Function(fid, pars));
+	}
+	
+	/** fseiofeshjoisefoo;h
+	 * @param timestamp
+	 */
+	synchronized void removeEvent(double timestamp)
+	{
+		if (!_eventList.containsKey(timestamp)) throw new NoSuchElementException(String.format("There are no events planned on t=%f", timestamp));
+		_eventList.remove(timestamp);
 	}
 
 	/** @throws Exception */
@@ -53,5 +63,13 @@ public class EventList
 		//this must be synchronized cause someone could remove the item while the other finds the minimum
 		if (_eventList.isEmpty()) return null;
 		return Collections.min(_eventList.keySet()); 			//TODO сортировка коллекции является bottleneck'ом
+	}
+	
+	synchronized Map<Double, String> getEventsInfo()
+	{
+		Map<Double, String> result = new TreeMap<>();
+		for (Entry<Double, Function> e : _eventList.entrySet())
+			result.put(e.getKey(), e.getValue().get_fid());
+		return result;
 	}
 }

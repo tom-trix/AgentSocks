@@ -43,4 +43,12 @@ public class Function
 		// execute one
 		return m.invoke(methodKeeper, _parameters);
 	}
+
+	/**
+	 * @return the _fid
+	 */
+	String get_fid()
+	{
+		return _fid;
+	}
 }

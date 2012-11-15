@@ -1,10 +1,10 @@
 package ru.tomtrix.agentsocks.mathmodel;
 
 import java.util.*;
+import java.util.Map.Entry;
 import org.apache.log4j.Logger;
-
+import javassist.NotFoundException;
 import ru.tomtrix.agentsocks.messaging.*;
-
 import com.fasterxml.jackson.annotation.*;
 import ru.tomtrix.javassistwraper.ClassStore;
 import javax.activation.UnsupportedDataTypeException;
@@ -60,6 +60,36 @@ public abstract class Agent implements IAgentProcessible
 		_transformFunctions.add(code);			// д.б. после обращения к ClassStore
 	}
 
+	/** jsiojfoejs
+	 * @param variable
+	 * @throws NotFoundException */
+	public void removeVariable(String variable) throws NotFoundException
+	{
+		ClassStore.getInstance().removeField(_RAClassname, variable);
+		for (String s : _state)
+			if (Arrays.asList(s.split("[= ]")).contains(variable))
+			{
+				_state.remove(s);
+				return;
+			}
+		throw new RuntimeException(String.format("ATTENTION! Variable \"%s\" hasn't been removed properly. The model is corrupted. Repair json and restart the application", variable));
+	}
+
+	/** ofjaswefhui
+	 * @param fid
+	 * @throws NotFoundException */
+	public void removeFunction(String fid) throws NotFoundException
+	{
+		ClassStore.getInstance().removeMethods(_RAClassname, fid);
+		for (String s : _state)
+			if (Arrays.asList(s.split("[= ]")).contains(fid))
+			{
+				_state.remove(s);
+				return;
+			}
+		throw new RuntimeException(String.format("ATTENTION! Function with fid = \"%s\" hasn't been removed properly. The model is corrupted. Repair json and restart the application", fid));
+	}
+
 	/** fseef
 	 * @param data
 	 * @throws Exception */
@@ -103,6 +133,28 @@ public abstract class Agent implements IAgentProcessible
 		Logger.getLogger(getClass()).info(String.format("Agent \"%s\" compiled", _name));
 	}
 
+	@Override
+	public String toString()
+	{
+		StringBuffer sbuf = new StringBuffer(String.format("Agent \"%s\" (runtime assistant = \"%s\")", _name, _RAClassname));
+		if (_state.size() == 0)
+			sbuf.append("<state is empty>\n");
+		else sbuf.append("=======    State    =======\n");
+		for (String s : _state)
+			sbuf.append(s).append("\n");
+		if (_transformFunctions.size() == 0)
+			sbuf.append("<function set is empty>\n");
+		else sbuf.append("=== Transform functions ===\n");
+		for (String s : _transformFunctions)
+			sbuf.append(s).append("\n");
+		if (_eventList.getNextEventTime() == null)
+			sbuf.append("<event list is empty>\n");
+		else sbuf.append("======   Event list  ======\n");
+		for (Entry<Double, String> e : _eventList.getEventsInfo().entrySet())
+			sbuf.append(e).append("\n");
+		return sbuf.toString();
+	}
+
 	/** @return the _name */
 	public String get_name()
 	{
@@ -138,5 +190,12 @@ public abstract class Agent implements IAgentProcessible
 	public void addEvent(double timestamp, String fid, Object... pars) throws Exception
 	{
 		_eventList.addEvent(timestamp, fid, pars);
+	}
+
+	/** @param timestamp
+	 * @see ru.tomtrix.agentsocks.mathmodel.EventList#removeEvent(double) */
+	public void removeEvent(double timestamp)
+	{
+		_eventList.removeEvent(timestamp);
 	}
 }

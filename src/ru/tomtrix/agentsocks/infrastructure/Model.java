@@ -1,6 +1,7 @@
 package ru.tomtrix.agentsocks.infrastructure;
 
 import java.util.*;
+import java.util.Map.Entry;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** fd
@@ -8,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Model implements IAgentProcessible
 {
 	/** csdfse */
-	@SuppressWarnings("unused")
 	private final String				_name;
 	/** sfee */
 	private final Map<Integer, Node>	_nodes	= new TreeMap<>();
@@ -17,6 +17,7 @@ public class Model implements IAgentProcessible
 	 * @param name */
 	public Model(@JsonProperty(value = "_name") String name)
 	{
+		if (name == null || name.trim().isEmpty()) throw new NullPointerException("Model name can't be empty!");
 		_name = name;
 	}
 
@@ -32,6 +33,12 @@ public class Model implements IAgentProcessible
 	public void deleteLastNode()
 	{
 		_nodes.remove(_nodes.size() - 1);
+	}
+
+	/** @return sbsei */
+	public int getNodesCount()
+	{
+		return _nodes.size();
 	}
 
 	/** @param num
@@ -54,5 +61,21 @@ public class Model implements IAgentProcessible
 	{
 		for (Node node : _nodes.values())
 			node.get_container().compileAgents();
+	}
+
+	@Override
+	public String toString()
+	{
+		StringBuffer sbuf = new StringBuffer(String.format("Model \"%s\". node collection:\n", _name));
+		if (_nodes.size() == 0) sbuf.append("<no nodes>\n");
+		for (Entry<Integer, Node> node : _nodes.entrySet())
+			sbuf.append(node);
+		return sbuf.toString();
+	}
+
+	/** @return the _name */
+	public String get_name()
+	{
+		return _name;
 	}
 }

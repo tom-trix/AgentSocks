@@ -48,8 +48,7 @@ public class LogicProcess implements IAgentProcessible
 
 	/** sefef
 	 * @param name
-	 * @return
-	 */
+	 * @return */
 	public Agent getAgentByName(String name)
 	{
 		if (name == null || name.trim().isEmpty()) throw new IllegalArgumentException("Agent can't be equal to null");
@@ -60,8 +59,7 @@ public class LogicProcess implements IAgentProcessible
 
 	/** sefgrs
 	 * @param num
-	 * @return
-	 */
+	 * @return */
 	public Agent getAgentByNumber(int num)
 	{
 		if (num < 0 || num >= _agents.size()) throw new ArrayIndexOutOfBoundsException(String.format("Wrong number argument: %d", num));
@@ -69,8 +67,7 @@ public class LogicProcess implements IAgentProcessible
 	}
 
 	/** sge
-	 * @param agent
-	 */
+	 * @param agent */
 	public void removeAgent(Agent agent)
 	{
 		if (agent == null || !_agents.contains(agent)) throw new NullPointerException("There is no such an agent!");
@@ -89,6 +86,16 @@ public class LogicProcess implements IAgentProcessible
 	{
 		for (IAgentProcessible agent : _agents)
 			agent.compileAgents();
+	}
+
+	@Override
+	public String toString()
+	{
+		StringBuffer sbuf = new StringBuffer(String.format("Process \"%s\". Logic process possesses the following agents:\n", _name));
+		if (_agents.size() == 0) sbuf.append("<no processes>\n");
+		for (Agent agent : _agents)
+			sbuf.append(agent);
+		return sbuf.toString();
 	}
 
 	/** @param _name the _name to set */
