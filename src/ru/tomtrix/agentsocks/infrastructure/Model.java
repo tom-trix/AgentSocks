@@ -66,7 +66,7 @@ public class Model implements IAgentProcessible
 	@Override
 	public String toString()
 	{
-		StringBuffer sbuf = new StringBuffer(String.format("Model \"%s\". node collection:\n", _name));
+		StringBuffer sbuf = new StringBuffer(String.format("Model \"%s\". Node collection:\n", _name));
 		if (_nodes.size() == 0) sbuf.append("<no nodes>\n");
 		for (Entry<Integer, Node> node : _nodes.entrySet())
 			sbuf.append(node);

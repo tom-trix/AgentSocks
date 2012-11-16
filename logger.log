@@ -12297,3 +12297,361 @@ Caused by: compile error: no such class: Mail
 00:17:41,111  INFO Thread-0 DefaultAgent:notifyAgent:71 - ---> Message received: state = Green
 00:17:41,136  INFO Thread-0 DefaultAgent:notifyAgent:71 - ---> Message received: state = Red
 00:17:41,162  INFO Thread-0 DefaultAgent:notifyAgent:71 - ---> Message received: state = Green
+20:38:06,000  INFO 0 Starter:main:36 - Trying to load 2 nodes
+20:38:06,000  INFO 1 Starter:main:36 - Trying to load 2 nodes
+20:38:06,431  INFO 1 DefaultAgent:<init>:40 - Agent "TrafficLight" created
+20:38:06,431  INFO 0 DefaultAgent:<init>:40 - Agent "TrafficLight" created
+20:38:06,439  INFO 0 DefaultAgent:<init>:40 - Agent "Pedestrian" created
+20:38:06,439  INFO 1 DefaultAgent:<init>:40 - Agent "Pedestrian" created
+20:38:06,520  INFO 1 DefaultAgent:compileAgents:133 - Agent "TrafficLight" compiled
+20:38:06,521  INFO 0 DefaultAgent:compileAgents:133 - Agent "TrafficLight" compiled
+20:38:06,521  INFO 1 DefaultAgent:compileAgents:133 - Agent "Pedestrian" compiled
+20:38:06,522  INFO 0 DefaultAgent:compileAgents:133 - Agent "Pedestrian" compiled
+20:38:06,522  INFO 1 Starter:main:53 - Node 1 is ready to start
+20:38:06,523  INFO 0 Starter:main:53 - Node 0 is ready to start
+20:38:06,611  INFO Thread-0 DefaultAgent:notifyAgent:101 - ---> Message received: state = Red
+20:38:06,627  INFO Thread-0 DefaultAgent:notifyAgent:101 - ---> Message received: state = Green
+20:38:06,653  INFO Thread-0 DefaultAgent:notifyAgent:101 - ---> Message received: state = Red
+20:38:06,678  INFO Thread-0 DefaultAgent:notifyAgent:101 - ---> Message received: state = Green
+20:38:06,704  INFO Thread-0 DefaultAgent:notifyAgent:101 - ---> Message received: state = Red
+20:38:06,729  INFO Thread-0 DefaultAgent:notifyAgent:101 - ---> Message received: state = Green
+20:45:09,666 ERROR main MVCModel:createProcess:139 - Error occured
+java.lang.NullPointerException: There is no such a node (1)
+	at ru.tomtrix.agentsocks.infrastructure.Model.getNodeByNumber(Model.java:48)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.createProcess(MVCModel.java:134)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:129)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:94)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:27)
+20:45:26,827 ERROR main MVCModel:createProcess:139 - Error occured
+java.util.IllegalFormatConversionException: d != java.lang.String
+	at java.util.Formatter$FormatSpecifier.failConversion(Formatter.java:4045)
+	at java.util.Formatter$FormatSpecifier.printInteger(Formatter.java:2748)
+	at java.util.Formatter$FormatSpecifier.print(Formatter.java:2702)
+	at java.util.Formatter.format(Formatter.java:2488)
+	at java.util.Formatter.format(Formatter.java:2423)
+	at java.lang.String.format(String.java:2797)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.createProcess(MVCModel.java:135)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:129)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:94)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:27)
+20:47:43,848 ERROR main MVCModel:addVariable:318 - Error occured
+java.lang.NullPointerException
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.addVariable(MVCModel.java:313)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:129)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:94)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:27)
+21:09:43,892 ERROR main MVCModel:createAgent:218 - Error occured
+java.util.NoSuchElementException: Process "Trix" is not found
+	at ru.tomtrix.agentsocks.infrastructure.Container.getProcessByName(Container.java:125)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.createAgent(MVCModel.java:212)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:142)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:107)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:27)
+21:24:26,616  INFO main DefaultAgent:<init>:40 - Agent "Rex" created
+21:28:26,189  INFO main DefaultAgent:<init>:40 - Agent "Rex" created
+21:31:27,093  INFO main DefaultAgent:<init>:40 - Agent "Rex" created
+21:34:13,510  INFO main DefaultAgent:<init>:40 - Agent "Rex" created
+21:35:18,936  INFO main DefaultAgent:<init>:40 - Agent "Rex" created
+22:56:30,425  INFO main DefaultAgent:<init>:40 - Agent "Fex" created
+22:56:30,436 ERROR main MVCModel:loadModel:67 - Error occured
+java.lang.NullPointerException: There is no such a class
+	at ru.tomtrix.javassistwraper.ClassStore.addField(ClassStore.java:74)
+	at ru.tomtrix.agentsocks.mathmodel.Agent.loadCode(Agent.java:123)
+	at ru.tomtrix.agentsocks.infrastructure.LogicProcess.loadCode(LogicProcess.java:81)
+	at ru.tomtrix.agentsocks.infrastructure.Container.loadCode(Container.java:145)
+	at ru.tomtrix.agentsocks.infrastructure.Model.loadCode(Model.java:56)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.loadModel(MVCModel.java:62)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:142)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:107)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:27)
+23:03:46,602  INFO main DefaultAgent:<init>:40 - Agent "Fex" created
+23:03:46,628 ERROR main MVCModel:loadModel:67 - Error occured
+java.lang.NullPointerException: There is no such a class
+	at ru.tomtrix.javassistwraper.ClassStore.addField(ClassStore.java:74)
+	at ru.tomtrix.agentsocks.mathmodel.Agent.loadCode(Agent.java:123)
+	at ru.tomtrix.agentsocks.infrastructure.LogicProcess.loadCode(LogicProcess.java:81)
+	at ru.tomtrix.agentsocks.infrastructure.Container.loadCode(Container.java:145)
+	at ru.tomtrix.agentsocks.infrastructure.Model.loadCode(Model.java:56)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.loadModel(MVCModel.java:62)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:142)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:107)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:27)
+23:06:33,155  INFO main DefaultAgent:<init>:40 - Agent "Fex" created
+23:06:48,504 ERROR main MVCModel:addVariable:323 - Error occured
+java.lang.NullPointerException
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.addVariable(MVCModel.java:318)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:142)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:107)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:27)
+23:07:33,732 ERROR main MVCModel:useAgent:248 - Error occured
+java.lang.NullPointerException: There is no such a node (1)
+	at ru.tomtrix.agentsocks.infrastructure.Model.getNodeByNumber(Model.java:48)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.useAgent(MVCModel.java:241)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:142)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:107)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:27)
+23:08:07,955  INFO main DefaultAgent:<init>:40 - Agent "Fex" created
+23:08:34,913 ERROR main MVCModel:useAgent:248 - Error occured
+java.util.EmptyStackException
+	at java.util.Stack.peek(Stack.java:102)
+	at java.util.Stack.pop(Stack.java:84)
+	at ru.tomtrix.consoleui.ConsoleUI.pop_greeting(ConsoleUI.java:159)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.useAgent(MVCModel.java:238)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:142)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:107)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:27)
+23:13:40,422  INFO main DefaultAgent:<init>:40 - Agent "Fex" created
+23:14:26,108  INFO main DefaultAgent:<init>:40 - Agent "Fex" created
+23:18:14,383 ERROR main MVCModel:createAgent:223 - Error occured
+java.lang.NullPointerException
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.createAgent(MVCModel.java:216)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:132)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:97)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:27)
+23:19:16,005 ERROR main MVCModel:useAgent:245 - Error occured
+java.lang.NullPointerException
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.useAgent(MVCModel.java:238)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:132)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:97)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:27)
+23:19:49,106  INFO main DefaultAgent:<init>:40 - Agent "Fex" created
+23:21:34,145  INFO main DefaultAgent:<init>:40 - Agent "Fex" created
+23:22:01,601 ERROR main MVCModel:deleteFunction:371 - Error occured
+java.lang.RuntimeException: ATTENTION! Function with fid = "Fuck" hasn't been removed properly. The model is corrupted. Repair json and restart the application
+	at ru.tomtrix.agentsocks.mathmodel.Agent.removeFunction(Agent.java:90)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.deleteFunction(MVCModel.java:366)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:132)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:97)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:27)
+23:25:09,681  INFO main DefaultAgent:<init>:40 - Agent "Fex" created
+23:25:30,318 ERROR main MVCModel:deleteFunction:371 - Error occured
+java.lang.NullPointerException
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.deleteFunction(MVCModel.java:366)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:132)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:97)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:27)
+23:25:54,483 ERROR main MVCModel:deleteFunction:371 - Error occured
+java.lang.RuntimeException: ATTENTION! Function with fid = "Fuck" hasn't been removed properly. The model is corrupted. Repair json and restart the application
+	at ru.tomtrix.agentsocks.mathmodel.Agent.removeFunction(Agent.java:90)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.deleteFunction(MVCModel.java:366)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:132)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:97)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:27)
+23:26:51,669 ERROR main MVCModel:deleteFunction:371 - Error occured
+java.lang.RuntimeException: ATTENTION! Function with fid = "Fufeck" hasn't been removed properly. The model is corrupted. Repair json and restart the application
+	at ru.tomtrix.agentsocks.mathmodel.Agent.removeFunction(Agent.java:90)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.deleteFunction(MVCModel.java:366)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:132)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:97)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:27)
+23:37:18,129  INFO main DefaultAgent:<init>:40 - Agent "Fex" created
+23:37:44,486 ERROR main MVCModel:deleteVariable:337 - Error occured
+javassist.NotFoundException: field: d in Rex
+	at javassist.CtClassType.checkGetField(CtClassType.java:907)
+	at javassist.CtClassType.getField(CtClassType.java:896)
+	at javassist.CtClass.getField(CtClass.java:714)
+	at ru.tomtrix.javassistwraper.ClassStore.removeField(ClassStore.java:114)
+	at ru.tomtrix.agentsocks.mathmodel.Agent.removeVariable(Agent.java:68)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.deleteVariable(MVCModel.java:332)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:132)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:97)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:27)
+23:37:55,926 ERROR main MVCModel:deleteFunction:371 - Error occured
+javassist.NotFoundException: There are no such methods
+	at ru.tomtrix.javassistwraper.ClassStore.removeMethods(ClassStore.java:132)
+	at ru.tomtrix.agentsocks.mathmodel.Agent.removeFunction(Agent.java:83)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.deleteFunction(MVCModel.java:366)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:132)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:97)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:27)
+23:38:19,901 ERROR main MVCModel:deleteFunction:371 - Error occured
+java.lang.RuntimeException: ATTENTION! Function with fid = "Fuck" hasn't been removed properly. The model is corrupted. Repair json and restart the application
+	at ru.tomtrix.agentsocks.mathmodel.Agent.removeFunction(Agent.java:90)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.deleteFunction(MVCModel.java:366)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:132)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:97)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:27)
+23:39:38,697  INFO main DefaultAgent:<init>:40 - Agent "Fex" created
+23:40:24,175  INFO main DefaultAgent:<init>:40 - Agent "Fex" created
+23:41:06,999 ERROR main MVCModel:deleteFunction:371 - Error occured
+javassist.NotFoundException: There are no such methods
+	at ru.tomtrix.javassistwraper.ClassStore.removeMethods(ClassStore.java:132)
+	at ru.tomtrix.agentsocks.mathmodel.Agent.removeFunction(Agent.java:83)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.deleteFunction(MVCModel.java:366)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:132)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:97)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:27)
+23:42:39,137  INFO main DefaultAgent:<init>:40 - Agent "Fex" created
+23:43:58,151  INFO main DefaultAgent:<init>:40 - Agent "Fex" created
+23:44:29,065 ERROR main MVCModel:deleteVariable:337 - Error occured
+javassist.NotFoundException: field: = in Rex
+	at javassist.CtClassType.checkGetField(CtClassType.java:907)
+	at javassist.CtClassType.getField(CtClassType.java:896)
+	at javassist.CtClass.getField(CtClass.java:714)
+	at ru.tomtrix.javassistwraper.ClassStore.removeField(ClassStore.java:114)
+	at ru.tomtrix.agentsocks.mathmodel.Agent.removeVariable(Agent.java:68)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.deleteVariable(MVCModel.java:332)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:132)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:97)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:27)
+23:45:43,458  INFO main DefaultAgent:<init>:40 - Agent "Fex" created
+23:46:25,009 ERROR main MVCModel:deleteEvent:408 - Error occured
+java.util.NoSuchElementException: There are no events planned on t=3.000000
+	at ru.tomtrix.agentsocks.mathmodel.EventList.removeEvent(EventList.java:33)
+	at ru.tomtrix.agentsocks.mathmodel.Agent.removeEvent(Agent.java:199)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.deleteEvent(MVCModel.java:403)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:132)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:97)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:27)
+23:47:15,007  INFO main DefaultAgent:<init>:40 - Agent "Fex" created
+23:49:56,564  INFO main DefaultAgent:<init>:40 - Agent "Fex" created
+23:50:23,042 ERROR main MVCModel:deleteProcess:198 - Error occured
+java.lang.NumberFormatException: For input string: "node 0"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:492)
+	at java.lang.Integer.parseInt(Integer.java:527)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.deleteProcess(MVCModel.java:193)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:132)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:97)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:27)
+23:50:38,536 ERROR main MVCModel:deleteProcess:198 - Error occured
+java.util.IllegalFormatConversionException: d != java.lang.String
+	at java.util.Formatter$FormatSpecifier.failConversion(Formatter.java:4045)
+	at java.util.Formatter$FormatSpecifier.printInteger(Formatter.java:2748)
+	at java.util.Formatter$FormatSpecifier.print(Formatter.java:2702)
+	at java.util.Formatter.format(Formatter.java:2488)
+	at java.util.Formatter.format(Formatter.java:2423)
+	at java.lang.String.format(String.java:2797)
+	at ru.tomtrix.agentsocks.modeleditor.MVCModel.deleteProcess(MVCModel.java:194)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at ru.tomtrix.consoleui.ConsoleUI.performMatching(ConsoleUI.java:132)
+	at ru.tomtrix.consoleui.ConsoleUI.run(ConsoleUI.java:97)
+	at ru.tomtrix.agentsocks.Starter.main(Starter.java:27)
+23:52:22,295  INFO main DefaultAgent:<init>:40 - Agent "Fex" created
+23:57:03,726  INFO 0 Starter:main:36 - Trying to load 2 nodes
+23:57:03,726  INFO 1 Starter:main:36 - Trying to load 2 nodes
+23:57:04,309  INFO 1 DefaultAgent:<init>:40 - Agent "TrafficLight" created
+23:57:04,315  INFO 0 DefaultAgent:<init>:40 - Agent "TrafficLight" created
+23:57:04,320  INFO 1 DefaultAgent:<init>:40 - Agent "Pedestrian" created
+23:57:04,324  INFO 0 DefaultAgent:<init>:40 - Agent "Pedestrian" created
+23:57:04,446  INFO 1 DefaultAgent:compileAgents:133 - Agent "TrafficLight" compiled
+23:57:04,447  INFO 1 DefaultAgent:compileAgents:133 - Agent "Pedestrian" compiled
+23:57:04,448  INFO 1 Starter:main:53 - Node 1 is ready to start
+23:57:04,459  INFO 0 DefaultAgent:compileAgents:133 - Agent "TrafficLight" compiled
+23:57:04,460  INFO 0 DefaultAgent:compileAgents:133 - Agent "Pedestrian" compiled
+23:57:04,461  INFO 0 Starter:main:53 - Node 0 is ready to start
+23:57:04,552  INFO Thread-0 DefaultAgent:notifyAgent:101 - ---> Message received: state = Red
+23:57:04,565  INFO Thread-0 DefaultAgent:notifyAgent:101 - ---> Message received: state = Green
+23:57:04,590  INFO Thread-0 DefaultAgent:notifyAgent:101 - ---> Message received: state = Red
+23:57:04,615  INFO Thread-0 DefaultAgent:notifyAgent:101 - ---> Message received: state = Green
+23:57:04,640  INFO Thread-0 DefaultAgent:notifyAgent:101 - ---> Message received: state = Red
+23:57:04,666  INFO Thread-0 DefaultAgent:notifyAgent:101 - ---> Message received: state = Green
+23:57:13,579  INFO 0 Starter:main:36 - Trying to load 2 nodes
+23:57:13,579  INFO 1 Starter:main:36 - Trying to load 2 nodes
+23:57:14,134  INFO 0 DefaultAgent:<init>:40 - Agent "TrafficLight" created
+23:57:14,137  INFO 1 DefaultAgent:<init>:40 - Agent "TrafficLight" created
+23:57:14,146  INFO 1 DefaultAgent:<init>:40 - Agent "Pedestrian" created
+23:57:14,146  INFO 0 DefaultAgent:<init>:40 - Agent "Pedestrian" created
+23:57:14,270  INFO 1 DefaultAgent:compileAgents:133 - Agent "TrafficLight" compiled
+23:57:14,271  INFO 1 DefaultAgent:compileAgents:133 - Agent "Pedestrian" compiled
+23:57:14,272  INFO 1 Starter:main:53 - Node 1 is ready to start
+23:57:14,279  INFO 0 DefaultAgent:compileAgents:133 - Agent "TrafficLight" compiled
+23:57:14,280  INFO 0 DefaultAgent:compileAgents:133 - Agent "Pedestrian" compiled
+23:57:14,281  INFO 0 Starter:main:53 - Node 0 is ready to start
+23:57:14,366  INFO Thread-0 DefaultAgent:notifyAgent:101 - ---> Message received: state = Red
+23:57:14,385  INFO Thread-0 DefaultAgent:notifyAgent:101 - ---> Message received: state = Green
+23:57:14,410  INFO Thread-0 DefaultAgent:notifyAgent:101 - ---> Message received: state = Red
+23:57:14,435  INFO Thread-0 DefaultAgent:notifyAgent:101 - ---> Message received: state = Green
+23:57:14,461  INFO Thread-0 DefaultAgent:notifyAgent:101 - ---> Message received: state = Red
+23:57:14,486  INFO Thread-0 DefaultAgent:notifyAgent:101 - ---> Message received: state = Green

@@ -16,7 +16,7 @@ rename *process (.*) on (.*) into (.*)
 renameProcess
 move *process (.*) from (.*) to (.*)
 moveProcess
-delete *process (.*) from *[node] (.*)
+delete *process (.*) from (.*)
 deleteProcess
 create *agent (.*) in (.*) on (.*)
 createAgent
@@ -40,5 +40,5 @@ add *event (.*) on (.*) with (.*)
 addEvent
 delete *event (.*) on (.*)
 deleteEvent
-bye
-bye
+exit
+exit

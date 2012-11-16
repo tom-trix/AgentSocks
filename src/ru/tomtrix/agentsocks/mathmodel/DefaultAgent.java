@@ -9,8 +9,8 @@ public class DefaultAgent extends Agent
 	/** djaopfjaoef
 	 * @param name
 	 * @throws Exception */
-	public DefaultAgent(@JsonProperty("_name") String name) throws Exception
+	public DefaultAgent(@JsonProperty("_name") String name, @JsonProperty("_RAClassname") String RAClassname) throws Exception
 	{
-		super(name);
+		super(name, RAClassname);
 	}
 }

@@ -121,9 +121,20 @@ public class Container implements IAgentProcessible
 	 * @return */
 	public LogicProcess getProcessByName(String name)
 	{
+		//checks
 		if (name == null || name.trim().isEmpty()) throw new NullPointerException("Name parameter can't be null");
-		if (!_processNames.containsKey(name)) throw new NoSuchElementException(String.format("Process \"%s\" is not found", name));
-		return _processNames.get(name);
+		
+		//if container is running get the value only from an accessory map
+		if (_alive)
+			return _processNames.get(name);
+		
+		//otherwise it's not dangerous to get the value directly from the main queue 
+		for (LogicProcess process : _processes)
+			if (process.get_name().equals(name))
+				return process;
+		
+		//there is no such an element
+		throw new NoSuchElementException(String.format("Process \"%s\" is not found", name));
 	}
 
 	@Override

@@ -31,12 +31,12 @@ public abstract class Agent implements IAgentProcessible
 	/** creates an agent with a specific name; it also builds runtime class that will comrise fields and methods of the agent
 	 * @param name - agent's name (and corresponding runtime class's name)
 	 * @throws Exception */
-	Agent(String name) throws Exception
+	Agent(String name, String RAClassname) throws Exception
 	{
 		if (name == null || name.isEmpty()) throw new NullPointerException("Agent must have a name");
 		_name = name;
-		_RAClassname = name;
-		ClassStore.getInstance().addClass(name, null, null);
+		_RAClassname = RAClassname;
+		ClassStore.getInstance().addClass(RAClassname, null, null);		//обязательно RAClassname!
 		Logger.getLogger(getClass()).info(String.format("Agent \"%s\" created", name));
 	}
 
@@ -81,10 +81,10 @@ public abstract class Agent implements IAgentProcessible
 	public void removeFunction(String fid) throws NotFoundException
 	{
 		ClassStore.getInstance().removeMethods(_RAClassname, fid);
-		for (String s : _state)
-			if (Arrays.asList(s.split("[= ]")).contains(fid))
+		for (String s : _transformFunctions)
+			if (Arrays.asList(s.split("[( ]")).contains(fid))
 			{
-				_state.remove(s);
+				_transformFunctions.remove(s);
 				return;
 			}
 		throw new RuntimeException(String.format("ATTENTION! Function with fid = \"%s\" hasn't been removed properly. The model is corrupted. Repair json and restart the application", fid));
@@ -136,22 +136,22 @@ public abstract class Agent implements IAgentProcessible
 	@Override
 	public String toString()
 	{
-		StringBuffer sbuf = new StringBuffer(String.format("Agent \"%s\" (runtime assistant = \"%s\")", _name, _RAClassname));
+		StringBuffer sbuf = new StringBuffer(String.format("      Agent \"%s\" (runtime assistant = \"%s\")\n", _name, _RAClassname));
 		if (_state.size() == 0)
-			sbuf.append("<state is empty>\n");
-		else sbuf.append("=======    State    =======\n");
+			sbuf.append("      <state is empty>\n");
+		else sbuf.append("      =======    State    =======\n");
 		for (String s : _state)
-			sbuf.append(s).append("\n");
+			sbuf.append("      ").append(s).append("\n");
 		if (_transformFunctions.size() == 0)
-			sbuf.append("<function set is empty>\n");
-		else sbuf.append("=== Transform functions ===\n");
+			sbuf.append("      <function set is empty>\n");
+		else sbuf.append("      === Transform functions ===\n");
 		for (String s : _transformFunctions)
-			sbuf.append(s).append("\n");
+			sbuf.append("      ").append(s).append("\n");
 		if (_eventList.getNextEventTime() == null)
-			sbuf.append("<event list is empty>\n");
-		else sbuf.append("======   Event list  ======\n");
+			sbuf.append("      <event list is empty>\n");
+		else sbuf.append("      ======   Event list  ======\n");
 		for (Entry<Double, String> e : _eventList.getEventsInfo().entrySet())
-			sbuf.append(e).append("\n");
+			sbuf.append("      ").append(e).append("\n");
 		return sbuf.toString();
 	}
 

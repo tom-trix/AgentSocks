@@ -132,7 +132,7 @@ public class MVCModel implements ConsoleUIListener
 		try
 		{
 			_model.getNodeByNumber(Integer.parseInt(rank)).get_container().addLogicProcess(name);
-			return String.format("OK. Logic process \"%s\" has been created on node %d", name, rank);
+			return String.format("OK. Logic process \"%s\" has been created on node %s", name, rank);
 		}
 		catch (Exception e)
 		{
@@ -173,7 +173,7 @@ public class MVCModel implements ConsoleUIListener
 			LogicProcess lp = c.getProcessByName(name);
 			c.removeProcess(name);
 			_model.getNodeByNumber(Integer.parseInt(newRank)).get_container().addLogicProcess(lp);
-			return String.format("OK. Logic process \"%s\" has been moved from %d to %d", name, rank, newRank);
+			return String.format("OK. Logic process \"%s\" has been moved from %s to %s", name, rank, newRank);
 		}
 		catch (Exception e)
 		{
@@ -191,7 +191,7 @@ public class MVCModel implements ConsoleUIListener
 		try
 		{
 			_model.getNodeByNumber(Integer.parseInt(rank)).get_container().removeProcess(name);
-			return String.format("OK. Logic process \"%s\" and all its agents have been removed from the node %d", name, rank);
+			return String.format("OK. Logic process \"%s\" and all its agents have been removed from the node %s", name, rank);
 		}
 		catch (Exception e)
 		{
@@ -209,8 +209,13 @@ public class MVCModel implements ConsoleUIListener
 	{
 		try
 		{
-			_pa = new ProcessAndAgent(_model.getNodeByNumber(Integer.parseInt(rank)).get_container().getProcessByName(process), new DefaultAgent(name));
+			// push greeting
+			if (_pa != null && _pa.agent != null) _cuiRef.pop_greeting();
+			_cuiRef.push_greeting(name);
+			// create new agent and "_pa" instance
+			_pa = new ProcessAndAgent(_model.getNodeByNumber(Integer.parseInt(rank)).get_container().getProcessByName(process), new DefaultAgent(name, name));
 			_pa.process.addAgent(_pa.agent);
+			//return
 			return String.format("OK. Agent \"%s\" has been created.\nNow it is currently used", name);
 		}
 		catch (Exception e)
@@ -229,13 +234,10 @@ public class MVCModel implements ConsoleUIListener
 	{
 		try
 		{
-			// push greeting
 			if (_pa != null && _pa.agent != null) _cuiRef.pop_greeting();
-			_cuiRef.push_greeting(name);
-			// create new "_pa" instance
 			LogicProcess p = _model.getNodeByNumber(Integer.parseInt(rank)).get_container().getProcessByName(process);
 			_pa = new ProcessAndAgent(p, p.getAgentByName(name));
-			// return
+			_cuiRef.push_greeting(name);
 			return String.format("OK. Now agent \"%s\" is currently used", name);
 		}
 		catch (Exception e)
@@ -311,7 +313,7 @@ public class MVCModel implements ConsoleUIListener
 		try
 		{
 			_pa.agent.addVariable(code);
-			return String.format("OK. Agent \"%s\" has got the definition changed:\n", _pa.agent.get_name(), _pa.agent);
+			return String.format("OK. Agent \"%s\" has got the definition changed:\n%s", _pa.agent.get_name(), _pa.agent);
 		}
 		catch (Exception e)
 		{
@@ -328,7 +330,7 @@ public class MVCModel implements ConsoleUIListener
 		try
 		{
 			_pa.agent.removeVariable(var);
-			return String.format("OK. Agent \"%s\" has got the definition changed:\n", _pa.agent.get_name(), _pa.agent);
+			return String.format("OK. Agent \"%s\" has got the definition changed:\n%s", _pa.agent.get_name(), _pa.agent);
 		}
 		catch (Exception e)
 		{
@@ -345,7 +347,7 @@ public class MVCModel implements ConsoleUIListener
 		try
 		{
 			_pa.agent.addFunction(code);
-			return String.format("OK. Agent \"%s\" has got the definition changed:\n", _pa.agent.get_name(), _pa.agent);
+			return String.format("OK. Agent \"%s\" has got the definition changed:\n%s", _pa.agent.get_name(), _pa.agent);
 		}
 		catch (Exception e)
 		{
@@ -362,7 +364,7 @@ public class MVCModel implements ConsoleUIListener
 		try
 		{
 			_pa.agent.removeFunction(fid);
-			return String.format("OK. Agent \"%s\" has got the definition changed:\n", _pa.agent.get_name(), _pa.agent);
+			return String.format("OK. Agent \"%s\" has got the definition changed:\n%s", _pa.agent.get_name(), _pa.agent);
 		}
 		catch (Exception e)
 		{
@@ -380,7 +382,7 @@ public class MVCModel implements ConsoleUIListener
 		try
 		{
 			_pa.agent.addEvent(Double.parseDouble(timestamp), fid);
-			return String.format("OK. Agent \"%s\" has got the definition changed:\n", _pa.agent.get_name(), _pa.agent);
+			return String.format("OK. Agent \"%s\" has got the definition changed:\n%s", _pa.agent.get_name(), _pa.agent);
 		}
 		catch (Exception e)
 		{
@@ -399,7 +401,7 @@ public class MVCModel implements ConsoleUIListener
 		try
 		{
 			_pa.agent.removeEvent(Double.parseDouble(timestamp));
-			return String.format("OK. Agent \"%s\" has got the definition changed:\n", _pa.agent.get_name(), _pa.agent);
+			return String.format("OK. Agent \"%s\" has got the definition changed:\n%s", _pa.agent.get_name(), _pa.agent);
 		}
 		catch (Exception e)
 		{
@@ -409,9 +411,10 @@ public class MVCModel implements ConsoleUIListener
 	}
 
 	/** hcfseaio */
-	public void bye()
+	public String exit()
 	{
 		_cuiRef.stop();
+		return "Bye!";
 	}
 
 	@Override
