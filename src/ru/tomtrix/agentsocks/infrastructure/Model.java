@@ -12,6 +12,7 @@ public class Model implements IAgentProcessible
 	private final String				_name;
 	/** sfee */
 	private final Map<Integer, Node>	_nodes	= new TreeMap<>();
+	private final boolean _isDebug;
 
 	/** fse
 	 * @param name */
@@ -19,13 +20,14 @@ public class Model implements IAgentProcessible
 	{
 		if (name == null || name.trim().isEmpty()) throw new NullPointerException("Model name can't be empty!");
 		_name = name;
+		_isDebug = name.trim().toLowerCase().equals("debug");
 	}
 
 	/** @return */
 	public int addNode()
 	{
 		int result = _nodes.size();
-		_nodes.put(result, new Node(result));
+		_nodes.put(result, new Node(result, _isDebug));
 		return result;
 	}
 

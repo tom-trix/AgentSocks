@@ -3,6 +3,8 @@ package ru.tomtrix.agentsocks.infrastructure;
 import java.util.Collection;
 import ru.tomtrix.agentsocks.Constants;
 import com.fasterxml.jackson.annotation.*;
+
+import ru.tomtrix.agentsocks.messaging.LocalMail;
 import ru.tomtrix.agentsocks.messaging.Mail;
 
 /** @author tom-trix */
@@ -14,14 +16,17 @@ public class Node
 	@JsonIgnore
 	// JsonIgnore ОБЯЗАТЕЛЬНО!!! (Поскольку ссылка на себя должна назначаться в конструкторе Node)
 	private final Mail		_mail;
+	@SuppressWarnings("unused")
+	private final LocalMail	_localMail;
 	private final int		_rank;
 
 	/** fs */
-	Node(@JsonProperty("_rank") int rank)
+	Node(@JsonProperty("_rank") int rank, @JsonProperty("_isDebug") boolean isDebug)
 	{
 		_rank = rank;
 		_container = new Container(Constants.DEFAULT_THREADS, rank);
-		_mail = new Mail(this);
+		_mail = isDebug ? null : new Mail(this);
+		_localMail = new LocalMail(this);
 	}
 
 	/** @return the _container */
@@ -35,7 +40,7 @@ public class Node
 	 * @see ru.tomtrix.agentsocks.messaging.Mail#startListening(int) */
 	public void run() throws Exception
 	{
-		_mail.startListening(Constants.BUFFER_SIZE);
+		if (_mail != null) _mail.startListening(Constants.BUFFER_SIZE);
 		_container.run();
 	}
 
@@ -46,8 +51,7 @@ public class Node
 		try
 		{
 			Collection<LogicProcess> processes = _container.getProcesses();
-			if (processes.size() == 0)
-				sbuf.append("<no processes>\n");
+			if (processes.size() == 0) sbuf.append("<no processes>\n");
 			for (LogicProcess process : processes)
 				sbuf.append(process);
 		}

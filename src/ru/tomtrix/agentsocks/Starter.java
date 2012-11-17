@@ -4,6 +4,8 @@ import mpi.MPI;
 import java.io.*;
 import ru.tomtrix.consoleui.*;
 import org.apache.log4j.Logger;
+
+import ru.tomtrix.agentsocks.messaging.LocalMail;
 import ru.tomtrix.agentsocks.messaging.Mail;
 import ru.tomtrix.javassistwraper.ClassStore;
 import ru.tomtrix.agentsocks.modeleditor.MVCModel;
@@ -18,6 +20,12 @@ public class Starter
 	 * @throws IOException */
 	public static void main(String[] args) throws IOException
 	{
+		// let an MPI class loader know the Mail class definition
+		ClassStore.getInstance().addClassPath(Mail.class);
+		ClassStore.getInstance().addClassPath(LocalMail.class);
+		ClassStore.getInstance().addImport(Mail.class.getPackage().getName());
+		ClassStore.getInstance().addImport(LocalMail.class.getPackage().getName());
+
 		// run an application in an EDITOR mode
 		if (args != null && args.length > 0 && args[0].trim().toLowerCase().equals("-editor"))
 		{
@@ -39,10 +47,6 @@ public class Starter
 			{
 				Logger.getLogger(Starter.class).error("\nBe careful!!! This program MUST be loaded within MPI-software! e.g.\n - Linux:   $MPJ_HOME/bin/mpjrun.sh -np 2 -jar agentsocks.jar\n - Windows: %MPJ_HOME%\\bin\\mpjrun.exe -np 2 -jar agentsocks.jar\n\nP.S. You're also able to run the program in an editor mode (add \"-editor\" argument)\n", e);
 			}
-			
-			// let an MPI class loader know the Mail class definition
-			ClassStore.getInstance().addClassPath(Mail.class);
-			ClassStore.getInstance().addImport(Mail.class.getPackage().getName());
 
 			// load the model
 			Model _modelRef = JsonSerializer.getMapper().readValue(new File(Constants.MODEL_FILENAME), Model.class);

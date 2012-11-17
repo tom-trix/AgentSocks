@@ -36,7 +36,7 @@ public abstract class Agent implements IAgentProcessible
 		if (name == null || name.isEmpty()) throw new NullPointerException("Agent must have a name");
 		_name = name;
 		_RAClassname = RAClassname;
-		ClassStore.getInstance().addClass(RAClassname, null, null);		//обязательно RAClassname!
+		ClassStore.getInstance().addClass(RAClassname, null, null);		// обязательно RAClassname!
 		Logger.getLogger(getClass()).info(String.format("Agent \"%s\" created", name));
 	}
 
@@ -85,6 +85,7 @@ public abstract class Agent implements IAgentProcessible
 			if (Arrays.asList(s.split("[( ]")).contains(fid))
 			{
 				_transformFunctions.remove(s);
+				_eventList.removeEventByFid(fid);
 				return;
 			}
 		throw new RuntimeException(String.format("ATTENTION! Function with fid = \"%s\" hasn't been removed properly. The model is corrupted. Repair json and restart the application", fid));
@@ -197,5 +198,12 @@ public abstract class Agent implements IAgentProcessible
 	public void removeEvent(double timestamp)
 	{
 		_eventList.removeEvent(timestamp);
+	}
+
+	/** @param fid
+	 * @see ru.tomtrix.agentsocks.mathmodel.EventList#removeEventByFid(java.lang.String) */
+	public void removeEventByFid(String fid)
+	{
+		_eventList.removeEventByFid(fid);
 	}
 }

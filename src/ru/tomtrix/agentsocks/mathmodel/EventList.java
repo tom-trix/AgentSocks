@@ -24,14 +24,24 @@ public class EventList
 		if (fid == null || fid.trim().isEmpty()) throw new IllegalArgumentException("Function id can't be empty");
 		_eventList.put(timestamp, new Function(fid, pars));
 	}
-	
+
 	/** fseiofeshjoisefoo;h
-	 * @param timestamp
-	 */
+	 * @param timestamp */
 	synchronized void removeEvent(double timestamp)
 	{
 		if (!_eventList.containsKey(timestamp)) throw new NoSuchElementException(String.format("There are no events planned on t=%f", timestamp));
 		_eventList.remove(timestamp);
+	}
+
+	/** fseiofeshsfe
+	 * @param timestamp */
+	synchronized void removeEventByFid(String fid)
+	{
+		List<Double> rmv = new LinkedList<>();
+		for (Entry<Double, Function> e : _eventList.entrySet())
+			if (e.getValue().get_fid().equals(fid)) rmv.add(e.getKey());
+		for (Double d : rmv)
+			_eventList.remove(d);
 	}
 
 	/** @throws Exception */
@@ -39,11 +49,11 @@ public class EventList
 	{
 		if (_RAref == null) throw new NullPointerException("Runtime Assistant is not assigned. Perhaps the agent hasn't been compiled");
 		Function f;
-		//this must be synchronized cause someone could remove the item while the other finds the minimum
+		// this must be synchronized cause someone could remove the item while the other finds the minimum
 		synchronized (this)
 		{
-			if (_eventList==null) return;
-			Double d = Collections.min(_eventList.keySet()); 	//TODO сортировка коллекции является bottleneck'ом
+			if (_eventList == null) return;
+			Double d = Collections.min(_eventList.keySet()); 	// TODO сортировка коллекции является bottleneck'ом
 			f = _eventList.get(d);
 			_eventList.remove(d);
 		}
@@ -60,11 +70,11 @@ public class EventList
 	/** @return timestamp of the nearest event in the event list (or <b>NULL</b> if there are no events presented) */
 	synchronized Double getNextEventTime()
 	{
-		//this must be synchronized cause someone could remove the item while the other finds the minimum
+		// this must be synchronized cause someone could remove the item while the other finds the minimum
 		if (_eventList.isEmpty()) return null;
-		return Collections.min(_eventList.keySet()); 			//TODO сортировка коллекции является bottleneck'ом
+		return Collections.min(_eventList.keySet()); 			// TODO сортировка коллекции является bottleneck'ом
 	}
-	
+
 	synchronized Map<Double, String> getEventsInfo()
 	{
 		Map<Double, String> result = new TreeMap<>();
