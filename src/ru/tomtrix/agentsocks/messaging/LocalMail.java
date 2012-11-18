@@ -1,8 +1,10 @@
 package ru.tomtrix.agentsocks.messaging;
 
-import java.io.IOException;
 import org.apache.log4j.Logger;
+import ru.tomtrix.agentsocks.infrastructure.Container;
+import ru.tomtrix.agentsocks.infrastructure.LogicProcess;
 import ru.tomtrix.agentsocks.infrastructure.Node;
+import ru.tomtrix.agentsocks.mathmodel.Agent;
 
 /** vsohjfs
  * @author tom-trix */
@@ -35,9 +37,12 @@ public class LocalMail
 		// sending
 		try
 		{
-			_nodeRef.get_container().getProcessByName(process).getAgentByName(agent).notifyAgent(data, sender);
+			Container c = _nodeRef.get_container();
+			LogicProcess p = c.getProcessByName(process);
+			Agent a = p.getAgentByName(agent);
+			a.notifyAgent(data, sender);
 		}
-		catch (IOException e)
+		catch (Exception e)
 		{
 			Logger.getLogger(Mail.class).error("Failed to send a local message", e);
 		}

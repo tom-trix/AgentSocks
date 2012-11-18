@@ -91,11 +91,12 @@ public class LogicProcess implements IAgentProcessible
 	@Override
 	public String toString()
 	{
-		StringBuffer sbuf = new StringBuffer(String.format("   Process \"%s\". Logic process possesses the following agents:\n", _name));
+		/*StringBuffer sbuf = new StringBuffer(String.format("   Process \"%s\". Logic process possesses the following agents:\n", _name));
 		if (_agents.size() == 0) sbuf.append("   <no processes>\n");
 		for (Agent agent : _agents)
 			sbuf.append(agent);
-		return sbuf.toString();
+		return sbuf.toString();*/
+		return _name;
 	}
 
 	/** @param _name the _name to set */

@@ -17,9 +17,10 @@ import ru.tomtrix.agentsocks.utils.JsonSerializer;
  * @author tom-trix */
 public class UtilsTester
 {
+	/** fsopjeio */
 	private Random	_r	= new Random(System.currentTimeMillis());
 
-	/** Test method for <li>{@link ru.tomtrix.agentsocks.utils.Collections#toByteArray(int[])}<li>{@link ru.tomtrix.agentsocks.utils.Collections#toIntArray(byte[])}. */
+	/** Test methods for <li>{@link ru.tomtrix.agentsocks.utils.Collections#toByteArray(int[])}<li>{@link ru.tomtrix.agentsocks.utils.Collections#toIntArray(byte[])}. */
 	@Test
 	public void testArrays()
 	{
@@ -35,6 +36,9 @@ public class UtilsTester
 		}
 	}
 
+	/** Test method for {@link ru.tomtrix.agentsocks.utils.JsonSerializer}
+	 * @throws Exception
+	 */
 	@Test
 	public void testSerializer() throws Exception
 	{

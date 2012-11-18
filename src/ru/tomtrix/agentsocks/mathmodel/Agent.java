@@ -99,7 +99,7 @@ public abstract class Agent implements IAgentProcessible
 		if (data instanceof StateChanged)
 		{
 			StateChanged msg = (StateChanged) data;
-			Logger.getLogger(getClass()).info(String.format("---> Message received: %s = %s", msg.get_variable(), msg.get_value()));
+			Logger.getLogger(getClass()).info(String.format("%s -> %s: %s = %s", sender, _name, msg.get_variable(), msg.get_value()));
 			_runtimeAssistant.getClass().getDeclaredField(msg.get_variable()).set(_runtimeAssistant, msg.get_value());
 		}
 		else throw new UnsupportedDataTypeException("Message type is unknown");
