@@ -1,5 +1,5 @@
 {
-   "_name" : "TrafficLights",
+   "_name" : "TrafficLight",
    "_nodes" : {
       "0" : {
          "_container" : {
