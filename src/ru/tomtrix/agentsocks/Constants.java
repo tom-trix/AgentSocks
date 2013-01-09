@@ -4,9 +4,7 @@ package ru.tomtrix.agentsocks;
  * @author tom-trix */
 public abstract class Constants
 {
-	/** wadfthjjty */
-	public static final String	CONTAINER_NAME		= "MainContainer";
-	/** sgseml */
+    /** sgseml */
 	public static final String	REGEXES_FILENAME	= "console.txt";
 	/** vseno */
 	public static final String	MODEL_FILENAME		= "lights.txt";

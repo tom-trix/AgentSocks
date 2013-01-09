@@ -13,11 +13,11 @@ import ru.tomtrix.agentsocks.infrastructure.Node;
 public class Mail implements MPIAgentListener
 {
 	/** fshiohgsrio
-	 * @param data
-	 * @param node
-	 * @param process
-	 * @param agent
-	 * @param sender */
+	 * @param data - fes
+	 * @param node - gs
+	 * @param process - grs
+	 * @param agent - efa
+	 * @param sender - fse */
 	public static void send(IMessage data, int node, String process, String agent, String sender)
 	{
 		// checks
@@ -42,7 +42,7 @@ public class Mail implements MPIAgentListener
 	private final Node	_nodeRef;
 
 	/** fsef
-	 * @param node */
+	 * @param node - grsd */
 	public Mail(Node node)
 	{
 		if (node == null) throw new NullPointerException("Node can't be equal to null");
@@ -50,7 +50,7 @@ public class Mail implements MPIAgentListener
 	}
 
 	/** fvsef
-	 * @param bufferSize */
+	 * @param bufferSize fse */
 	public void startListening(int bufferSize)
 	{
 		if (bufferSize < Constants.MIN_BUFFER_SIZE || bufferSize > Constants.MAX_BUFFER_SIZE) throw new IllegalArgumentException(String.format("Wrong buffer size (%d byte(s))\nThe size must be between %d and %d bytes inclusively", bufferSize, Constants.MIN_BUFFER_SIZE, Constants.MAX_BUFFER_SIZE));

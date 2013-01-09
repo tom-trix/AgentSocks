@@ -35,7 +35,7 @@ public class Node
 		return _container;
 	}
 
-	/** @param bufferSize
+	/** fsefs
 	 * @throws Exception
 	 * @see ru.tomtrix.agentsocks.messaging.Mail#startListening(int) */
 	public void run() throws Exception
@@ -47,7 +47,7 @@ public class Node
 	@Override
 	public String toString()
 	{
-		StringBuffer sbuf = new StringBuffer(String.format("Node %d. Container has the following processes:\n", _rank));
+		StringBuilder sbuf = new StringBuilder(String.format("Node %d. Container has the following processes:\n", _rank));
 		try
 		{
 			Collection<LogicProcess> processes = _container.getProcesses();

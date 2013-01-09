@@ -16,7 +16,7 @@ import ru.tomtrix.agentsocks.infrastructure.Model;
  * @author tom-trix */
 public class Starter
 {
-	/** @param args
+	/** @param args gr
 	 * @throws IOException */
 	public static void main(String[] args) throws IOException
 	{

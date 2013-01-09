@@ -61,7 +61,7 @@ public abstract class Agent implements IAgentProcessible
 	}
 
 	/** jsiojfoejs
-	 * @param variable
+	 * @param variable - gbd
 	 * @throws NotFoundException */
 	public void removeVariable(String variable) throws NotFoundException
 	{
@@ -76,7 +76,7 @@ public abstract class Agent implements IAgentProcessible
 	}
 
 	/** ofjaswefhui
-	 * @param fid
+	 * @param fid - fs
 	 * @throws NotFoundException */
 	public void removeFunction(String fid) throws NotFoundException
 	{
@@ -92,7 +92,7 @@ public abstract class Agent implements IAgentProcessible
 	}
 
 	/** fseef
-	 * @param data
+	 * @param data - fs
 	 * @throws Exception */
 	public void notifyAgent(IMessage data, String sender) throws Exception
 	{
@@ -137,7 +137,7 @@ public abstract class Agent implements IAgentProcessible
 	@Override
 	public String toString()
 	{
-		StringBuffer sbuf = new StringBuffer(String.format("      Agent \"%s\" (runtime assistant = \"%s\")\n", _name, _RAClassname));
+		StringBuilder sbuf = new StringBuilder(String.format("      Agent \"%s\" (runtime assistant = \"%s\")\n", _name, _RAClassname));
 		if (_state.size() == 0)
 			sbuf.append("      <state is empty>\n");
 		else sbuf.append("      =======    State    =======\n");
@@ -162,7 +162,7 @@ public abstract class Agent implements IAgentProcessible
 		return _name;
 	}
 
-	/** @param _name the _name to set */
+	/** @param name the _name to set */
 	public void set_name(String name)
 	{
 		if (name == null || name.isEmpty()) throw new NullPointerException("Agent must have a name");
@@ -176,31 +176,31 @@ public abstract class Agent implements IAgentProcessible
 		_eventList.executeNextEvent();
 	}
 
-	/** @return
+	/** @return fes
 	 * @see ru.tomtrix.agentsocks.mathmodel.EventList#getNextEventTime() */
 	public Double getNextEventTime()
 	{
 		return _eventList.getNextEventTime();
 	}
 
-	/** @param timestamp
-	 * @param fid
-	 * @param pars
+	/** @param timestamp - fes
+	 * @param fid - fgs
+	 * @param pars - fgrs
 	 * @throws Exception
-	 * @see ru.tomtrix.agentsocks.mathmodel.EventList#addEvent(java.lang.Double, java.lang.String, java.lang.Object[]) */
+	 * @see ru.tomtrix.agentsocks.mathmodel.EventList#addEvent(double, String, Object...) */
 	public void addEvent(double timestamp, String fid, Object... pars) throws Exception
 	{
 		_eventList.addEvent(timestamp, fid, pars);
 	}
 
-	/** @param timestamp
+	/** @param timestamp - fsr
 	 * @see ru.tomtrix.agentsocks.mathmodel.EventList#removeEvent(double) */
 	public void removeEvent(double timestamp)
 	{
 		_eventList.removeEvent(timestamp);
 	}
 
-	/** @param fid
+	/** @param fid - fsr
 	 * @see ru.tomtrix.agentsocks.mathmodel.EventList#removeEventByFid(java.lang.String) */
 	public void removeEventByFid(String fid)
 	{

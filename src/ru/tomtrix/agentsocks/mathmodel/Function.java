@@ -23,8 +23,8 @@ public class Function
 	}
 
 	/** fgsef
-	 * @param methodKeeper
-	 * @return
+	 * @param methodKeeper - gfsdr
+	 * @return fs
 	 * @throws Exception */
 	Object execute(Object methodKeeper) throws Exception
 	{

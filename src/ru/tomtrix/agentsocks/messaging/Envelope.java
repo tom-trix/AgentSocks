@@ -18,10 +18,10 @@ public class Envelope implements Serializable
 	private final String		_sender;
 
 	/** fafesfe
-	 * @param data
-	 * @param process
-	 * @param agent
-	 * @param sender */
+	 * @param data - grdgs
+	 * @param process - gsae
+	 * @param agent - fase
+	 * @param sender - fse*/
 	Envelope(IMessage data, String process, String agent, String sender)
 	{
 		if (data == null || process == null || process.trim().isEmpty() || agent == null || agent.trim().isEmpty()) throw new IllegalArgumentException("None of the parameters (except sender) may be null!");

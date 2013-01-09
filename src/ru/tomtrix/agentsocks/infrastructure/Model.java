@@ -15,7 +15,7 @@ public class Model implements IAgentProcessible
 	private final boolean _isDebug;
 
 	/** fse
-	 * @param name */
+	 * @param name - fgr */
 	public Model(@JsonProperty(value = "_name") String name)
 	{
 		if (name == null || name.trim().isEmpty()) throw new NullPointerException("Model name can't be empty!");
@@ -23,7 +23,7 @@ public class Model implements IAgentProcessible
 		_isDebug = name.trim().toLowerCase().equals("debug");
 	}
 
-	/** @return */
+	/** @return gre */
 	public int addNode()
 	{
 		int result = _nodes.size();
@@ -43,8 +43,8 @@ public class Model implements IAgentProcessible
 		return _nodes.size();
 	}
 
-	/** @param num
-	 * @return */
+	/** @param num - fsefs
+	 * @return fw */
 	public Node getNodeByNumber(int num)
 	{
 		if (!_nodes.containsKey(num)) throw new NullPointerException(String.format("There is no such a node (%d)", num));
@@ -68,7 +68,7 @@ public class Model implements IAgentProcessible
 	@Override
 	public String toString()
 	{
-		StringBuffer sbuf = new StringBuffer(String.format("Model \"%s\". Node collection:\n", _name));
+		StringBuilder sbuf = new StringBuilder(String.format("Model \"%s\". Node collection:\n", _name));
 		if (_nodes.size() == 0) sbuf.append("<no nodes>\n");
 		for (Entry<Integer, Node> node : _nodes.entrySet())
 			sbuf.append(node);

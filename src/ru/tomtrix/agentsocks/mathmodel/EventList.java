@@ -26,7 +26,7 @@ public class EventList
 	}
 
 	/** fseiofeshjoisefoo;h
-	 * @param timestamp */
+	 * @param timestamp - gdrg */
 	synchronized void removeEvent(double timestamp)
 	{
 		if (!_eventList.containsKey(timestamp)) throw new NoSuchElementException(String.format("There are no events planned on t=%f", timestamp));
@@ -34,7 +34,7 @@ public class EventList
 	}
 
 	/** fseiofeshsfe
-	 * @param timestamp */
+	 * @param fid - grfsd */
 	synchronized void removeEventByFid(String fid)
 	{
 		List<Double> rmv = new LinkedList<>();
@@ -52,15 +52,14 @@ public class EventList
 		// this must be synchronized cause someone could remove the item while the other finds the minimum
 		synchronized (this)
 		{
-			if (_eventList == null) return;
-			Double d = Collections.min(_eventList.keySet()); 	// TODO сортировка коллекции является bottleneck'ом
+            Double d = Collections.min(_eventList.keySet()); 	// TODO сортировка коллекции является bottleneck'ом
 			f = _eventList.get(d);
 			_eventList.remove(d);
 		}
 		f.execute(_RAref);
 	}
 
-	/** @param runtimeAssistant */
+	/** @param runtimeAssistant - gd */
 	void setRuntimeAssistant(Object runtimeAssistant)
 	{
 		if (runtimeAssistant == null) throw new NullPointerException("Runtime Assistant can't be equal to null");

@@ -7,8 +7,8 @@ import java.io.*;
 public class Collections
 {
 	/** dafhihwe
-	 * @param object
-	 * @return
+	 * @param object gre
+	 * @return fwq
 	 * @throws IOException */
 	public static byte[] serialize(Serializable object) throws IOException
 	{
@@ -20,8 +20,8 @@ public class Collections
 	}
 
 	/** dahihfi
-	 * @param buf
-	 * @return
+	 * @param buf gerged
+	 * @return greef
 	 * @throws Exception */
 	public static Serializable deserialize(byte[] buf) throws Exception
 	{
@@ -33,8 +33,8 @@ public class Collections
 	}
 
 	/** fefea
-	 * @param bytes
-	 * @return */
+	 * @param bytes gerger
+	 * @return fwe */
 	public static int[] toIntArray(byte bytes[])
 	{
 		if (bytes == null || bytes.length == 0) throw new IllegalArgumentException("htrjy");
@@ -55,8 +55,8 @@ public class Collections
 	}
 
 	/** fsafe
-	 * @param ints
-	 * @return */
+	 * @param ints grege
+	 * @return ef */
 	public static byte[] toByteArray(int ints[])
 	{
 		if (ints == null || ints.length < 2) throw new IllegalArgumentException("fesfes");

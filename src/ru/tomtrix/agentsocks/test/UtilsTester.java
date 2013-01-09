@@ -83,7 +83,7 @@ public class UtilsTester
 		// deserialize model from the json file
 		Model newModel = JsonSerializer.getMapper().readValue(f, Model.class);
 		newModel.loadCode();
-		f.delete();
+		if (!f.delete()) System.err.println("Error in IO");
 
 		// assert what we've got
 		assertEquals(nodes, newModel.getNodesCount());

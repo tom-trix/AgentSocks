@@ -14,7 +14,7 @@ public class LocalMail
 	private static Node	_nodeRef;
 
 	/** fosehfuise
-	 * @param node */
+	 * @param node - fase */
 	public LocalMail(Node node)
 	{
 		if (node == null) throw new NullPointerException("Node can't be equal to null");
@@ -22,10 +22,10 @@ public class LocalMail
 	}
 
 	/** osfiohnefo
-	 * @param data
-	 * @param process
-	 * @param agent
-	 * @param sender
+	 * @param data - fes
+	 * @param process - fea
+	 * @param agent - gnbdrik
+	 * @param sender - gold
 	 * @throws Exception */
 	public static void send(IMessage data, String process, String agent, String sender) throws Exception
 	{

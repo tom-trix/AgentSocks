@@ -35,8 +35,8 @@ public class MVCModel implements ConsoleUIListener
 	}
 
 	/** fshirfiiu
-	 * @param name
-	 * @return */
+	 * @param name fse
+	 * @return hg */
 	public String createModel(String name)
 	{
 		try
@@ -52,8 +52,8 @@ public class MVCModel implements ConsoleUIListener
 	}
 
 	/** fsejofhbeui
-	 * @param filename
-	 * @return */
+	 * @param filename fwe
+	 * @return fews */
 	public String loadModel(String filename)
 	{
 		try
@@ -70,8 +70,8 @@ public class MVCModel implements ConsoleUIListener
 	}
 
 	/** dfahifehui
-	 * @param filename
-	 * @return */
+	 * @param filename fe
+	 * @return grd */
 	public String saveModel(String filename)
 	{
 		try
@@ -87,14 +87,14 @@ public class MVCModel implements ConsoleUIListener
 	}
 
 	/** fhisufsei
-	 * @return */
+	 * @return grss */
 	public String showModel()
 	{
 		return _model.toString();
 	}
 
 	/** dfaseihfi
-	 * @return */
+	 * @return gredg */
 	public String createNode()
 	{
 		try
@@ -124,9 +124,9 @@ public class MVCModel implements ConsoleUIListener
 	}
 
 	/** fshjoieio
-	 * @param name
-	 * @param rank
-	 * @return */
+	 * @param name fggt
+	 * @param rank geds
+	 * @return gde */
 	public String createProcess(String name, String rank)
 	{
 		try
@@ -142,10 +142,10 @@ public class MVCModel implements ConsoleUIListener
 	}
 
 	/** sfeohis
-	 * @param name
-	 * @param rank
-	 * @param newname
-	 * @return */
+	 * @param name hrt
+	 * @param rank srf
+	 * @param newname gr
+	 * @return gde */
 	public String renameProcess(String name, String rank, String newname)
 	{
 		try
@@ -161,10 +161,10 @@ public class MVCModel implements ConsoleUIListener
 	}
 
 	/** afjoeefoi
-	 * @param name
-	 * @param rank
-	 * @param newRank
-	 * @return */
+	 * @param name gd
+	 * @param rank hrft
+	 * @param newRank dwa
+	 * @return gdr */
 	public String moveProcess(String name, String rank, String newRank)
 	{
 		try
@@ -183,9 +183,9 @@ public class MVCModel implements ConsoleUIListener
 	}
 
 	/** fsohjoef
-	 * @param name
-	 * @param rank
-	 * @return */
+	 * @param name grsd
+	 * @param rank gsr
+	 * @return rg */
 	public String deleteProcess(String name, String rank)
 	{
 		try
@@ -201,10 +201,10 @@ public class MVCModel implements ConsoleUIListener
 	}
 
 	/** uafopjafo
-	 * @param name
-	 * @param process
-	 * @param rank
-	 * @return */
+	 * @param name frsegr
+	 * @param process gdth
+	 * @param rank frg
+	 * @return efs */
 	public String createAgent(String name, String process, String rank)
 	{
 		try
@@ -226,10 +226,10 @@ public class MVCModel implements ConsoleUIListener
 	}
 
 	/** faseoifeo
-	 * @param name
-	 * @param process
-	 * @param rank
-	 * @return */
+	 * @param name grse
+	 * @param process gr
+	 * @param rank gdrt
+	 * @return fse */
 	public String useAgent(String name, String process, String rank)
 	{
 		try
@@ -248,8 +248,8 @@ public class MVCModel implements ConsoleUIListener
 	}
 
 	/** fsvonedpa
-	 * @param newname
-	 * @return */
+	 * @param newname hrf
+	 * @return efs */
 	public String renameAgent(String newname)
 	{
 		try
@@ -267,9 +267,9 @@ public class MVCModel implements ConsoleUIListener
 	}
 
 	/** fasejoijho
-	 * @param newProcess
-	 * @param newNode
-	 * @return */
+	 * @param newProcess gdrgt
+	 * @param newNode ger
+	 * @return gre */
 	public String moveAgent(String newProcess, String newNode)
 	{
 		try
@@ -277,7 +277,7 @@ public class MVCModel implements ConsoleUIListener
 			_pa.process.removeAgent(_pa.agent);
 			_pa.process = _model.getNodeByNumber(Integer.parseInt(newNode)).get_container().getProcessByName(newProcess);
 			_pa.process.addAgent(_pa.agent);
-			return String.format("OK. Agent \"%s\" has been moved to logic process \"%s\" on node %d", _pa.agent.get_name(), newProcess, newNode);
+			return String.format("OK. Agent \"%s\" has been moved to logic process \"%s\" on node %s", _pa.agent.get_name(), newProcess, newNode);
 		}
 		catch (Exception e)
 		{
@@ -287,7 +287,7 @@ public class MVCModel implements ConsoleUIListener
 	}
 
 	/** fasjoijefo
-	 * @return */
+	 * @return efs */
 	public String deleteAgent()
 	{
 		try
@@ -306,8 +306,8 @@ public class MVCModel implements ConsoleUIListener
 	}
 
 	/** fsiefi
-	 * @param code
-	 * @return */
+	 * @param code fse
+	 * @return rs */
 	public String addVariable(String code)
 	{
 		try
@@ -323,8 +323,8 @@ public class MVCModel implements ConsoleUIListener
 	}
 
 	/** ohfsiohabif
-	 * @param var
-	 * @return */
+	 * @param var fsefs
+	 * @return few */
 	public String deleteVariable(String var)
 	{
 		try
@@ -340,8 +340,8 @@ public class MVCModel implements ConsoleUIListener
 	}
 
 	/** joefai
-	 * @param code
-	 * @return */
+	 * @param code fgrse
+	 * @return f */
 	public String addFunction(String code)
 	{
 		try
@@ -357,8 +357,8 @@ public class MVCModel implements ConsoleUIListener
 	}
 
 	/** pkfoeshui
-	 * @param fid
-	 * @return */
+	 * @param fid grse
+	 * @return fws */
 	public String deleteFunction(String fid)
 	{
 		try
@@ -373,10 +373,10 @@ public class MVCModel implements ConsoleUIListener
 		}
 	}
 
-	/** @param fid
-	 * @param timestamp
-	 * @param params
-	 * @return */
+	/** @param fid fsegr
+	 * @param timestamp fg
+	 * @param params ghrt
+	 * @return fws */
 	public String addEvent(String fid, String timestamp, String params)
 	{
 		try
@@ -392,10 +392,9 @@ public class MVCModel implements ConsoleUIListener
 	}
 
 	/** posijoefjo
-	 * @param fid
-	 * @param timestamp
-	 * @return
-	 */
+	 * @param fid htr
+	 * @param timestamp fse
+	 * @return fse */
 	public String deleteEvent(String fid, String timestamp)
 	{
 		try

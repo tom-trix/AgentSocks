@@ -21,8 +21,8 @@ public class Container implements IAgentProcessible
 	@JsonIgnore
 	private boolean						_alive			= false;
 
-	/** @param threads
-	 * @param name */
+	/** @param threads - gtd
+	 * @param node - tgid */
 	Container(@JsonProperty("_threads") int threads, @JsonProperty("_node") int node)
 	{
 		if (threads < 0 || threads > Constants.MAX_THREADS) throw new IllegalArgumentException(String.format("Container can't contain %d threads", threads));
@@ -58,11 +58,11 @@ public class Container implements IAgentProcessible
 							process.nextStep();
 							_processes.add(process);
 						}
-						catch (InterruptedException e) 		// done specially to avoid NullPointerException!
+						catch (InterruptedException ignored) 		// done specially to avoid NullPointerException!
 						{}
 						catch (Exception e)
 						{
-							Logger.getLogger(getClass()).error(String.format("Error in a logical process \"%s\" (thread \"%s\"):", process.get_name(), threadName), e);
+							Logger.getLogger(getClass()).error(String.format("Error in a logical process \"%s\" (thread \"%s\"):", process != null ? process.get_name() : null, threadName), e);
 						}
 					}
 				}
@@ -86,7 +86,7 @@ public class Container implements IAgentProcessible
 	}
 
 	/** dae
-	 * @param name
+	 * @param name - bu
 	 * @throws IllegalAccessException */
 	public void addLogicProcess(String name) throws IllegalAccessException
 	{
@@ -96,7 +96,7 @@ public class Container implements IAgentProcessible
 	}
 
 	/** fasef
-	 * @param process
+	 * @param process - grui
 	 * @throws IllegalAccessException */
 	public void addLogicProcess(LogicProcess process) throws IllegalAccessException
 	{
@@ -106,7 +106,7 @@ public class Container implements IAgentProcessible
 	}
 
 	/** vgfsr
-	 * @param name
+	 * @param name - grni
 	 * @throws IllegalAccessException */
 	public void removeProcess(String name) throws IllegalAccessException
 	{
@@ -117,8 +117,8 @@ public class Container implements IAgentProcessible
 	}
 
 	/** gugu
-	 * @param name
-	 * @return */
+	 * @param name - fsrui
+	 * @return fes */
 	public LogicProcess getProcessByName(String name)
 	{
 		//checks

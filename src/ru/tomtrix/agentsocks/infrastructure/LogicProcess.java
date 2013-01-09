@@ -13,14 +13,14 @@ public class LogicProcess implements IAgentProcessible
 	private final List<Agent>	_agents	= new ArrayList<>();
 
 	/** fsvggrdokpo
-	 * @param name */
+	 * @param name - gsr */
 	LogicProcess(@JsonProperty("_name") String name)
 	{
 		if (name == null || name.trim().isEmpty()) throw new NullPointerException("Logic process must have a name");
 		_name = name;
 	}
 
-	/** @return
+	/** gdgrd
 	 * @throws Exception */
 	void nextStep() throws Exception
 	{
@@ -39,7 +39,7 @@ public class LogicProcess implements IAgentProcessible
 	}
 
 	/** fes
-	 * @param agent */
+	 * @param agent - fs */
 	public void addAgent(Agent agent)
 	{
 		if (agent == null) throw new IllegalArgumentException("Agent can't be equal to null");
@@ -47,8 +47,8 @@ public class LogicProcess implements IAgentProcessible
 	}
 
 	/** sefef
-	 * @param name
-	 * @return */
+	 * @param name - gnra
+	 * @return fgs */
 	public Agent getAgentByName(String name)
 	{
 		if (name == null || name.trim().isEmpty()) throw new IllegalArgumentException("Agent can't be equal to null");
@@ -58,8 +58,8 @@ public class LogicProcess implements IAgentProcessible
 	}
 
 	/** sefgrs
-	 * @param num
-	 * @return */
+	 * @param num - gsse
+	 * @return fsef */
 	public Agent getAgentByNumber(int num)
 	{
 		if (num < 0 || num >= _agents.size()) throw new ArrayIndexOutOfBoundsException(String.format("Wrong number argument: %d", num));
@@ -67,7 +67,7 @@ public class LogicProcess implements IAgentProcessible
 	}
 
 	/** sge
-	 * @param agent */
+	 * @param agent - fse */
 	public void removeAgent(Agent agent)
 	{
 		if (agent == null || !_agents.contains(agent)) throw new NullPointerException("There is no such an agent!");
@@ -99,7 +99,7 @@ public class LogicProcess implements IAgentProcessible
 		return _name;
 	}
 
-	/** @param _name the _name to set */
+	/** @param name the _name to set */
 	public void set_name(String name)
 	{
 		if (name == null || name.trim().isEmpty()) throw new NullPointerException();

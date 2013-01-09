@@ -12,8 +12,8 @@ public class StateChanged implements IMessage
 	private final Object		_value;
 
 	/** fmjos
-	 * @param _variable
-	 * @param _value */
+	 * @param variable gerg
+	 * @param value rw */
 	public StateChanged(String variable, Object value)
 	{
 		_variable = variable;
