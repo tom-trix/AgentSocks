@@ -16,7 +16,7 @@ public class Node
 	@JsonIgnore
 	// JsonIgnore ОБЯЗАТЕЛЬНО!!! (Поскольку ссылка на себя должна назначаться в конструкторе Node)
 	private final Mail		_mail;
-	@SuppressWarnings("unused")
+    @JsonIgnore
 	private final LocalMail	_localMail;
 	private final int		_rank;
 

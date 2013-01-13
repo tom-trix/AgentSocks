@@ -1,7 +1,1 @@
-d
-00:16:15,520  INFO main DefaultAgent:<init>:40 - Agent "TestAgent0" created
-00:16:15,627  INFO main DefaultAgent:<init>:40 - Agent "TestAgent1" created
-00:16:15,629  INFO main DefaultAgent:<init>:40 - Agent "TestAgent2" created
-00:16:15,637  INFO main DefaultAgent:compileAgents:134 - Agent "TestAgent0" compiled
-00:16:15,638  INFO main DefaultAgent:compileAgents:134 - Agent "TestAgent1" compiled
-00:16:15,639  INFO main DefaultAgent:compileAgents:134 - Agent "TestAgent2" compiled
+
