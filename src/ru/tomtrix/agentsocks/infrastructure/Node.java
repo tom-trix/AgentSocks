@@ -50,7 +50,7 @@ public class Node
 		StringBuilder sbuf = new StringBuilder(String.format("Node %d. Container has the following processes:\n", _rank));
 		try
 		{
-			Collection<LogicProcess> processes = _container.getProcesses();
+			Collection<LogicProcess> processes = _container.get_processes();
 			if (processes.size() == 0) sbuf.append("<no processes>\n");
 			for (LogicProcess process : processes)
 				sbuf.append(process);

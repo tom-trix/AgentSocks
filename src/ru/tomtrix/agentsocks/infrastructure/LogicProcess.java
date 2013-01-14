@@ -111,4 +111,10 @@ public class LogicProcess implements IAgentProcessible
 	{
 		return _name;
 	}
+
+    /** @return agents */
+    public Collection<Agent> get_agents()
+    {
+        return new LinkedList<>(_agents);
+    }
 }

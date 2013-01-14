@@ -2,6 +2,8 @@ package ru.tomtrix.agentsocks;
 
 import mpi.MPI;
 import java.io.*;
+
+import ru.tomtrix.agentsocks.modeleditor.GraphicUI;
 import ru.tomtrix.consoleui.*;
 import org.apache.log4j.Logger;
 
@@ -27,14 +29,22 @@ public class Starter
 		ClassStore.getInstance().addImport(LocalMail.class.getPackage().getName());
 
 		// run an application in an EDITOR mode
-		if (args != null && args.length > 0 && args[0].trim().toLowerCase().equals("-editor"))
-		{
-			ConsoleUIListener listener = new MVCModel();
-			ConsoleUI cui = new ConsoleUI(Constants.REGEXES_FILENAME, listener);
-			listener.setConsoleUI(cui);
-			cui.run();
-		}
-		// run an application in an MPI mode
+		if (args != null && args.length > 0)
+            switch (args[0].trim().toLowerCase())
+            {
+                case "-console":
+                    ConsoleUIListener listener = new MVCModel();
+                    ConsoleUI cui = new ConsoleUI(Constants.REGEXES_FILENAME, listener);
+                    listener.setConsoleUI(cui);
+                    cui.run();
+                    break;
+                case "-gui":
+                    MVCModel model = new MVCModel();
+                    GraphicUI gui = new GraphicUI(model);
+                    gui.run();
+                    break;
+            }
+        // run an application in an MPI mode
 		else try
 		{
 			// initialize MPI

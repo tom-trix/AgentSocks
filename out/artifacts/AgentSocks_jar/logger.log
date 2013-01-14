@@ -1,0 +1,119 @@
+
+15:22:45,361  INFO 1 Starter:main:44 - Trying to load 2 nodes
+15:22:45,361  INFO 0 Starter:main:44 - Trying to load 2 nodes
+15:22:45,740  INFO 1 DefaultAgent:<init>:40 - Agent "TrafficLight" created
+15:22:45,742  INFO 0 DefaultAgent:<init>:40 - Agent "TrafficLight" created
+15:22:45,747  INFO 1 DefaultAgent:<init>:40 - Agent "Pedestrian" created
+15:22:45,747  INFO 0 DefaultAgent:<init>:40 - Agent "Pedestrian" created
+15:22:45,825  INFO 1 DefaultAgent:compileAgents:134 - Agent "TrafficLight" compiled
+15:22:45,826  INFO 1 DefaultAgent:compileAgents:134 - Agent "Pedestrian" compiled
+15:22:45,827  INFO 1 Starter:main:57 - Node 1 is ready to start
+15:22:45,834  INFO 0 DefaultAgent:compileAgents:134 - Agent "TrafficLight" compiled
+15:22:45,834  INFO 0 DefaultAgent:compileAgents:134 - Agent "Pedestrian" compiled
+15:22:45,835  INFO 0 Starter:main:57 - Node 0 is ready to start
+15:22:45,923  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Red
+15:22:45,939  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Green
+15:22:45,964  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Red
+15:22:45,990  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Green
+15:22:46,001 ERROR node0.thread3 Container$1:run:65 - Error in a logical process "Proc" (thread "node0.thread3"):
+java.util.NoSuchElementException
+	at java.util.LinkedHashMap$LinkedHashIterator.nextEntry(LinkedHashMap.java:396)
+	at java.util.LinkedHashMap$KeyIterator.next(LinkedHashMap.java:405)
+	at java.util.Collections.min(Collections.java:628)
+	at ru.tomtrix.agentsocks.mathmodel.EventList.executeNextEvent(EventList.java:56)
+	at ru.tomtrix.agentsocks.mathmodel.Agent.executeNextEvent(Agent.java:176)
+	at ru.tomtrix.agentsocks.infrastructure.LogicProcess.nextStep(LogicProcess.java:38)
+	at ru.tomtrix.agentsocks.infrastructure.Container$1.run(Container.java:58)
+	at java.lang.Thread.run(Thread.java:722)
+15:22:46,016  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Red
+15:22:46,041  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Green
+15:34:21,452  INFO 1 Starter:main:44 - Trying to load 2 nodes
+15:34:21,452  INFO 0 Starter:main:44 - Trying to load 2 nodes
+15:34:21,810  INFO 0 DefaultAgent:<init>:40 - Agent "TrafficLight" created
+15:34:21,810  INFO 1 DefaultAgent:<init>:40 - Agent "TrafficLight" created
+15:34:21,817  INFO 0 DefaultAgent:<init>:40 - Agent "Pedestrian" created
+15:34:21,817  INFO 1 DefaultAgent:<init>:40 - Agent "Pedestrian" created
+15:34:21,899  INFO 1 DefaultAgent:compileAgents:134 - Agent "TrafficLight" compiled
+15:34:21,900  INFO 1 DefaultAgent:compileAgents:134 - Agent "Pedestrian" compiled
+15:34:21,900  INFO 1 Starter:main:57 - Node 1 is ready to start
+15:34:21,906  INFO 0 DefaultAgent:compileAgents:134 - Agent "TrafficLight" compiled
+15:34:21,908  INFO 0 DefaultAgent:compileAgents:134 - Agent "Pedestrian" compiled
+15:34:21,908  INFO 0 Starter:main:57 - Node 0 is ready to start
+15:34:21,993  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Red
+15:34:22,012  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Green
+15:34:22,039  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Red
+15:34:22,064  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Green
+15:34:22,090  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Red
+15:34:22,115  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Green
+15:34:28,620  INFO 0 Starter:main:44 - Trying to load 2 nodes
+15:34:28,620  INFO 1 Starter:main:44 - Trying to load 2 nodes
+15:34:28,973  INFO 0 DefaultAgent:<init>:40 - Agent "TrafficLight" created
+15:34:28,973  INFO 1 DefaultAgent:<init>:40 - Agent "TrafficLight" created
+15:34:28,981  INFO 1 DefaultAgent:<init>:40 - Agent "Pedestrian" created
+15:34:28,981  INFO 0 DefaultAgent:<init>:40 - Agent "Pedestrian" created
+15:34:29,068  INFO 1 DefaultAgent:compileAgents:134 - Agent "TrafficLight" compiled
+15:34:29,069  INFO 1 DefaultAgent:compileAgents:134 - Agent "Pedestrian" compiled
+15:34:29,069  INFO 1 Starter:main:57 - Node 1 is ready to start
+15:34:29,070  INFO 0 DefaultAgent:compileAgents:134 - Agent "TrafficLight" compiled
+15:34:29,071  INFO 0 DefaultAgent:compileAgents:134 - Agent "Pedestrian" compiled
+15:34:29,072  INFO 0 Starter:main:57 - Node 0 is ready to start
+15:34:29,160  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Red
+15:34:29,176  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Green
+15:34:29,203  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Red
+15:34:29,228  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Green
+15:34:29,254  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Red
+15:34:29,279  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Green
+15:34:33,984  INFO 0 Starter:main:44 - Trying to load 2 nodes
+15:34:33,984  INFO 1 Starter:main:44 - Trying to load 2 nodes
+15:34:34,334  INFO 1 DefaultAgent:<init>:40 - Agent "TrafficLight" created
+15:34:34,340  INFO 1 DefaultAgent:<init>:40 - Agent "Pedestrian" created
+15:34:34,356  INFO 0 DefaultAgent:<init>:40 - Agent "TrafficLight" created
+15:34:34,360  INFO 0 DefaultAgent:<init>:40 - Agent "Pedestrian" created
+15:34:34,416  INFO 1 DefaultAgent:compileAgents:134 - Agent "TrafficLight" compiled
+15:34:34,417  INFO 1 DefaultAgent:compileAgents:134 - Agent "Pedestrian" compiled
+15:34:34,418  INFO 1 Starter:main:57 - Node 1 is ready to start
+15:34:34,437  INFO 0 DefaultAgent:compileAgents:134 - Agent "TrafficLight" compiled
+15:34:34,438  INFO 0 DefaultAgent:compileAgents:134 - Agent "Pedestrian" compiled
+15:34:34,439  INFO 0 Starter:main:57 - Node 0 is ready to start
+15:34:34,525  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Red
+15:34:34,542  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Green
+15:34:34,568  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Red
+15:34:34,593  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Green
+15:34:34,620  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Red
+15:34:34,645  INFO Thread-0 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Green
+15:34:39,777  INFO 0 Starter:main:44 - Trying to load 2 nodes
+15:34:39,777  INFO 1 Starter:main:44 - Trying to load 2 nodes
+15:34:40,131  INFO 1 DefaultAgent:<init>:40 - Agent "TrafficLight" created
+15:34:40,131  INFO 0 DefaultAgent:<init>:40 - Agent "TrafficLight" created
+15:34:40,140  INFO 0 DefaultAgent:<init>:40 - Agent "Pedestrian" created
+15:34:40,140  INFO 1 DefaultAgent:<init>:40 - Agent "Pedestrian" created
+15:34:40,220  INFO 0 DefaultAgent:compileAgents:134 - Agent "TrafficLight" compiled
+15:34:40,220  INFO 1 DefaultAgent:compileAgents:134 - Agent "TrafficLight" compiled
+15:34:40,221  INFO 0 DefaultAgent:compileAgents:134 - Agent "Pedestrian" compiled
+15:34:40,222  INFO 1 DefaultAgent:compileAgents:134 - Agent "Pedestrian" compiled
+15:34:40,222  INFO 0 Starter:main:57 - Node 0 is ready to start
+15:34:40,223  INFO 1 Starter:main:57 - Node 1 is ready to start
+15:34:40,314  INFO Thread-1 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Red
+15:34:40,328  INFO Thread-1 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Green
+15:34:40,354  INFO Thread-1 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Red
+15:34:40,379  INFO Thread-1 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Green
+15:34:40,405  INFO Thread-1 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Red
+15:34:40,430  INFO Thread-1 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Green
+15:34:44,917  INFO 1 Starter:main:44 - Trying to load 2 nodes
+15:34:44,917  INFO 0 Starter:main:44 - Trying to load 2 nodes
+15:34:45,262  INFO 1 DefaultAgent:<init>:40 - Agent "TrafficLight" created
+15:34:45,265  INFO 0 DefaultAgent:<init>:40 - Agent "TrafficLight" created
+15:34:45,268  INFO 1 DefaultAgent:<init>:40 - Agent "Pedestrian" created
+15:34:45,269  INFO 0 DefaultAgent:<init>:40 - Agent "Pedestrian" created
+15:34:45,344  INFO 0 DefaultAgent:compileAgents:134 - Agent "TrafficLight" compiled
+15:34:45,344  INFO 1 DefaultAgent:compileAgents:134 - Agent "TrafficLight" compiled
+15:34:45,345  INFO 0 DefaultAgent:compileAgents:134 - Agent "Pedestrian" compiled
+15:34:45,346  INFO 1 DefaultAgent:compileAgents:134 - Agent "Pedestrian" compiled
+15:34:45,346  INFO 0 Starter:main:57 - Node 0 is ready to start
+15:34:45,347  INFO 1 Starter:main:57 - Node 1 is ready to start
+15:34:45,439  INFO Thread-1 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Red
+15:34:45,453  INFO Thread-1 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Green
+15:34:45,478  INFO Thread-1 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Red
+15:34:45,503  INFO Thread-1 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Green
+15:34:45,529  INFO Thread-1 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Red
+15:34:45,554  INFO Thread-1 DefaultAgent:notifyAgent:102 - TrafficLight -> Pedestrian: state = Green

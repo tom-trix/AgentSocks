@@ -15,7 +15,7 @@ public class MVCModel implements ConsoleUIListener
 
 	/** fnsefnieo */
 	private ConsoleUI			_cuiRef;
-	/** fshisfueih */
+    /** fshisfueih */
 	private Model				_model;
 	/** jdfaiofsoei */
 	private ProcessAndAgent		_pa;
@@ -421,4 +421,9 @@ public class MVCModel implements ConsoleUIListener
 	{
 		_cuiRef = cui;
 	}
+
+    /** @return model */
+    public Model get_model() {
+        return _model;
+    }
 }

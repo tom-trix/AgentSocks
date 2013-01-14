@@ -80,4 +80,10 @@ public class Model implements IAgentProcessible
 	{
 		return _name;
 	}
+
+    /** @return nodes */
+    public Collection<Node> get_nodes()
+    {
+        return _nodes.values();
+    }
 }
