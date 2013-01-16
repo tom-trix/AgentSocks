@@ -5,14 +5,12 @@ import java.util.Map.Entry;
 import org.apache.log4j.Logger;
 import javassist.NotFoundException;
 import ru.tomtrix.agentsocks.messaging.*;
-import com.fasterxml.jackson.annotation.*;
 import ru.tomtrix.javassistwraper.ClassStore;
 import javax.activation.UnsupportedDataTypeException;
 import ru.tomtrix.agentsocks.infrastructure.IAgentProcessible;
 
 /** fseefsfo
  * @author tom-trix */
-@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "@class")
 public abstract class Agent implements IAgentProcessible
 {
 	/** agent's name */
@@ -36,7 +34,6 @@ public abstract class Agent implements IAgentProcessible
 		if (name == null || name.isEmpty()) throw new NullPointerException("Agent must have a name");
 		_name = name;
 		_RAClassname = RAClassname;
-		ClassStore.getInstance().addClass(RAClassname, null, null);		// обязательно RAClassname!
 		Logger.getLogger(getClass()).info(String.format("Agent \"%s\" created", name));
 	}
 
@@ -120,7 +117,9 @@ public abstract class Agent implements IAgentProcessible
 	@Override
 	public void loadCode() throws Exception
 	{
-		for (String s : _state)
+		if (_RAClassname == null) throw new NullPointerException("Runtime assistant is NULL");
+        ClassStore.getInstance().addClass(_RAClassname, null, null);
+        for (String s : _state)
 			ClassStore.getInstance().addField(_RAClassname, s);
 		for (String s : _transformFunctions)
 			ClassStore.getInstance().addMethod(_RAClassname, s);

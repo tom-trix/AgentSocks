@@ -1,7 +1,6 @@
 package ru.tomtrix.agentsocks.mathmodel;
 
 import java.lang.reflect.Method;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** fseqrwer
  * @author tom-trix */
@@ -15,7 +14,7 @@ public class Function
 	/** creates a new function call object
 	 * @param fid - function ID
 	 * @param parameters - parameters for invoking */
-	Function(@JsonProperty("_fid") String fid, @JsonProperty("_parameters") Object... parameters)
+	Function(String fid, Object... parameters)
 	{
 		if (fid == null || fid.trim().isEmpty()) throw new NullPointerException("Function id can't be null");
 		_fid = fid;

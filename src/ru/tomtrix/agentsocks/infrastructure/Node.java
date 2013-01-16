@@ -2,7 +2,6 @@ package ru.tomtrix.agentsocks.infrastructure;
 
 import java.util.Collection;
 import ru.tomtrix.agentsocks.Constants;
-import com.fasterxml.jackson.annotation.*;
 
 import ru.tomtrix.agentsocks.messaging.LocalMail;
 import ru.tomtrix.agentsocks.messaging.Mail;
@@ -13,15 +12,13 @@ public class Node
 	/** fse */
 	private final Container	_container;
 	/** dawfse */
-	@JsonIgnore
 	// JsonIgnore ОБЯЗАТЕЛЬНО!!! (Поскольку ссылка на себя должна назначаться в конструкторе Node)
 	private final Mail		_mail;
-    @JsonIgnore
 	private final LocalMail	_localMail;
 	private final int		_rank;
 
 	/** fs */
-	Node(@JsonProperty("_rank") int rank, @JsonProperty("_isDebug") boolean isDebug)
+	Node(int rank, boolean isDebug)
 	{
 		_rank = rank;
 		_container = new Container(Constants.DEFAULT_THREADS, rank);

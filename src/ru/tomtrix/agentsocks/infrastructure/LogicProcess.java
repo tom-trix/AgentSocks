@@ -2,7 +2,6 @@ package ru.tomtrix.agentsocks.infrastructure;
 
 import java.util.*;
 import ru.tomtrix.agentsocks.mathmodel.Agent;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** @author tom-trix */
 public class LogicProcess implements IAgentProcessible
@@ -14,7 +13,7 @@ public class LogicProcess implements IAgentProcessible
 
 	/** fsvggrdokpo
 	 * @param name - gsr */
-	LogicProcess(@JsonProperty("_name") String name)
+	LogicProcess(String name)
 	{
 		if (name == null || name.trim().isEmpty()) throw new NullPointerException("Logic process must have a name");
 		_name = name;
@@ -91,12 +90,11 @@ public class LogicProcess implements IAgentProcessible
 	@Override
 	public String toString()
 	{
-		/*StringBuffer sbuf = new StringBuffer(String.format("   Process \"%s\". Logic process possesses the following agents:\n", _name));
+		StringBuilder sbuf = new StringBuilder(String.format("   Process \"%s\". Logic process possesses the following agents:\n", _name));
 		if (_agents.size() == 0) sbuf.append("   <no processes>\n");
 		for (Agent agent : _agents)
 			sbuf.append(agent);
-		return sbuf.toString();*/
-		return _name;
+		return sbuf.toString();
 	}
 
 	/** @param name the _name to set */

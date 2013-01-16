@@ -7,7 +7,7 @@ public abstract class Constants
     /** sgseml */
 	public static final String	REGEXES_FILENAME	= "console.txt";
 	/** vseno */
-	public static final String	MODEL_FILENAME		= "lights.txt";
+	public static final String	MODEL_FILENAME		= "lights.xml";
 	/** fsefgse */
 	public static final int		DEFAULT_THREADS		= 4;
 	/** swegfegs */

@@ -1,8 +1,10 @@
 package ru.tomtrix.agentsocks.test;
 
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.StaxDriver;
 import org.junit.*;
 
-import java.io.File;
+import java.io.*;
 import java.util.Random;
 import static org.junit.Assert.*;
 import ru.tomtrix.agentsocks.infrastructure.LogicProcess;
@@ -11,7 +13,6 @@ import ru.tomtrix.agentsocks.infrastructure.Node;
 import ru.tomtrix.agentsocks.mathmodel.Agent;
 import ru.tomtrix.agentsocks.mathmodel.DefaultAgent;
 import ru.tomtrix.agentsocks.utils.Collections;
-import ru.tomtrix.agentsocks.utils.JsonSerializer;
 
 /** dfase
  * @author tom-trix */
@@ -24,8 +25,8 @@ public class UtilsTester
 	@Test
 	public void testArrays()
 	{
-		final int tests = 20000;
-		final int max = 2000;
+		final int tests = 2000;
+		final int max = 200;
 		for (int i = 1; i <= tests; i++)
 		{
 			byte bytes[] = new byte[_r.nextInt(max) + 2];
@@ -43,9 +44,9 @@ public class UtilsTester
 	public void testSerializer() throws Exception
 	{
 		// constants
-		final int nodes = 20;
-		final int processesPerNode = 20;
-		final int agentsPerProcess = 50;
+		final int nodes = 2;
+		final int processesPerNode = 2;
+		final int agentsPerProcess = 2;
 
 		// create model
 		Model model = new Model("TestModel");
@@ -76,14 +77,23 @@ public class UtilsTester
 			}
 		}
 
-		// serialize model into a json file
+        Writer writer = new FileWriter("~test");
+        XStream xs = new XStream(new StaxDriver());
+        xs.toXML(model, writer);
+        writer.close();
+
+		/*// serialize model into a json file
 		File f = new File("~test.json");
 		JsonSerializer.getMapper().writeValue(f, model);
 
 		// deserialize model from the json file
 		Model newModel = JsonSerializer.getMapper().readValue(f, Model.class);
 		newModel.loadCode();
-		if (!f.delete()) System.err.println("Error in IO");
+		if (!f.delete()) System.err.println("Error in IO");*/
+
+        Reader reader = new FileReader("~test");
+        Model newModel = (Model)xs.fromXML(reader);
+        reader.close();
 
 		// assert what we've got
 		assertEquals(nodes, newModel.getNodesCount());

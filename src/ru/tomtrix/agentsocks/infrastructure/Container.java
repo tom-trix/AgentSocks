@@ -3,7 +3,6 @@ package ru.tomtrix.agentsocks.infrastructure;
 import java.util.*;
 import org.apache.log4j.Logger;
 import ru.tomtrix.agentsocks.Constants;
-import com.fasterxml.jackson.annotation.*;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 /** @author tom-trix */
@@ -18,12 +17,11 @@ public class Container implements IAgentProcessible
 	/** fae */
 	private final int					_threads;
 	/** fes */
-	@JsonIgnore
 	private boolean						_alive			= false;
 
 	/** @param threads - gtd
 	 * @param node - tgid */
-	Container(@JsonProperty("_threads") int threads, @JsonProperty("_node") int node)
+	Container(int threads, int node)
 	{
 		if (threads < 0 || threads > Constants.MAX_THREADS) throw new IllegalArgumentException(String.format("Container can't contain %d threads", threads));
 		_threads = threads;

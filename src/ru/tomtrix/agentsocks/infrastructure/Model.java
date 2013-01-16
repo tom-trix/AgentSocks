@@ -2,7 +2,6 @@ package ru.tomtrix.agentsocks.infrastructure;
 
 import java.util.*;
 import java.util.Map.Entry;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** fd
  * @author tom-trix */
@@ -16,7 +15,7 @@ public class Model implements IAgentProcessible
 
 	/** fse
 	 * @param name - fgr */
-	public Model(@JsonProperty(value = "_name") String name)
+	public Model(String name)
 	{
 		if (name == null || name.trim().isEmpty()) throw new NullPointerException("Model name can't be empty!");
 		_name = name;

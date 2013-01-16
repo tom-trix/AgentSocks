@@ -1,11 +1,10 @@
 package ru.tomtrix.agentsocks.modeleditor;
 
-import java.io.File;
+import ru.tomtrix.agentsocks.utils.XMLSerializer;
 import ru.tomtrix.consoleui.*;
 import org.apache.log4j.Logger;
 import ru.tomtrix.agentsocks.mathmodel.*;
 import ru.tomtrix.agentsocks.infrastructure.*;
-import ru.tomtrix.agentsocks.utils.JsonSerializer;
 
 /** jfsofeos
  * @author tom-trix */
@@ -58,7 +57,7 @@ public class MVCModel implements ConsoleUIListener
 	{
 		try
 		{
-			_model = JsonSerializer.getMapper().readValue(new File(filename), Model.class);
+			_model = new XMLSerializer<Model>().deserializeFromFile(filename);
 			_model.loadCode();
 			return String.format("OK. Model \"%s\" has been loaded", _model.get_name());
 		}
@@ -76,7 +75,7 @@ public class MVCModel implements ConsoleUIListener
 	{
 		try
 		{
-			JsonSerializer.getMapper().writeValue(new File(filename), _model);
+			new XMLSerializer<Model>().serializeToFile(_model, filename);
 			return String.format("OK. Model \"%s\" has been saved", _model.get_name());
 		}
 		catch (Exception e)
