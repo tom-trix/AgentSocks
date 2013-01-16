@@ -57,7 +57,7 @@ public class LogicProcess implements IAgentProcessible
 	}
 
 	/** sefgrs
-	 * @param num - gsse
+	 * @param num gsse
 	 * @return fsef */
 	public Agent getAgentByNumber(int num)
 	{
