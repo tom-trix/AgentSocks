@@ -6,6 +6,8 @@ import org.apache.log4j.Logger;
 import ru.tomtrix.agentsocks.mathmodel.*;
 import ru.tomtrix.agentsocks.infrastructure.*;
 
+import java.util.Collection;
+
 /** jfsofeos
  * @author tom-trix */
 public class MVCModel implements ConsoleUIListener
@@ -411,6 +413,11 @@ public class MVCModel implements ConsoleUIListener
 			return e.toString();
 		}
 	}
+
+    public Collection<String> getVariables()
+    {
+        return null;
+    }
 
 	/** hcfseaio */
 	public String exit()
