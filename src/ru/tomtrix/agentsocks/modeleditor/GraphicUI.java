@@ -3,11 +3,9 @@ package ru.tomtrix.agentsocks.modeleditor;
 
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.*;
 import javax.swing.tree.*;
-import java.util.Collection;
 import java.util.Enumeration;
-import java.util.Vector;
-
 import org.apache.log4j.Logger;
 import ru.tomtrix.agentsocks.mathmodel.Agent;
 import ru.tomtrix.agentsocks.infrastructure.*;
@@ -19,10 +17,14 @@ public class GraphicUI extends JFrame
 {
     private final MVCModel _mvcModel;
     private final JTextField _statusBar = new JTextField();
+    private final JMenuBar _menu = new JMenuBar();
     private final JTree _tree = new JTree(new DefaultMutableTreeNode("<Right-click here>"));
-    private final JSplitPane _split = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+    private final JSplitPane _split1 = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+    private final JSplitPane _split2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
     private final JList<String> _variables = new JList<>(new String[] {"<No variables>"});
     private final JList<String> _events = new JList<>(new String[] {"<No events>"});
+    private final JList<String> _fids = new JList<>(new String[] {"<No functions>"});
+    private final JTextArea _functionBox = new JTextArea();
 
     public GraphicUI(MVCModel model)
     {
@@ -43,12 +45,23 @@ public class GraphicUI extends JFrame
             tree.collapsePath(parent);
     }
 
+    private static void selectNode(JTree tree, TreePath parent, TreeNode node)
+    {
+        TreeNode n = (TreeNode) parent.getLastPathComponent();
+        if (n.toString().equals(node.toString()))
+            tree.setSelectionPath(parent);
+        else if (n.getChildCount() >= 0)
+            for (Enumeration e=n.children(); e.hasMoreElements();)
+                selectNode(tree, parent.pathByAddingChild(e.nextElement()), node);
+    }
+
     void rebuildTreeByModel()
     {
         try
         {
             Model model = _mvcModel.get_model();
             if (model==null) return;
+            DefaultMutableTreeNode lastnode = (DefaultMutableTreeNode) _tree.getLastSelectedPathComponent();
             DefaultTreeModel tm = (DefaultTreeModel)_tree.getModel();
             DefaultMutableTreeNode root = (DefaultMutableTreeNode) tm.getRoot();
             root.removeAllChildren();
@@ -67,7 +80,7 @@ public class GraphicUI extends JFrame
             }
             tm.reload();            //на эту херотень я потратил 3,5 часа!!!
             expandAll(_tree, new TreePath(root), true);
-            _tree.setSelectionRow(0);
+            selectNode(_tree, new TreePath(root), lastnode);
         }
         catch (IllegalAccessException e)
         {
@@ -78,28 +91,80 @@ public class GraphicUI extends JFrame
     public void run()
     {
         GUIController controller = new GUIController(_mvcModel, this);
+
         // tree
         rebuildTreeByModel();
         _tree.setName("tree");
         _tree.setSelectionRow(0);
         _tree.addMouseListener(controller);
         _tree.addTreeSelectionListener(controller);
-        // splitContainer
-        _split.setRightComponent(new JScrollPane(_events));
-        _split.setLeftComponent(new JScrollPane(_variables));
+        _tree.setPreferredSize(new Dimension(200, 0));
+
+        // splitContainer 1
+        _split1.setRightComponent(new JScrollPane(_functionBox));
+        _split1.setLeftComponent(new JScrollPane(_fids));
+
+        // splitContainer 2
+        _split2.setRightComponent(new JScrollPane(_events));
+        _split2.setLeftComponent(new JScrollPane(_variables));
+
+        // fids listbox
+        _fids.setName("fids");
+        _fids.setSelectedIndex(0);
+        _fids.addMouseListener(controller);
+
         // variables listbox
         _variables.setName("variables");
         _variables.setSelectedIndex(0);
         _variables.setFixedCellWidth(200);
         _variables.addMouseListener(controller);
-        setSize(700, 400);
+
+        // events listbox
+        _events.setName("events");
+        _events.setSelectedIndex(0);
+        _events.setFixedCellWidth(200);
+        _events.addMouseListener(controller);
+
+        // menu
+        JMenu file = new JMenu("File");
+        JMenuItem load = new JMenuItem("Load model");
+        load.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "fes");
+            }
+        });
+        JMenuItem save = new JMenuItem("Save model");
+        save.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "fes");
+            }
+        });
+        JMenuItem exit = new JMenuItem("Exit");
+        exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        file.add(load);
+        file.add(save);
+        file.addSeparator();
+        file.add(exit);
+        _menu.add(file);
+
+        // form
+        setSize(900, 400);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
         catch (Exception ignore) {}
-        getContentPane().add(new JScrollPane(_tree), BorderLayout.WEST);
+        setJMenuBar(_menu);
+        getContentPane().add(_split2, BorderLayout.EAST);
+        getContentPane().add(_split1, BorderLayout.CENTER);
         getContentPane().add(_statusBar, BorderLayout.SOUTH);
-        getContentPane().add(_split, BorderLayout.EAST);
+        getContentPane().add(new JScrollPane(_tree), BorderLayout.WEST);
         setVisible(true);
     }
 
@@ -111,13 +176,15 @@ public class GraphicUI extends JFrame
     public void refreshVariables()
     {
         _variables.removeAll();
-        _variables.setListData(new String[]{}); //TODO
+        _variables.setListData(new String[] {"<No variables>"}); //TODO
+        _variables.setSelectedIndex(0);
     }
 
     public void refreshEvents()
     {
         _events.removeAll();
-        _events.setListData(new String[] {});    //TODO
+        _events.setListData(new String[] {"<No events>"});    //TODO
+        _events.setSelectedIndex(0);
     }
 
     public JTree getTree()
@@ -128,5 +195,10 @@ public class GraphicUI extends JFrame
     public JList getVariablesListbox()
     {
         return _variables;
+    }
+
+    public JList getEventsListbox()
+    {
+        return _events;
     }
 }

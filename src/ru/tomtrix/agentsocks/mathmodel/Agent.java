@@ -34,6 +34,7 @@ public abstract class Agent implements IAgentProcessible
 		if (name == null || name.isEmpty()) throw new NullPointerException("Agent must have a name");
 		_name = name;
 		_RAClassname = RAClassname;
+        ClassStore.getInstance().addClass(_RAClassname, null, null);
 		Logger.getLogger(getClass()).info(String.format("Agent \"%s\" created", name));
 	}
 
@@ -118,7 +119,6 @@ public abstract class Agent implements IAgentProcessible
 	public void loadCode() throws Exception
 	{
 		if (_RAClassname == null) throw new NullPointerException("Runtime assistant is NULL");
-        ClassStore.getInstance().addClass(_RAClassname, null, null);
         for (String s : _state)
 			ClassStore.getInstance().addField(_RAClassname, s);
 		for (String s : _transformFunctions)

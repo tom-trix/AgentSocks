@@ -414,7 +414,18 @@ public class MVCModel implements ConsoleUIListener
 		}
 	}
 
+    public Agent getCurrentAgent()
+    {
+        if (_pa == null) return null;
+        return _pa.agent;
+    }
+
     public Collection<String> getVariables()
+    {
+        return null;
+    }
+
+    public Collection<String> getFunctions()
     {
         return null;
     }
