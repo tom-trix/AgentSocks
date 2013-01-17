@@ -209,8 +209,9 @@ public class MVCModel implements ConsoleUIListener
 		try
 		{
 			// push greeting
-			if (_pa != null && _pa.agent != null) _cuiRef.pop_greeting();
-			_cuiRef.push_greeting(name);
+			if (_pa != null && _pa.agent != null && _cuiRef != null) _cuiRef.pop_greeting();
+			if (_cuiRef != null)
+                _cuiRef.push_greeting(name);
 			// create new agent and "_pa" instance
 			_pa = new ProcessAndAgent(_model.getNodeByNumber(Integer.parseInt(rank)).get_container().getProcessByName(process), new DefaultAgent(name, name));
 			_pa.process.addAgent(_pa.agent);
@@ -233,10 +234,10 @@ public class MVCModel implements ConsoleUIListener
 	{
 		try
 		{
-			if (_pa != null && _pa.agent != null) _cuiRef.pop_greeting();
+			if (_pa != null && _pa.agent != null && _cuiRef != null) _cuiRef.pop_greeting();
 			LogicProcess p = _model.getNodeByNumber(Integer.parseInt(rank)).get_container().getProcessByName(process);
 			_pa = new ProcessAndAgent(p, p.getAgentByName(name));
-			_cuiRef.push_greeting(name);
+			if (_cuiRef != null) _cuiRef.push_greeting(name);
 			return String.format("OK. Now agent \"%s\" is currently used", name);
 		}
 		catch (Exception e)
@@ -254,8 +255,11 @@ public class MVCModel implements ConsoleUIListener
 		try
 		{
 			_pa.agent.set_name(newname);
-			_cuiRef.pop_greeting();
-			_cuiRef.push_greeting(newname);
+            if (_cuiRef != null)
+            {
+                _cuiRef.pop_greeting();
+                _cuiRef.push_greeting(newname);
+            }
 			return String.format("OK. Agent has been renamed into \"%s\"", newname);
 		}
 		catch (Exception e)
@@ -294,7 +298,7 @@ public class MVCModel implements ConsoleUIListener
 			String s = String.format("OK. Agent \"%s\" has been removed from process \"%s\"", _pa.agent.get_name(), _pa.process.get_name());
 			_pa.process.removeAgent(_pa.agent);
 			_pa = null;
-			_cuiRef.pop_greeting();
+			if (_cuiRef != null) _cuiRef.pop_greeting();
 			return s;
 		}
 		catch (Exception e)
@@ -411,7 +415,7 @@ public class MVCModel implements ConsoleUIListener
 	/** hcfseaio */
 	public String exit()
 	{
-		_cuiRef.stop();
+		if (_cuiRef != null) _cuiRef.stop();
 		return "Bye!";
 	}
 

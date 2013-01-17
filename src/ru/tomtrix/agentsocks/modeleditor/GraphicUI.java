@@ -16,7 +16,8 @@ public class GraphicUI extends JFrame
 {
     private final MVCModel _mvcModel;
     private final JTextField _statusBar = new JTextField();
-    private final JTree _tree = new JTree(new DefaultMutableTreeNode("<Click here>"));
+    private final JTree _tree = new JTree(new DefaultMutableTreeNode("<Right-click here>"));
+    private final JSplitPane _split = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 
     public GraphicUI(MVCModel model)
     {
@@ -25,13 +26,12 @@ public class GraphicUI extends JFrame
         _mvcModel = model;
     }
 
-    private static void expandAll(JTree tree, TreePath parent, boolean expand) {
+    private static void expandAll(JTree tree, TreePath parent, boolean expand)
+    {
         TreeNode node = (TreeNode) parent.getLastPathComponent();
         if (node.getChildCount() >= 0)
-            for (Enumeration e=node.children(); e.hasMoreElements();) {
-                TreePath path = parent.pathByAddingChild(e.nextElement());
-                expandAll(tree, path, expand);
-            }
+            for (Enumeration e=node.children(); e.hasMoreElements();)
+                expandAll(tree, parent.pathByAddingChild(e.nextElement()), expand);
         if (expand)
             tree.expandPath(parent);
         else
@@ -80,8 +80,10 @@ public class GraphicUI extends JFrame
         rebuildTreeByModel();
         _tree.setSelectionRow(0);
         _tree.addMouseListener(new GUIController(_mvcModel, this));
-        getContentPane().add(new JScrollPane(_tree), BorderLayout.CENTER);
+        _split.setLeftComponent(new JList<>(new String[]{"fgser", "frs", "111", "22"}));
+        getContentPane().add(new JScrollPane(_tree), BorderLayout.WEST);
         getContentPane().add(_statusBar, BorderLayout.SOUTH);
+        getContentPane().add(_split, BorderLayout.EAST);
         setVisible(true);
     }
 
