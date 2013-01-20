@@ -24,7 +24,7 @@ public class GraphicUI extends JFrame
     private final JSplitPane _split2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
     private final JList<String> _variables = new JList<>(new String[] {"<No variables>"});
     private final JList<String> _events = new JList<>(new String[] {"<No events>"});
-    private final JList<String> _fids = new JList<>(new String[] {"<No functions>"});
+    private final JList<String> _fids = new JList<>(new String[] {"<No fids>"});
     private final JTextArea _functionBox = new JTextArea();
 
     private String _lastTreeNode;
@@ -103,31 +103,45 @@ public class GraphicUI extends JFrame
         _tree.addMouseListener(controller);
         _tree.addTreeSelectionListener(controller);
         _tree.setPreferredSize(new Dimension(200, 0));
+        _tree.setBorder(BorderFactory.createTitledBorder("Model structure"));
+
+        // fids
+        _fids.setBorder(BorderFactory.createTitledBorder("Function identificators"));
+
+        // status bar
+        _statusBar.setBackground(Color.lightGray);
+        _statusBar.setDisabledTextColor(Color.black);
+        _statusBar.setEnabled(false);
 
         // splitContainer 1
-        _split1.setRightComponent(new JScrollPane(_functionBox));
-        _split1.setLeftComponent(new JScrollPane(_fids));
+        _split1.setBottomComponent(new JScrollPane(_functionBox));
+        _split1.setTopComponent(new JScrollPane(_fids));
+        _split1.setDividerLocation(100);
 
         // splitContainer 2
-        _split2.setRightComponent(new JScrollPane(_events));
-        _split2.setLeftComponent(new JScrollPane(_variables));
+        _split2.setBottomComponent(new JScrollPane(_events));
+        _split2.setTopComponent(new JScrollPane(_variables));
+        _split2.setDividerLocation(120);
 
         // fids listbox
         _fids.setName("fids");
         _fids.setSelectedIndex(0);
         _fids.addMouseListener(controller);
+        _fids.setBorder(BorderFactory.createTitledBorder("Function identificators"));
 
         // variables listbox
         _variables.setName("variables");
         _variables.setSelectedIndex(0);
-        _variables.setFixedCellWidth(200);
         _variables.addMouseListener(controller);
+        _variables.setPreferredSize(new Dimension(200, 0));
+        _variables.setBorder(BorderFactory.createTitledBorder("Variables"));
 
         // events listbox
         _events.setName("events");
         _events.setSelectedIndex(0);
-        _events.setFixedCellWidth(200);
         _events.addMouseListener(controller);
+        _events.setPreferredSize(new Dimension(200, 0));
+        _events.setBorder(BorderFactory.createTitledBorder("Events"));
 
         // menu
         JMenu file = new JMenu("File");

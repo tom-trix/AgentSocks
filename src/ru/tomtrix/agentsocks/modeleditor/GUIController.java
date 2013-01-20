@@ -105,7 +105,7 @@ public class GUIController implements MouseListener, TreeSelectionListener
             _item.addActionListener(new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (JOptionPane.showConfirmDialog(null, "Are you sure") > 0) return;
+                    if (JOptionPane.showConfirmDialog(null, "Are you sure") != JOptionPane.YES_OPTION) return;
                     _mvcViewRef.setStatus(_mvcModelRef.deleteProcess(name, rank));
                     _mvcViewRef.rebuildTreeByModel();
                 }
@@ -120,7 +120,7 @@ public class GUIController implements MouseListener, TreeSelectionListener
         Agent agent = _mvcModelRef.getCurrentAgent();
         if (agent==null)
         {
-            JOptionPane.showMessageDialog(null, "Select an agent from the tree first");
+            JOptionPane.showMessageDialog(null, "Select an agent from the Model Structure", "Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
         return agent;
@@ -140,8 +140,11 @@ public class GUIController implements MouseListener, TreeSelectionListener
                 if (s == null || s.trim().isEmpty()) return;
                 s = _mvcModelRef.addVariable(s);
                 if (s.contains("Exception"))
-                    JOptionPane.showMessageDialog(null, "Input a correct variable. E.g. \"public int x = 8;\"");
-                _mvcViewRef.setStatus(s);
+                {
+                    JOptionPane.showMessageDialog(null, "Input a correct variable, e.g. \"public int x = 8;\"", "Error", JOptionPane.ERROR_MESSAGE);
+                    _mvcViewRef.setStatus(s);
+                }
+                else _mvcViewRef.setStatus("Everything is OK");
                 _mvcViewRef.refreshVariables(agent.getVariables());
             }
         });
@@ -163,7 +166,7 @@ public class GUIController implements MouseListener, TreeSelectionListener
             _item.addActionListener(new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (JOptionPane.showConfirmDialog(null, "Are you sure") > 0) return;
+                    if (JOptionPane.showConfirmDialog(null, "Are you sure") != JOptionPane.YES_OPTION) return;
                     _mvcViewRef.setStatus(_mvcModelRef.deleteVariable(cur));
                     _mvcViewRef.refreshVariables(agent.getVariables());
                 }
@@ -185,11 +188,16 @@ public class GUIController implements MouseListener, TreeSelectionListener
             public void actionPerformed(ActionEvent e) {
                 Collection<String> fids = agent.getFids();
                 if (fids.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "There are no functions. Add a function first");
+                    JOptionPane.showMessageDialog(null, "There are no functions. Add a function first", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                String fid = JOptionPane.showInputDialog(null, String.format("Input function name:\n%s", StringUtils.getElements(fids, ", ")));
+                String fid = JOptionPane.showInputDialog(null, String.format("Input function name:\n{ %s }", StringUtils.getElements(fids, ", ")));
                 if (fid == null || fid.trim().isEmpty()) return;
+                else if (!fids.contains(fid))
+                {
+                    JOptionPane.showMessageDialog(null, String.format("There is no such a function. Try to use the following:\n{ %s }", StringUtils.getElements(fids, ", ")), "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 String time = JOptionPane.showInputDialog(null, "Input the timestamp");
                 _mvcViewRef.setStatus(_mvcModelRef.addEvent(fid, time, null));
                 _mvcViewRef.refreshEvents(agent.getEvents());
@@ -211,7 +219,7 @@ public class GUIController implements MouseListener, TreeSelectionListener
             _item.addActionListener(new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (JOptionPane.showConfirmDialog(null, "Are you sure") > 0) return;
+                    if (JOptionPane.showConfirmDialog(null, "Are you sure") != JOptionPane.YES_OPTION) return;
                     _mvcViewRef.setStatus(_mvcModelRef.deleteEvent(cur.split(SPLIT_EVENT)[1], cur.split(SPLIT_EVENT)[0]));
                     _mvcViewRef.refreshEvents(agent.getEvents());
                 }
@@ -227,7 +235,7 @@ public class GUIController implements MouseListener, TreeSelectionListener
         if (agent == null) return null;
         if (_mvcViewRef.getFunctionText().trim().isEmpty())
         {
-            JOptionPane.showMessageDialog(null, "Please, input the function code below!");
+            JOptionPane.showMessageDialog(null, "Please, input the function code below! E.g.\n\npublic void go() {\n   ...\n}", "Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
         final String cur =  _mvcViewRef.getFidsListbox().getSelectedValue().toString();
@@ -236,8 +244,14 @@ public class GUIController implements MouseListener, TreeSelectionListener
         _item.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                _mvcViewRef.setStatus(_mvcModelRef.addFunction(_mvcViewRef.getFunctionText()));
-                _mvcViewRef.refreshEvents(agent.getFids());
+                String s = _mvcModelRef.addFunction(_mvcViewRef.getFunctionText());
+                if (s.contains("Exception"))
+                {
+                    JOptionPane.showMessageDialog(null, s, "Error", JOptionPane.ERROR_MESSAGE);
+                    _mvcViewRef.setStatus(s);
+                }
+                else _mvcViewRef.setStatus("Everything is OK");
+                _mvcViewRef.refreshFids(agent.getFids());
             }
         });
         _menu.add(_item);
@@ -248,7 +262,7 @@ public class GUIController implements MouseListener, TreeSelectionListener
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     _mvcViewRef.setStatus("Not implemented"); //TODO
-                    _mvcViewRef.refreshEvents(agent.getFids());
+                    _mvcViewRef.refreshFids(agent.getFids());
                 }
             });
             _menu.add(_item);
@@ -256,9 +270,9 @@ public class GUIController implements MouseListener, TreeSelectionListener
             _item.addActionListener(new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (JOptionPane.showConfirmDialog(null, "Are you sure") > 0) return;
+                    if (JOptionPane.showConfirmDialog(null, "Are you sure") != JOptionPane.YES_OPTION) return;
                     _mvcViewRef.setStatus(_mvcModelRef.deleteFunction(cur));
-                    _mvcViewRef.refreshEvents(agent.getFids());
+                    _mvcViewRef.refreshFids(agent.getFids());
                 }
             });
             _menu.add(_item);
@@ -292,7 +306,7 @@ public class GUIController implements MouseListener, TreeSelectionListener
             case "fids":
                 m = getFidsMenu();
                 if (m!=null)
-                    _menu.show(_mvcViewRef.getEventsListbox(), e.getX(), e.getY());
+                    _menu.show(_mvcViewRef.getFidsListbox(), e.getX(), e.getY());
                 break;
             default: throw new NoSuchElementException("gtd");
         }
