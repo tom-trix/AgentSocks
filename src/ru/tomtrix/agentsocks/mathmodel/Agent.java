@@ -80,7 +80,7 @@ public abstract class Agent implements IAgentProcessible
 	{
 		ClassStore.getInstance().removeMethods(_RAClassname, fid);
 		for (String s : _transformFunctions)
-			if (Arrays.asList(s.split("[( ]")).contains(fid))
+			if (Arrays.asList(s.split("[( ]")).contains(fid))        //TODO
 			{
 				_transformFunctions.remove(s);
 				_eventList.removeEventByFid(fid);
@@ -139,7 +139,8 @@ public abstract class Agent implements IAgentProcessible
 	@Override
 	public void loadCode() throws Exception
 	{
-		if (_RAClassname == null) throw new NullPointerException("Runtime assistant is NULL");
+		try { ClassStore.getInstance().addClass(_RAClassname, null, null); }
+        catch(Exception ignored) {}
         for (String s : _state)
 			ClassStore.getInstance().addField(_RAClassname, s);
 		for (String s : _transformFunctions)
@@ -218,12 +219,5 @@ public abstract class Agent implements IAgentProcessible
 	public void removeEvent(double timestamp)
 	{
 		_eventList.removeEvent(timestamp);
-	}
-
-	/** @param fid - fsr
-	 * @see ru.tomtrix.agentsocks.mathmodel.EventList#removeEventByFid(java.lang.String) */
-	public void removeEventByFid(String fid)
-	{
-		_eventList.removeEventByFid(fid);
 	}
 }

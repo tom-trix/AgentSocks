@@ -10,7 +10,7 @@ import ru.tomtrix.agentsocks.mathmodel.Agent;
 import ru.tomtrix.agentsocks.utils.StringUtils;
 
 /** fwer */
-public class GUIController implements MouseListener, TreeSelectionListener
+public class GUIController implements MouseListener, TreeSelectionListener, ListSelectionListener
 {
     public final transient static String SPLIT = " ";
     public final transient static String SPLIT_EVENT = ": ";
@@ -191,11 +191,11 @@ public class GUIController implements MouseListener, TreeSelectionListener
                     JOptionPane.showMessageDialog(null, "There are no functions. Add a function first", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                String fid = JOptionPane.showInputDialog(null, String.format("Input function name:\n{ %s }", StringUtils.getElements(fids, ", ")));
+                String fid = JOptionPane.showInputDialog(null, String.format("Input function name:\n{%s}", StringUtils.getElements(fids, ", ")));
                 if (fid == null || fid.trim().isEmpty()) return;
                 else if (!fids.contains(fid))
                 {
-                    JOptionPane.showMessageDialog(null, String.format("There is no such a function. Try to use the following:\n{ %s }", StringUtils.getElements(fids, ", ")), "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, String.format("There is no such a function. Try to use the following:\n{%s}", StringUtils.getElements(fids, ", ")), "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 String time = JOptionPane.showInputDialog(null, "Input the timestamp");
@@ -341,5 +341,11 @@ public class GUIController implements MouseListener, TreeSelectionListener
             _mvcViewRef.refreshEvents(ag.getEvents());
             _mvcViewRef.refreshFids(ag.getFids());
         }
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e)
+    {
+        _mvcViewRef.reloadFunctionText();
     }
 }

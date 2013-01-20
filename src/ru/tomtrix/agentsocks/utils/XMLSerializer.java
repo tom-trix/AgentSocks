@@ -7,6 +7,7 @@ import com.thoughtworks.xstream.io.xml.StaxDriver;
 /**
  *rwr3w
  */
+@SuppressWarnings("unused, unchecked")
 public class XMLSerializer<T>
 {
     private XStream _xstream = new XStream(new StaxDriver());

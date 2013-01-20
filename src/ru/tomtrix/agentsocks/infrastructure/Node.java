@@ -12,9 +12,7 @@ public class Node
 	/** fse */
 	private final Container	_container;
 	/** dawfse */
-	// JsonIgnore ОБЯЗАТЕЛЬНО!!! (Поскольку ссылка на себя должна назначаться в конструкторе Node)
 	private final Mail		_mail;
-	private final LocalMail	_localMail;
 	private final int		_rank;
 
 	/** fs */
@@ -23,7 +21,7 @@ public class Node
 		_rank = rank;
 		_container = new Container(Constants.DEFAULT_THREADS, rank);
 		_mail = isDebug ? null : new Mail(this);
-		_localMail = new LocalMail(this);
+		new LocalMail(this);
 	}
 
 	/** @return the _container */

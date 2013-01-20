@@ -6,7 +6,7 @@ package ru.tomtrix.agentsocks.mathmodel;
 public class DefaultAgent extends Agent
 {
 	/** djaopfjaoef
-	 * @param name
+	 * @param name agent name
 	 * @throws Exception */
 	public DefaultAgent(String name, String RAClassname) throws Exception
 	{

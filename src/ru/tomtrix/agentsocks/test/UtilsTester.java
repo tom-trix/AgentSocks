@@ -37,7 +37,7 @@ public class UtilsTester
 		}
 	}
 
-	/** Test method for {@link ru.tomtrix.agentsocks.utils.JsonSerializer}
+	/** Test method for {@link ru.tomtrix.agentsocks.utils.XMLSerializer}
 	 * @throws Exception
 	 */
 	@Test

@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import ru.tomtrix.agentsocks.mathmodel.*;
 import ru.tomtrix.agentsocks.infrastructure.*;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 /** jfsofeos
@@ -414,18 +415,26 @@ public class MVCModel implements ConsoleUIListener
 		}
 	}
 
+    /** hcfseaio */
+    public String exit()
+    {
+        if (_cuiRef != null) _cuiRef.stop();
+        return "Bye!";
+    }
+
+    public String getFunctionByFid(String fid)
+    {
+        for (String s : _pa.agent.getTransformFunctions())
+            if (Arrays.asList(s.split("[( ]")).contains(fid))   //TODO
+                return s;
+        return null;
+    }
+
     public Agent getCurrentAgent()
     {
         if (_pa == null) return null;
         return _pa.agent;
     }
-
-	/** hcfseaio */
-	public String exit()
-	{
-		if (_cuiRef != null) _cuiRef.stop();
-		return "Bye!";
-	}
 
 	@Override
 	public void setConsoleUI(ConsoleUI cui)

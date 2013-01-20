@@ -2,14 +2,15 @@ package ru.tomtrix.agentsocks.modeleditor;
 
 
 import java.awt.*;
+import java.util.*;
+import java.io.File;
 import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.tree.*;
-import java.util.*;
-
 import org.apache.log4j.Logger;
 import ru.tomtrix.agentsocks.mathmodel.Agent;
 import ru.tomtrix.agentsocks.infrastructure.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * few
@@ -26,8 +27,6 @@ public class GraphicUI extends JFrame
     private final JList<String> _events = new JList<>(new String[] {"<No events>"});
     private final JList<String> _fids = new JList<>(new String[] {"<No fids>"});
     private final JTextArea _functionBox = new JTextArea();
-
-    private String _lastTreeNode;
 
     public GraphicUI(MVCModel model)
     {
@@ -64,7 +63,7 @@ public class GraphicUI extends JFrame
         {
             Model model = _mvcModelRef.get_model();
             if (model==null) return;
-            _lastTreeNode = _tree.getLastSelectedPathComponent().toString();
+            String _lastTreeNode = _tree.getLastSelectedPathComponent().toString();
             DefaultTreeModel tm = (DefaultTreeModel)_tree.getModel();
             DefaultMutableTreeNode root = (DefaultMutableTreeNode) tm.getRoot();
             root.removeAllChildren();
@@ -105,42 +104,31 @@ public class GraphicUI extends JFrame
         _tree.setPreferredSize(new Dimension(200, 0));
         _tree.setBorder(BorderFactory.createTitledBorder("Model structure"));
 
-        // fids
-        _fids.setBorder(BorderFactory.createTitledBorder("Function identificators"));
+        // function textbox
+        _functionBox.setBorder(BorderFactory.createTitledBorder("Function definition"));
 
         // status bar
         _statusBar.setBackground(Color.lightGray);
         _statusBar.setDisabledTextColor(Color.black);
         _statusBar.setEnabled(false);
 
-        // splitContainer 1
-        _split1.setBottomComponent(new JScrollPane(_functionBox));
-        _split1.setTopComponent(new JScrollPane(_fids));
-        _split1.setDividerLocation(100);
-
-        // splitContainer 2
-        _split2.setBottomComponent(new JScrollPane(_events));
-        _split2.setTopComponent(new JScrollPane(_variables));
-        _split2.setDividerLocation(120);
-
         // fids listbox
         _fids.setName("fids");
         _fids.setSelectedIndex(0);
         _fids.addMouseListener(controller);
+        _fids.addListSelectionListener(controller);
         _fids.setBorder(BorderFactory.createTitledBorder("Function identificators"));
 
         // variables listbox
-        _variables.setName("variables");
         _variables.setSelectedIndex(0);
+        _variables.setName("variables");
         _variables.addMouseListener(controller);
-        _variables.setPreferredSize(new Dimension(200, 0));
         _variables.setBorder(BorderFactory.createTitledBorder("Variables"));
 
         // events listbox
         _events.setName("events");
         _events.setSelectedIndex(0);
         _events.addMouseListener(controller);
-        _events.setPreferredSize(new Dimension(200, 0));
         _events.setBorder(BorderFactory.createTitledBorder("Events"));
 
         // menu
@@ -149,14 +137,25 @@ public class GraphicUI extends JFrame
         load.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "fes");
+                JFileChooser fch = new JFileChooser(System.getProperty("user.dir"));
+                fch.setFileFilter(new FileNameExtensionFilter("Model files (*xml, *txt)", "xml", "txt"));
+                if (fch.showOpenDialog(null) != JFileChooser.APPROVE_OPTION) return;
+                _mvcModelRef.loadModel(fch.getSelectedFile().getName());
+                rebuildTreeByModel();
             }
         });
         JMenuItem save = new JMenuItem("Save model");
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "fes");
+                JFileChooser fch = new JFileChooser(System.getProperty("user.dir"));
+                fch.setFileFilter(new FileNameExtensionFilter("Model files (*xml, *txt)", "xml", "txt"));
+                fch.setSelectedFile(new File(_mvcModelRef.get_model().get_name() + ".xml"));
+                if (fch.showSaveDialog(null) != JFileChooser.APPROVE_OPTION) return;
+                String filename = fch.getSelectedFile().getName().trim();
+                if (!filename.toLowerCase().endsWith(".xml"))
+                    filename += ".xml";
+                _mvcModelRef.saveModel(filename);
             }
         });
         JMenuItem exit = new JMenuItem("Exit");
@@ -172,6 +171,19 @@ public class GraphicUI extends JFrame
         file.add(exit);
         _menu.add(file);
 
+        // splitContainer 1
+        _split1.setBottomComponent(new JScrollPane(_functionBox));
+        _split1.setTopComponent(new JScrollPane(_fids));
+        _split1.setDividerLocation(100);
+
+        // splitContainer 2
+        _split2.setBottomComponent(new JScrollPane(_events));
+        _split2.setTopComponent(new JScrollPane(_variables));
+        _split2.setDividerLocation(120);
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setPreferredSize(new Dimension(200, 0));
+        panel.add(_split2);
+
         // form
         setSize(900, 400);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -179,7 +191,7 @@ public class GraphicUI extends JFrame
         try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
         catch (Exception ignore) {}
         setJMenuBar(_menu);
-        getContentPane().add(_split2, BorderLayout.EAST);
+        getContentPane().add(panel, BorderLayout.EAST);
         getContentPane().add(_split1, BorderLayout.CENTER);
         getContentPane().add(_statusBar, BorderLayout.SOUTH);
         getContentPane().add(new JScrollPane(_tree), BorderLayout.WEST);
@@ -195,21 +207,31 @@ public class GraphicUI extends JFrame
     {
         _variables.removeAll();
         _variables.setListData(vars==null || vars.isEmpty() ? new String[] {"<No variables>"} : vars.toArray(new String[vars.size()]));
-        _variables.setSelectedIndex(0);
+        if (_variables.isSelectionEmpty())
+            _variables.setSelectedIndex(0);
     }
 
     public void refreshEvents(Collection<String> events)
     {
         _events.removeAll();
         _events.setListData(events==null || events.isEmpty() ? new String[] {"<No events>"} : events.toArray(new String[events.size()]));
-        _events.setSelectedIndex(0);
+        if (_events.isSelectionEmpty())
+            _events.setSelectedIndex(0);
     }
 
     public void refreshFids(Collection<String> fids)
     {
         _fids.removeAll();
         _fids.setListData(fids==null || fids.isEmpty() ? new String[] {"<No fids>"} : fids.toArray(new String[fids.size()]));
-        _fids.setSelectedIndex(0);
+        if (_fids.isSelectionEmpty())
+            _fids.setSelectedIndex(0);
+    }
+
+    public void reloadFunctionText()
+    {
+        String fid = _fids.getSelectedValue();
+        if (fid==null) return;
+        _functionBox.setText(fid.startsWith("<") ? "" : _mvcModelRef.getFunctionByFid(fid));
     }
 
     public JTree getTree()
