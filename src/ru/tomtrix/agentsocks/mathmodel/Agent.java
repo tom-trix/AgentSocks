@@ -22,7 +22,7 @@ public abstract class Agent implements IAgentProcessible
 	/** list of events */
 	private final EventList		_eventList			= new EventList();
 	/** name of runtime class that corresponds to an agent */
-	private final String		_RAClassname;
+	protected final String		_RAClassname;
 	/** runtime assistant */
 	private Object				_runtimeAssistant;
 
