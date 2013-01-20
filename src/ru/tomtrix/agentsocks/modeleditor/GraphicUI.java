@@ -5,7 +5,8 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.tree.*;
-import java.util.Enumeration;
+import java.util.*;
+
 import org.apache.log4j.Logger;
 import ru.tomtrix.agentsocks.mathmodel.Agent;
 import ru.tomtrix.agentsocks.infrastructure.*;
@@ -15,7 +16,7 @@ import ru.tomtrix.agentsocks.infrastructure.*;
  */
 public class GraphicUI extends JFrame
 {
-    private final MVCModel _mvcModel;
+    private final MVCModel _mvcModelRef;
     private final JTextField _statusBar = new JTextField();
     private final JMenuBar _menu = new JMenuBar();
     private final JTree _tree = new JTree(new DefaultMutableTreeNode("<Right-click here>"));
@@ -26,11 +27,13 @@ public class GraphicUI extends JFrame
     private final JList<String> _fids = new JList<>(new String[] {"<No functions>"});
     private final JTextArea _functionBox = new JTextArea();
 
+    private String _lastTreeNode;
+
     public GraphicUI(MVCModel model)
     {
         super("Model Editor");
         if (model==null) throw new NullPointerException("gdr");
-        _mvcModel = model;
+        _mvcModelRef = model;
     }
 
     private static void expandAll(JTree tree, TreePath parent, boolean expand)
@@ -45,10 +48,10 @@ public class GraphicUI extends JFrame
             tree.collapsePath(parent);
     }
 
-    private static void selectNode(JTree tree, TreePath parent, TreeNode node)
+    private static void selectNode(JTree tree, TreePath parent, String node)
     {
         TreeNode n = (TreeNode) parent.getLastPathComponent();
-        if (n.toString().equals(node.toString()))
+        if (n.toString().equals(node))
             tree.setSelectionPath(parent);
         else if (n.getChildCount() >= 0)
             for (Enumeration e=n.children(); e.hasMoreElements();)
@@ -59,9 +62,9 @@ public class GraphicUI extends JFrame
     {
         try
         {
-            Model model = _mvcModel.get_model();
+            Model model = _mvcModelRef.get_model();
             if (model==null) return;
-            DefaultMutableTreeNode lastnode = (DefaultMutableTreeNode) _tree.getLastSelectedPathComponent();
+            _lastTreeNode = _tree.getLastSelectedPathComponent().toString();
             DefaultTreeModel tm = (DefaultTreeModel)_tree.getModel();
             DefaultMutableTreeNode root = (DefaultMutableTreeNode) tm.getRoot();
             root.removeAllChildren();
@@ -80,7 +83,8 @@ public class GraphicUI extends JFrame
             }
             tm.reload();            //на эту херотень я потратил 3,5 часа!!!
             expandAll(_tree, new TreePath(root), true);
-            selectNode(_tree, new TreePath(root), lastnode);
+            selectNode(_tree, new TreePath(root), _lastTreeNode);
+            if (_tree.getSelectionCount()==0) _tree.setSelectionRow(0);
         }
         catch (IllegalAccessException e)
         {
@@ -90,7 +94,7 @@ public class GraphicUI extends JFrame
 
     public void run()
     {
-        GUIController controller = new GUIController(_mvcModel, this);
+        GUIController controller = new GUIController(_mvcModelRef, this);
 
         // tree
         rebuildTreeByModel();
@@ -173,18 +177,25 @@ public class GraphicUI extends JFrame
         _statusBar.setText(s);
     }
 
-    public void refreshVariables()
+    public void refreshVariables(Collection<String> vars)
     {
         _variables.removeAll();
-        _variables.setListData(new String[] {"<No variables>"}); //TODO
+        _variables.setListData(vars==null || vars.isEmpty() ? new String[] {"<No variables>"} : vars.toArray(new String[vars.size()]));
         _variables.setSelectedIndex(0);
     }
 
-    public void refreshEvents()
+    public void refreshEvents(Collection<String> events)
     {
         _events.removeAll();
-        _events.setListData(new String[] {"<No events>"});    //TODO
+        _events.setListData(events==null || events.isEmpty() ? new String[] {"<No events>"} : events.toArray(new String[events.size()]));
         _events.setSelectedIndex(0);
+    }
+
+    public void refreshFids(Collection<String> fids)
+    {
+        _fids.removeAll();
+        _fids.setListData(fids==null || fids.isEmpty() ? new String[] {"<No fids>"} : fids.toArray(new String[fids.size()]));
+        _fids.setSelectedIndex(0);
     }
 
     public JTree getTree()
@@ -200,5 +211,15 @@ public class GraphicUI extends JFrame
     public JList getEventsListbox()
     {
         return _events;
+    }
+
+    public JList getFidsListbox()
+    {
+        return _fids;
+    }
+
+    public String getFunctionText()
+    {
+        return _functionBox.getText();
     }
 }

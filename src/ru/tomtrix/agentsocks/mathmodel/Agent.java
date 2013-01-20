@@ -115,6 +115,27 @@ public abstract class Agent implements IAgentProcessible
 		return new LinkedList<>(_transformFunctions);
 	}
 
+    /** @return fnasiojo */
+    public Collection<String> getVariables()
+    {
+        return ClassStore.getInstance().getFields(_RAClassname);
+    }
+
+    /** @return fnasiojo */
+    public Collection<String> getEvents()
+    {
+        Collection<String> result = new PriorityQueue<>();
+        for (Entry<Double, String> e : _eventList.getEventsInfo().entrySet())
+            result.add(String.format("%.2f: %s", e.getKey(), e.getValue()));
+        return result;
+    }
+
+    /** @return fnasiojo */
+    public Collection<String> getFids()
+    {
+        return ClassStore.getInstance().getMethods(_RAClassname);
+    }
+
 	@Override
 	public void loadCode() throws Exception
 	{

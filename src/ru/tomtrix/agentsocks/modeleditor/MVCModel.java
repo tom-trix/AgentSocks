@@ -420,16 +420,6 @@ public class MVCModel implements ConsoleUIListener
         return _pa.agent;
     }
 
-    public Collection<String> getVariables()
-    {
-        return null;
-    }
-
-    public Collection<String> getFunctions()
-    {
-        return null;
-    }
-
 	/** hcfseaio */
 	public String exit()
 	{
