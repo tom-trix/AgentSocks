@@ -20,7 +20,7 @@ public class ProductionAgent extends Agent
     public ProductionAgent(String name, String RAClassname) throws Exception
     {
         super(name, RAClassname);
-        super.addVariable("public Core _core = new AgentProductionCore();");
+        super.addVariable("public Core _core = new AgentProductionCore(this);");
         super.addVariable("public RuleSet _ruleset = new RuleSet();");
     }
 
@@ -64,10 +64,10 @@ public class ProductionAgent extends Agent
         super.addFunction(String.format("public void testConsulting() {\n    System.out.println(_core.startConsulting(_%s, _ruleset));\n}", goal));
     }
 
-    public void addVariable(String s) throws Exception
+    public void addVariable(String s, VariableType type) throws Exception
     {
         if (s == null || s.isEmpty()) throw new NullPointerException("Empty code");
-        super.addVariable(String.format("Variable _%s = new Variable(\"%s\", VariableType.INFERRIBLE);", s, s));
+        super.addVariable(String.format("Variable _%s = new Variable(\"%s\", VariableType.%s);", s, s, type));
         _initCode.add(_initCode.size()-1, String.format("_core.addVariable(_%s);\n", s));
     }
 

@@ -16,6 +16,7 @@ import ru.tomtrix.agentsocks.infrastructure.Model;
 import ru.tomtrix.agentsocks.mathmodel.ProductionAgent;
 import ru.tomtrix.productions.RuleSet;
 import ru.tomtrix.productions.Variable;
+import ru.tomtrix.productions.VariableType;
 import ru.tomtrix.productions.core.ConsoleCore;
 
 /** cfasfseespok
@@ -56,20 +57,22 @@ public class Starter
                     break;
                 case "-test":
                     ProductionAgent agent = new ProductionAgent("Trix", "Trix");
-                    agent.addVariable("money");
-                    agent.addVariable("goal");
-                    agent.addRule("R1", Arrays.asList("money", "money"), Arrays.asList(EQUALS, EQUALS), Arrays.asList("1", "2"), Arrays.asList(OR), "goal", "Ура!!!");
+                    agent.addVariable("money", VariableType.INFERRIBLE);
+                    agent.addVariable("goal", VariableType.INFERRIBLE);
+                    agent.addVariable("colour", VariableType.ASKABLE);
+                    agent.addVariable("public String colour = \"blue\";");
+                    agent.addRule("R1", Arrays.asList("money", "colour"), Arrays.asList(EQUALS, EQUALS), Arrays.asList("1", "blue"), Arrays.asList(OR), "goal", "Ура!!!");
                     agent.initializeVariable("money", "2");
                     agent.addTestConsulting("goal");
                     agent.addEvent(0, "initialize");
                     agent.addEvent(1, "testConsulting");
-                    /*Model m = new Model("Debug");
+                    Model m = new Model("Debug");
                     m.addNode();
                     m.getNodeByNumber(0).get_container().addLogicProcess("Hed");
                     m.getNodeByNumber(0).get_container().getProcessByName("Hed").addAgent(agent);
-                    new XMLSerializer<Model>().serializeToFile(m, "model.xml");*/
-                    Model m = new XMLSerializer<Model>().deserializeFromFile("model.xml");
-                    m.loadCode();
+                    new XMLSerializer<Model>().serializeToFile(m, "model.xml");
+                    /*Model m = new XMLSerializer<Model>().deserializeFromFile("model.xml");
+                    m.loadCode();*/
                     m.compileAgents();
                     m.getNodeByNumber(0).run();
                     break;
@@ -103,20 +106,10 @@ public class Starter
 
             // run the specific node
             _modelRef.getNodeByNumber(MPI.COMM_WORLD.Rank()).run();*/
-            ProductionAgent agent = new ProductionAgent("Trix", "Trix");
-            agent.addEvent(0, "initialize");
-            agent.addVariable("money");
-            agent.addVariable("goal");
-            agent.addRule("R1", Arrays.asList("money", "money"), Arrays.asList(EQUALS, EQUALS), Arrays.asList("1", "2"), Arrays.asList(OR), "goal", "Ура!!!");
-            agent.initializeVariable("money", "2");
-            agent.addTestConsulting("goal");
-            Model m = new Model("Debug");
-            agent.addEvent(1, "testConsulting");
-            m.addNode();
-            m.getNodeByNumber(0).get_container().addLogicProcess("Hed");
-            m.getNodeByNumber(0).get_container().getProcessByName("Hed").addAgent(agent);
+            Model m = new XMLSerializer<Model>().deserializeFromFile("model.xml");
+            m.loadCode();
             m.compileAgents();
-            m.getNodeByNumber(0).run();
+            m.getNodeByNumber(MPI.COMM_WORLD.Rank()).run();
 
             // finalize MPI
             MPI.Finalize();
