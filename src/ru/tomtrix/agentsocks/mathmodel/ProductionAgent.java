@@ -2,11 +2,7 @@ package ru.tomtrix.agentsocks.mathmodel;
 
 import java.util.*;
 import ru.tomtrix.productions.*;
-import ru.tomtrix.productions.core.*;
-import ru.tomtrix.javassistwraper.ClassStore;
 import ru.tomtrix.agentsocks.utils.StringUtils;
-import ru.tomtrix.agentsocks.AgentProductionCore;
-
 
 /**
  * dw
@@ -24,16 +20,8 @@ public class ProductionAgent extends Agent
     public ProductionAgent(String name, String RAClassname) throws Exception
     {
         super(name, RAClassname);
-        ClassStore.getInstance().addClassPath(ConsoleCore.class);
-        ClassStore.getInstance().addClassPath(RuleSet.class);
-        ClassStore.getInstance().addClassPath(Variable.class);
-        ClassStore.getInstance().addClassPath(AgentProductionCore.class);
-        ClassStore.getInstance().addImport(ConsoleCore.class.getPackage().getName());
-        ClassStore.getInstance().addImport(RuleSet.class.getPackage().getName());
-        ClassStore.getInstance().addImport(Variable.class.getPackage().getName());
-        ClassStore.getInstance().addImport(AgentProductionCore.class.getPackage().getName());
-        ClassStore.getInstance().addField(RAClassname, "public Core _core = new AgentProductionCore();");
-        ClassStore.getInstance().addField(RAClassname, "public RuleSet _ruleset = new RuleSet();");
+        super.addVariable("public Core _core = new AgentProductionCore();");
+        super.addVariable("public RuleSet _ruleset = new RuleSet();");
     }
 
     /**
@@ -73,19 +61,19 @@ public class ProductionAgent extends Agent
      */
     public void addTestConsulting(String goal) throws Exception
     {
-        ClassStore.getInstance().addMethod(_RAClassname, String.format("public void testConsulting() {\n    System.out.println(_core.startConsulting(_%s, _ruleset));\n}", goal));
+        super.addFunction(String.format("public void testConsulting() {\n    System.out.println(_core.startConsulting(_%s, _ruleset));\n}", goal));
     }
 
     public void addVariable(String s) throws Exception
     {
         if (s == null || s.isEmpty()) throw new NullPointerException("Empty code");
-        ClassStore.getInstance().addField(_RAClassname, String.format("Variable _%s = new Variable(\"%s\", VariableType.INFERRIBLE);", s, s));
+        super.addVariable(String.format("Variable _%s = new Variable(\"%s\", VariableType.INFERRIBLE);", s, s));
         _initCode.add(_initCode.size()-1, String.format("_core.addVariable(_%s);\n", s));
     }
 
     public void compileAgents() throws Exception
     {
-        ClassStore.getInstance().addMethod(_RAClassname, StringUtils.getElements(_initCode, "\n"));
+        super.addFunction(StringUtils.getElements(_initCode, "\n"));
         super.compileAgents();
     }
 }
