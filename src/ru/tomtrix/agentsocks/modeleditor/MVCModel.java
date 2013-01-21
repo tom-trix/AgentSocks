@@ -1,13 +1,12 @@
 package ru.tomtrix.agentsocks.modeleditor;
 
-import ru.tomtrix.agentsocks.utils.XMLSerializer;
+import java.util.Arrays;
 import ru.tomtrix.consoleui.*;
 import org.apache.log4j.Logger;
 import ru.tomtrix.agentsocks.mathmodel.*;
+import ru.tomtrix.productions.VariableType;
 import ru.tomtrix.agentsocks.infrastructure.*;
-
-import java.util.Arrays;
-import java.util.Collection;
+import ru.tomtrix.agentsocks.utils.XMLSerializer;
 
 /** jfsofeos
  * @author tom-trix */
@@ -207,19 +206,11 @@ public class MVCModel implements ConsoleUIListener
 	 * @param process gdth
 	 * @param rank frg
 	 * @return efs */
-	public String createAgent(String name, String process, String rank)
+	public String createDefaultAgent(String name, String process, String rank)
 	{
 		try
 		{
-			// push greeting
-			if (_pa != null && _pa.agent != null && _cuiRef != null) _cuiRef.pop_greeting();
-			if (_cuiRef != null)
-                _cuiRef.push_greeting(name);
-			// create new agent and "_pa" instance
-			_pa = new ProcessAndAgent(_model.getNodeByNumber(Integer.parseInt(rank)).get_container().getProcessByName(process), new DefaultAgent(name, name));
-			_pa.process.addAgent(_pa.agent);
-			//return
-			return String.format("OK. Agent \"%s\" has been created.\nNow it is currently used", name);
+            return createAgent(name, process, rank, true);
 		}
 		catch (Exception e)
 		{
@@ -227,6 +218,24 @@ public class MVCModel implements ConsoleUIListener
 			return e.toString();
 		}
 	}
+
+    /** uafopjafo
+     * @param name frsegr
+     * @param process gdth
+     * @param rank frg
+     * @return efs */
+    public String createProductionAgent(String name, String process, String rank)
+    {
+        try
+        {
+            return createAgent(name, process, rank, false);
+        }
+        catch (Exception e)
+        {
+            Logger.getLogger(getClass()).error(ERROR_STR, e);
+            return e.toString();
+        }
+    }
 
 	/** faseoifeo
 	 * @param name grse
@@ -328,6 +337,26 @@ public class MVCModel implements ConsoleUIListener
 		}
 	}
 
+    /**
+     * fgregthhyr
+     * @param code gferge
+     * @param type greh
+     * @return vgnsn
+     */
+    public String addVariable(String code, String type)
+    {
+        try
+        {
+            ((ProductionAgent)_pa.agent).addVariable(code, VariableType.valueOf(type));
+            return String.format("OK. Agent \"%s\" has got the definition changed:\n%s", _pa.agent.get_name(), _pa.agent);
+        }
+        catch (Exception e)
+        {
+            Logger.getLogger(getClass()).error(ERROR_STR, e);
+            return e.toString();
+        }
+    }
+
 	/** ohfsiohabif
 	 * @param var fsefs
 	 * @return few */
@@ -422,10 +451,31 @@ public class MVCModel implements ConsoleUIListener
         return "Bye!";
     }
 
+    public String createAgent(String name, String process, String rank, boolean isDefault) throws Exception
+    {
+        // push greeting
+        if (_pa != null && _pa.agent != null && _cuiRef != null) _cuiRef.pop_greeting();
+        if (_cuiRef != null)
+            _cuiRef.push_greeting(name);
+        // create new agent and "_pa" instance
+        _pa = new ProcessAndAgent(_model.getNodeByNumber(Integer.parseInt(rank)).get_container().getProcessByName(process), isDefault ? new DefaultAgent(name, name) : new ProductionAgent(name, name));
+        _pa.process.addAgent(_pa.agent);
+        //return
+        return String.format("OK. Agent \"%s\" has been created.\nNow it is currently used", name);
+    }
+
     public String getFunctionByFid(String fid)
     {
         for (String s : _pa.agent.getTransformFunctions())
             if (Arrays.asList(s.split("[( ]")).contains(fid))   //TODO
+                return s;
+        return null;
+    }
+
+    public String getVariableDefinition(String var)
+    {
+        for (String s : _pa.agent.getState())
+            if (Arrays.asList(s.split("[;= ]")).contains(var)) //TODO
                 return s;
         return null;
     }

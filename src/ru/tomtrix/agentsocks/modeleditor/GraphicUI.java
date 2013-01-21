@@ -10,6 +10,7 @@ import javax.swing.tree.*;
 import org.apache.log4j.Logger;
 import ru.tomtrix.agentsocks.mathmodel.Agent;
 import ru.tomtrix.agentsocks.infrastructure.*;
+
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -27,6 +28,7 @@ public class GraphicUI extends JFrame
     private final JList<String> _events = new JList<>(new String[] {"<No events>"});
     private final JList<String> _fids = new JList<>(new String[] {"<No fids>"});
     private final JTextArea _functionBox = new JTextArea();
+    private final JList<String> _rules = new JList<>(new String[] {"<No rules>"});
 
     public GraphicUI(MVCModel model)
     {
@@ -123,6 +125,7 @@ public class GraphicUI extends JFrame
         _variables.setSelectedIndex(0);
         _variables.setName("variables");
         _variables.addMouseListener(controller);
+        _variables.addListSelectionListener(controller);
         _variables.setBorder(BorderFactory.createTitledBorder("Variables"));
 
         // events listbox
@@ -130,6 +133,11 @@ public class GraphicUI extends JFrame
         _events.setSelectedIndex(0);
         _events.addMouseListener(controller);
         _events.setBorder(BorderFactory.createTitledBorder("Events"));
+
+        // rules listbox
+        _rules.setName("rules");
+        _rules.setSelectedIndex(0);
+        _rules.addMouseListener(controller);
 
         // menu
         JMenu file = new JMenu("File");
@@ -186,6 +194,7 @@ public class GraphicUI extends JFrame
 
         // form
         setSize(900, 400);
+        setMinimumSize(new Dimension(600, 300));
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
@@ -227,11 +236,26 @@ public class GraphicUI extends JFrame
             _fids.setSelectedIndex(0);
     }
 
+    public void refreshRules(Collection<String> rules)
+    {
+        _rules.removeAll();
+        _rules.setListData(rules==null || rules.isEmpty() ? new String[] {"<No rules>"} : rules.toArray(new String[rules.size()]));
+        if (_rules.isSelectionEmpty())
+            _rules.setSelectedIndex(0);
+    }
+
     public void reloadFunctionText()
     {
         String fid = _fids.getSelectedValue();
         if (fid==null) return;
         _functionBox.setText(fid.startsWith("<") ? "" : _mvcModelRef.getFunctionByFid(fid));
+    }
+
+    public void reloadVariableDefinition()
+    {
+        String var = _variables.getSelectedValue();
+        if (var==null) return;
+        _statusBar.setText(var.startsWith("<") ? "" : _mvcModelRef.getVariableDefinition(var));
     }
 
     public JTree getTree()
@@ -244,14 +268,19 @@ public class GraphicUI extends JFrame
         return _variables;
     }
 
-    public JList getEventsListbox()
+    public JList<String> getEventsListbox()
     {
         return _events;
     }
 
-    public JList getFidsListbox()
+    public JList<String> getFidsListbox()
     {
         return _fids;
+    }
+
+    public JList<String> getRulesTextbox()
+    {
+        return _rules;
     }
 
     public String getFunctionText()

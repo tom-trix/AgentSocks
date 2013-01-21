@@ -64,7 +64,6 @@ public class Starter
                     agent.addRule("R1", Arrays.asList("money", "colour"), Arrays.asList(EQUALS, EQUALS), Arrays.asList("1", "blue"), Arrays.asList(OR), "goal", "Ура!!!");
                     agent.initializeVariable("money", "2");
                     agent.addTestConsulting("goal");
-                    agent.addEvent(0, "initialize");
                     agent.addEvent(1, "testConsulting");
                     Model m = new Model("Debug");
                     m.addNode();
@@ -96,20 +95,16 @@ public class Starter
                 Logger.getLogger(Starter.class).error("\nBe careful!!! This program MUST be loaded within MPI-software! e.g.\n - Linux:   $MPJ_HOME/bin/mpjrun.sh -np 2 -jar agentsocks.jar\n - Windows: %MPJ_HOME%\\bin\\mpjrun.exe -np 2 -jar agentsocks.jar\n\nP.S. You're also able to run the program in an editor mode (add \"-console\" or \"-gui\" argument)\n", e);
             }
 
-            /*// load the model
-            Model _modelRef = new XMLSerializer<Model>().deserializeFromFile(Constants.MODEL_FILENAME);
+            // load the model
+            Model model = new XMLSerializer<Model>().deserializeFromFile(Constants.MODEL_FILENAME);
 
             // compile the agents within runtime classes
-            _modelRef.loadCode();
-            _modelRef.compileAgents();
+            model.loadCode();
+            model.compileAgents();
             Logger.getLogger(Starter.class).info(String.format("Node %d is ready to start", MPI.COMM_WORLD.Rank()));
 
             // run the specific node
-            _modelRef.getNodeByNumber(MPI.COMM_WORLD.Rank()).run();*/
-            Model m = new XMLSerializer<Model>().deserializeFromFile("model.xml");
-            m.loadCode();
-            m.compileAgents();
-            m.getNodeByNumber(MPI.COMM_WORLD.Rank()).run();
+            model.getNodeByNumber(MPI.COMM_WORLD.Rank()).run();
 
             // finalize MPI
             MPI.Finalize();

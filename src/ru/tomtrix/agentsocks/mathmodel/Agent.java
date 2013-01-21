@@ -65,7 +65,7 @@ public abstract class Agent implements IAgentProcessible
 	{
 		ClassStore.getInstance().removeField(_RAClassname, variable);
 		for (String s : _state)
-			if (Arrays.asList(s.split("[= ]")).contains(variable))
+			if (Arrays.asList(s.split("[;= ]")).contains(variable)) //TODO
 			{
 				_state.remove(s);
 				return;

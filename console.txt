@@ -19,7 +19,9 @@ moveProcess
 delete *process (.*) from (.*)
 deleteProcess
 create *agent (.*) in (.*) on (.*)
-createAgent
+createDefaultAgent
+create *production *agent (.*) in (.*) on (.*)
+createProductionAgent
 use *agent (.*) in (.*) on (.*)
 useAgent
 rename *agent *into (.*)
