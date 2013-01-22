@@ -11,4 +11,4 @@
     Linux: $MPJ_HOME/bin/mpjrun.sh -np 2 -jar agentsocks.jar
 
 P.S. -np = count of nodes
-P.P.S. to launch the application in the editor mode open the command shell, change directory to your working folder and run "java -jar agentsocks.jar -editor"
+P.P.S. to launch the application in the editor mode open the command shell, change directory to your working folder and run "java -jar agentsocks.jar -gui" or "java -jar agentsocks.jar -console"

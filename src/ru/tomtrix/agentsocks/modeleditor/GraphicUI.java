@@ -156,6 +156,7 @@ public class GraphicUI extends JFrame
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (_mvcModelRef.get_model() == null) return;
                 JFileChooser fch = new JFileChooser(System.getProperty("user.dir"));
                 fch.setFileFilter(new FileNameExtensionFilter("Model files (*xml, *txt)", "xml", "txt"));
                 fch.setSelectedFile(new File(_mvcModelRef.get_model().get_name() + ".xml"));

@@ -4,9 +4,6 @@ import org.apache.log4j.Logger;
 import ru.tomtrix.productions.Variable;
 import ru.tomtrix.productions.core.Core;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
 /**
  * fesgrht
  */
@@ -30,7 +27,7 @@ public class AgentProductionCore extends Core
         {
             return _runtimeAssistantRef.getClass().getField(variable.toString()).get(_runtimeAssistantRef).toString();
         }
-        catch (Exception e) { Logger.getLogger(getClass()).error("Cannot extract the value from the Runtime Assistant", e); }
+        catch (Exception e) { Logger.getLogger(getClass()).error(String.format("Cannot extract the value from the Runtime Assistant [%s]", variable), e); }
         return null;
     }
 }

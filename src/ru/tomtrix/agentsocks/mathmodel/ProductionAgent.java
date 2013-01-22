@@ -1,6 +1,8 @@
 package ru.tomtrix.agentsocks.mathmodel;
 
 import java.util.*;
+
+import javassist.NotFoundException;
 import ru.tomtrix.productions.*;
 import ru.tomtrix.agentsocks.utils.StringUtils;
 
@@ -12,7 +14,7 @@ import javax.management.openmbean.KeyAlreadyExistsException;
 public class ProductionAgent extends Agent
 {
     /** fs */
-    private List<String> _initCode = new ArrayList<>(Arrays.asList("public void initialize() throws Exception {", "Condition cond;", "}"));
+    private List<String> _initCode = new ArrayList<>(Arrays.asList("public void initialize() throws Exception {", "    Condition cond;\n", "}"));
 
     /** fs */
     private List<String> _ruleTexts = new LinkedList<>();
@@ -34,7 +36,7 @@ public class ProductionAgent extends Agent
     {
         if (s == null || s.isEmpty()) throw new NullPointerException("Empty code");
         super.addVariable(String.format("Variable _%s = new Variable(\"%s\", VariableType.%s);", s, s, type));
-        _initCode.add(_initCode.size()-1, String.format("    _core.addVariable(_%s);\n", s));
+        _initCode.add(2, String.format("    _core.addVariable(_%s);\n", s));
     }
 
     /**
@@ -68,10 +70,10 @@ public class ProductionAgent extends Agent
         _initCode.add(_initCode.size() - 1, String.format("    cond = new Condition(new Operand(_%s, Inequality.%s, \"%s\", _core));", variables.get(0), signs.get(0), values.get(0)));
         for (int i=1; i<variables.size(); i++)
             _initCode.add(_initCode.size()-1, String.format("    cond.addOperand(Operation.%s, new Operand(_%s, Inequality.%s, \"%s\", _core));", operations.get(i-1), variables.get(i), signs.get(i), values.get(i)));
-        _initCode.add(_initCode.size()-1, String.format("    _ruleset.addRule(new Rule(\"%s\", cond, _%s, \"%s\", _core));\n", name, resultVariable, resultValue));
+        _initCode.add(_initCode.size()-1, String.format("    _ruleset.addRule(new Rule(\"%s\", cond, _%s, \"%s\", _core));\n", name.trim(), resultVariable, resultValue));
 
         // save the text into the list
-        StringBuilder sb = new StringBuilder(name).append(": IF (").append(variables.get(0)).append(signs.get(0)==Inequality.EQUALS ? "==\"" : "!=\"").append(values.get(0)).append("\"");
+        StringBuilder sb = new StringBuilder(name.trim()).append(": IF (").append(variables.get(0)).append(signs.get(0)==Inequality.EQUALS ? "==\"" : "!=\"").append(values.get(0)).append("\"");
         for (int i=1; i<variables.size(); i++)
             sb.append(" ").append(operations.get(i-1)).append(" ").append(variables.get(i)).append(signs.get(i)==Inequality.EQUALS ? "==\"" : "!=\"").append(values.get(i)).append("\"");
         sb.append(") THEN {").append(resultVariable).append(" = \"").append(resultValue).append("\"}");
@@ -100,12 +102,12 @@ public class ProductionAgent extends Agent
         // as long as the count is arbitrary we get the index and come backwards
         int j = -1;
         for (int i=0; i<_initCode.size(); i++)
-            if (_initCode.get(i).startsWith(String.format("    _ruleset.addRule(new Rule(\"%s\"", ruleName.trim())))
+            if (_initCode.get(i).contains(String.format("_ruleset.addRule(new Rule(\"%s\"", ruleName.trim())))
                 j = i;
         boolean f = true;
         while (f && j>=0)
         {
-            if (_initCode.get(j).startsWith("    cond = new Condition"))
+            if (_initCode.get(j).contains("cond = new Condition"))
                 f = false;
             _initCode.remove(j--);
         }
@@ -135,6 +137,24 @@ public class ProductionAgent extends Agent
     public List<String> get_ruleTexts()
     {
         return _ruleTexts;
+    }
+
+    /**
+     * grjoeigrjo
+     * Переменная м.б. любой! Как обычная, так и продукционная (т.е. начинаться с "_")
+     * @param variable - gbd
+     * @throws NotFoundException
+     */
+    @Override
+    public void removeVariable(String variable) throws NotFoundException
+    {
+        super.removeVariable(variable);
+        List<String> toDelete = new LinkedList<>();
+        for (String s : _initCode)
+            if (s.contains(String.format("_core.addVariable(%s", variable.trim())) || s.contains(String.format("%s.initialize(", variable.trim())))
+                toDelete.add(s);
+        for (String del : toDelete)
+            _initCode.remove(del);
     }
 
     @Override

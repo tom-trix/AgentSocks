@@ -129,22 +129,46 @@ public class GUIController implements MouseListener, TreeSelectionListener, List
         else if (cur.toString().startsWith("Agent"))
         {
             Agent agent = _mvcModelRef.getCurrentAgent();
-            if (agent==null || !(agent instanceof ProductionAgent)) return null;
-            final ProductionAgent agnt = (ProductionAgent)agent;
-            _item = new JMenuItem("Manage rules");
+            if (agent==null) return null;
+            _item = new JMenuItem("Rename agent");
             _item.addActionListener(new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    _mvcViewRef.refreshRules(agnt.get_ruleTexts());
-                    JDialog dialog = new JDialog(_mvcViewRef, "Rules for " + agnt.get_name(), true);
-                    dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-                    dialog.setSize(700, 300);
-                    dialog.setLocationRelativeTo(null);
-                    dialog.getContentPane().add(new JScrollPane(_mvcViewRef.getRulesTextbox()));
-                    dialog.setVisible(true);
+                    String newname = showInputDialog(null, "Input a new name");
+                    if (newname==null || newname.trim().isEmpty()) return;
+                    _mvcModelRef.renameAgent(newname);
+                    _mvcViewRef.rebuildTreeByModel();
                 }
             });
             _menu.add(_item);
+            _item = new JMenuItem("Delete agent");
+            _item.addActionListener(new AbstractAction() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (showConfirmDialog(null, "Are you sure?") != YES_OPTION) return;
+                    _mvcModelRef.deleteAgent();
+                    _mvcViewRef.rebuildTreeByModel();
+                }
+            });
+            _menu.add(_item);
+            if (agent instanceof ProductionAgent)
+            {
+                final ProductionAgent agnt = (ProductionAgent)agent;
+                _item = new JMenuItem("Manage rules");
+                _item.addActionListener(new AbstractAction() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        _mvcViewRef.refreshRules(agnt.get_ruleTexts());
+                        JDialog dialog = new JDialog(_mvcViewRef, "Rules for " + agnt.get_name(), true);
+                        dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+                        dialog.setSize(700, 300);
+                        dialog.setLocationRelativeTo(null);
+                        dialog.getContentPane().add(new JScrollPane(_mvcViewRef.getRulesTextbox()));
+                        dialog.setVisible(true);
+                    }
+                });
+                _menu.add(_item);
+            }
         }
         return _menu;
     }
@@ -203,15 +227,28 @@ public class GUIController implements MouseListener, TreeSelectionListener, List
                 }
             });
             _menu.add(_item);
+            if (cur.startsWith("_") && !cur.equals("_core") && !cur.equals("_ruleset"))
+            {
+                _item = new JMenuItem("Initialize production variable");
+                _item.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        String s = showInputDialog(null, "Input the value");
+                        if (s==null || s.trim().isEmpty()) return;
+                        ((ProductionAgent) agent).initializeVariable(cur.substring(1), s);
+                    }
+                });
+            }
+            _menu.add(_item);
         }
-        if (!cur.startsWith("<"))
+        if (!cur.startsWith("<") && !cur.equals("_core") && !cur.equals("_ruleset"))
         {
             _item = new JMenuItem("Delete variable from " + agent.get_name());
             _item.addActionListener(new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (showConfirmDialog(null, "Are you sure") != YES_OPTION) return;
-                    _mvcViewRef.setStatus(_mvcModelRef.deleteVariable(cur));
+                    _mvcModelRef.deleteVariable(cur);
                     _mvcViewRef.refreshVariables(agent.getVariables());
                 }
             });
@@ -238,12 +275,15 @@ public class GUIController implements MouseListener, TreeSelectionListener, List
                 Object fid = showInputDialog(null, "Choose the function name", "Choose the function", PLAIN_MESSAGE, null, fids.toArray(), null);
                 if (fid == null || fid.toString().trim().isEmpty()) return;
                 String time = showInputDialog(null, "Input the timestamp");
-                _mvcViewRef.setStatus(_mvcModelRef.addEvent(fid.toString(), time, null));
+                if (time == null || time.trim().isEmpty()) return;
+                String s = _mvcModelRef.addEvent(fid.toString(), time, null);
+                if (!s.contains("Exception"))
+                    _mvcViewRef.setStatus("Everything is OK");
                 _mvcViewRef.refreshEvents(agent.getEvents());
             }
         });
         _menu.add(_item);
-        if (!cur.startsWith("<"))
+        if (!cur.startsWith("<") && !cur.equals("0.00: initialize"))
         {
             _item = new JMenuItem("Delete event from " + agent.get_name());
             _item.addActionListener(new AbstractAction() {
@@ -276,12 +316,12 @@ public class GUIController implements MouseListener, TreeSelectionListener, List
             public void actionPerformed(ActionEvent e) {
                 String s = _mvcModelRef.addFunction(_mvcViewRef.getFunctionText());
                 if (s.contains("Exception"))
-                {
                     showMessageDialog(null, s, "Error", ERROR_MESSAGE);
-                    _mvcViewRef.setStatus(s);
+                else
+                {
+                    _mvcViewRef.setStatus("Everything is OK");
+                    _mvcViewRef.refreshFids(agent.getFids());
                 }
-                else _mvcViewRef.setStatus("Everything is OK");
-                _mvcViewRef.refreshFids(agent.getFids());
             }
         });
         _menu.add(_item);

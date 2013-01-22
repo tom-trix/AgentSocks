@@ -3,21 +3,18 @@ package ru.tomtrix.agentsocks;
 import mpi.MPI;
 import java.io.*;
 import java.util.Arrays;
-
-import ru.tomtrix.agentsocks.utils.XMLSerializer;
 import ru.tomtrix.consoleui.*;
 import org.apache.log4j.Logger;
+import ru.tomtrix.productions.*;
 import ru.tomtrix.agentsocks.messaging.*;
 import ru.tomtrix.agentsocks.modeleditor.*;
 import ru.tomtrix.javassistwraper.ClassStore;
+import ru.tomtrix.productions.core.ConsoleCore;
 import static ru.tomtrix.productions.Operation.*;
+import ru.tomtrix.agentsocks.utils.XMLSerializer;
 import static ru.tomtrix.productions.Inequality.*;
 import ru.tomtrix.agentsocks.infrastructure.Model;
 import ru.tomtrix.agentsocks.mathmodel.ProductionAgent;
-import ru.tomtrix.productions.RuleSet;
-import ru.tomtrix.productions.Variable;
-import ru.tomtrix.productions.VariableType;
-import ru.tomtrix.productions.core.ConsoleCore;
 
 /** cfasfseespok
  * @author tom-trix */
@@ -27,7 +24,7 @@ public class Starter
 	 * @throws IOException */
 	public static void main(String[] args) throws Exception
 	{
-		// let an MPI class loader know the Mail class definition
+		// let an MPI class loader know the class definitions
 		ClassStore.getInstance().addClassPath(Mail.class);
         ClassStore.getInstance().addClassPath(RuleSet.class);
         ClassStore.getInstance().addClassPath(Variable.class);
@@ -90,10 +87,7 @@ public class Starter
                 MPI.Init(args);
                 Logger.getLogger(Starter.class).info(String.format("Trying to load %d nodes", MPI.COMM_WORLD.Size()));
             }
-            catch (Exception e)
-            {
-                Logger.getLogger(Starter.class).error("\nBe careful!!! This program MUST be loaded within MPI-software! e.g.\n - Linux:   $MPJ_HOME/bin/mpjrun.sh -np 2 -jar agentsocks.jar\n - Windows: %MPJ_HOME%\\bin\\mpjrun.exe -np 2 -jar agentsocks.jar\n\nP.S. You're also able to run the program in an editor mode (add \"-console\" or \"-gui\" argument)\n", e);
-            }
+            catch (Exception e) { Logger.getLogger(Starter.class).error("\nBe careful!!! This program MUST be loaded within MPI-software! e.g.\n - Linux:   $MPJ_HOME/bin/mpjrun.sh -np 2 -jar agentsocks.jar\n - Windows: %MPJ_HOME%\\bin\\mpjrun.exe -np 2 -jar agentsocks.jar\n\nP.S. You're also able to run the program in an editor mode (add \"-console\" or \"-gui\" argument)\n", e); }
 
             // load the model
             Model model = new XMLSerializer<Model>().deserializeFromFile(Constants.MODEL_FILENAME);

@@ -42,7 +42,7 @@ public class MVCModel implements ConsoleUIListener
 	{
 		try
 		{
-			_model = new Model(name);
+			_model = new Model(name.trim());
 			return String.format("OK. Model \"%s\" has been created", name);
 		}
 		catch (Exception e)
@@ -132,7 +132,7 @@ public class MVCModel implements ConsoleUIListener
 	{
 		try
 		{
-			_model.getNodeByNumber(Integer.parseInt(rank)).get_container().addLogicProcess(name);
+			_model.getNodeByNumber(Integer.parseInt(rank)).get_container().addLogicProcess(name.trim());
 			return String.format("OK. Logic process \"%s\" has been created on node %s", name, rank);
 		}
 		catch (Exception e)
@@ -151,7 +151,7 @@ public class MVCModel implements ConsoleUIListener
 	{
 		try
 		{
-			_model.getNodeByNumber(Integer.parseInt(rank)).get_container().getProcessByName(name).set_name(newname);
+			_model.getNodeByNumber(Integer.parseInt(rank)).get_container().getProcessByName(name.trim()).set_name(newname.trim());
 			return String.format("OK. Logic process \"%s\" has been renamed into \"%s\"", name, newname);
 		}
 		catch (Exception e)
@@ -266,7 +266,7 @@ public class MVCModel implements ConsoleUIListener
 	{
 		try
 		{
-			_pa.agent.set_name(newname);
+			_pa.agent.set_name(newname.trim());
             if (_cuiRef != null)
             {
                 _cuiRef.pop_greeting();
@@ -458,7 +458,7 @@ public class MVCModel implements ConsoleUIListener
         if (_cuiRef != null)
             _cuiRef.push_greeting(name);
         // create new agent and "_pa" instance
-        _pa = new ProcessAndAgent(_model.getNodeByNumber(Integer.parseInt(rank)).get_container().getProcessByName(process), isDefault ? new DefaultAgent(name, name) : new ProductionAgent(name, name));
+        _pa = new ProcessAndAgent(_model.getNodeByNumber(Integer.parseInt(rank.trim())).get_container().getProcessByName(process.trim()), isDefault ? new DefaultAgent(name.trim(), name.trim()) : new ProductionAgent(name.trim(), name.trim()));
         _pa.process.addAgent(_pa.agent);
         //return
         return String.format("OK. Agent \"%s\" has been created.\nNow it is currently used", name);
