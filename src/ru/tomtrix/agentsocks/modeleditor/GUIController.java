@@ -119,7 +119,7 @@ public class GUIController implements MouseListener, TreeSelectionListener, List
             _item.addActionListener(new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (showConfirmDialog(null, "Are you sure") != YES_OPTION) return;
+                    if (showConfirmDialog(null, "Are you sure?") != YES_OPTION) return;
                     _mvcViewRef.setStatus(_mvcModelRef.deleteProcess(name, rank));
                     _mvcViewRef.rebuildTreeByModel();
                 }
@@ -247,8 +247,8 @@ public class GUIController implements MouseListener, TreeSelectionListener, List
             _item.addActionListener(new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (showConfirmDialog(null, "Are you sure") != YES_OPTION) return;
-                    _mvcModelRef.deleteVariable(cur);
+                    if (showConfirmDialog(null, "Are you sure?") != YES_OPTION) return;
+                    _mvcViewRef.setStatus(_mvcModelRef.deleteVariable(cur));
                     _mvcViewRef.refreshVariables(agent.getVariables());
                 }
             });
@@ -289,7 +289,7 @@ public class GUIController implements MouseListener, TreeSelectionListener, List
             _item.addActionListener(new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (showConfirmDialog(null, "Are you sure") != YES_OPTION) return;
+                    if (showConfirmDialog(null, "Are you sure?") != YES_OPTION) return;
                     _mvcViewRef.setStatus(_mvcModelRef.deleteEvent(cur.split(SPLIT_COLON)[1], cur.split(SPLIT_COLON)[0]));
                     _mvcViewRef.refreshEvents(agent.getEvents());
                 }
@@ -340,9 +340,10 @@ public class GUIController implements MouseListener, TreeSelectionListener, List
             _item.addActionListener(new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (showConfirmDialog(null, "Are you sure") != YES_OPTION) return;
+                    if (showConfirmDialog(null, "Are you sure?") != YES_OPTION) return;
                     _mvcViewRef.setStatus(_mvcModelRef.deleteFunction(cur));
                     _mvcViewRef.refreshFids(agent.getFids());
+                    _mvcViewRef.refreshEvents(agent.getEvents());
                 }
             });
             _menu.add(_item);

@@ -165,7 +165,7 @@ public abstract class Agent implements IAgentProcessible
 		for (String s : _state)
 			sbuf.append("      ").append(s).append("\n");
 		if (_transformFunctions.size() == 0)
-			sbuf.append("      <function set is empty>\n");
+			sbuf.append("      <function put is empty>\n");
 		else sbuf.append("      === Transform functions ===\n");
 		for (String s : _transformFunctions)
 			sbuf.append("      ").append(s).append("\n");
@@ -183,7 +183,7 @@ public abstract class Agent implements IAgentProcessible
 		return _name;
 	}
 
-	/** @param name the _name to set */
+	/** @param name the _name to put */
 	public void set_name(String name)
 	{
 		if (name == null || name.isEmpty()) throw new NullPointerException("Agent must have a name");

@@ -97,7 +97,7 @@ public class LogicProcess implements IAgentProcessible
 		return sbuf.toString();
 	}
 
-	/** @param name the _name to set */
+	/** @param name the _name to put */
 	public void set_name(String name)
 	{
 		if (name == null || name.trim().isEmpty()) throw new NullPointerException();

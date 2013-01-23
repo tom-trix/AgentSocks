@@ -3,6 +3,9 @@ package ru.tomtrix.agentsocks;
 import mpi.MPI;
 import java.io.*;
 import java.util.Arrays;
+import java.util.Random;
+
+import ru.tomtrix.agentsocks.mathmodel.Environment;
 import ru.tomtrix.consoleui.*;
 import org.apache.log4j.Logger;
 import ru.tomtrix.productions.*;
@@ -26,16 +29,20 @@ public class Starter
 	{
 		// let an MPI class loader know the class definitions
 		ClassStore.getInstance().addClassPath(Mail.class);
+        ClassStore.getInstance().addClassPath(Random.class);
         ClassStore.getInstance().addClassPath(RuleSet.class);
         ClassStore.getInstance().addClassPath(Variable.class);
         ClassStore.getInstance().addClassPath(LocalMail.class);
         ClassStore.getInstance().addClassPath(ConsoleCore.class);
+        ClassStore.getInstance().addClassPath(Environment.class);
         ClassStore.getInstance().addClassPath(AgentProductionCore.class);
         ClassStore.getInstance().addImport(Mail.class.getPackage().getName());
+        ClassStore.getInstance().addImport(Random.class.getPackage().getName());
         ClassStore.getInstance().addImport(RuleSet.class.getPackage().getName());
         ClassStore.getInstance().addImport(Variable.class.getPackage().getName());
         ClassStore.getInstance().addImport(LocalMail.class.getPackage().getName());
         ClassStore.getInstance().addImport(ConsoleCore.class.getPackage().getName());
+        ClassStore.getInstance().addImport(Environment.class.getPackage().getName());
         ClassStore.getInstance().addImport(AgentProductionCore.class.getPackage().getName());
 
 		if (args != null && args.length > 0)
@@ -53,22 +60,8 @@ public class Starter
                     gui.run();
                     break;
                 case "-test":
-                    ProductionAgent agent = new ProductionAgent("Trix", "Trix");
-                    agent.addVariable("money", VariableType.INFERRIBLE);
-                    agent.addVariable("goal", VariableType.INFERRIBLE);
-                    agent.addVariable("colour", VariableType.ASKABLE);
-                    agent.addVariable("public String colour = \"blue\";");
-                    agent.addRule("R1", Arrays.asList("money", "colour"), Arrays.asList(EQUALS, EQUALS), Arrays.asList("1", "blue"), Arrays.asList(OR), "goal", "Ура!!!");
-                    agent.initializeVariable("money", "2");
-                    agent.addTestConsulting("goal");
-                    agent.addEvent(1, "testConsulting");
-                    Model m = new Model("Debug");
-                    m.addNode();
-                    m.getNodeByNumber(0).get_container().addLogicProcess("Hed");
-                    m.getNodeByNumber(0).get_container().getProcessByName("Hed").addAgent(agent);
-                    new XMLSerializer<Model>().serializeToFile(m, "model.xml");
-                    /*Model m = new XMLSerializer<Model>().deserializeFromFile("model.xml");
-                    m.loadCode();*/
+                    Model m = new XMLSerializer<Model>().deserializeFromFile("Debug.xml");
+                    m.loadCode();
                     m.compileAgents();
                     m.getNodeByNumber(0).run();
                     break;

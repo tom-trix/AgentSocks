@@ -1,5 +1,7 @@
 package ru.tomtrix.agentsocks.infrastructure;
 
+import ru.tomtrix.agentsocks.mathmodel.Environment;
+
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -10,7 +12,10 @@ public class Model implements IAgentProcessible
 	/** csdfse */
 	private final String				_name;
 	/** sfee */
-	private final Map<Integer, Node>	_nodes	= new TreeMap<>();
+	private final Map<Integer, Node>	_nodes	     = new TreeMap<>();
+    /** fjsrojf */
+    private final Environment           _environment = new Environment(this);
+    /** khgtd */
 	private final boolean _isDebug;
 
 	/** fse
@@ -53,7 +58,8 @@ public class Model implements IAgentProcessible
 	@Override
 	public void loadCode() throws Exception
 	{
-		for (Node node : _nodes.values())
+		_environment.init();
+        for (Node node : _nodes.values())
 			node.get_container().loadCode();
 	}
 
@@ -84,5 +90,11 @@ public class Model implements IAgentProcessible
     public Collection<Node> get_nodes()
     {
         return _nodes.values();
+    }
+
+    /** @return environment */
+    public Environment get_environment()
+    {
+        return _environment;
     }
 }
