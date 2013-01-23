@@ -10,6 +10,9 @@ import javax.swing.tree.*;
 import org.apache.log4j.Logger;
 import ru.tomtrix.agentsocks.mathmodel.Agent;
 import ru.tomtrix.agentsocks.infrastructure.*;
+import ru.tomtrix.agentsocks.mathmodel.Environment;
+import ru.tomtrix.productions.Variable;
+import ru.tomtrix.productions.VariableType;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -167,6 +170,16 @@ public class GraphicUI extends JFrame
                 _mvcModelRef.saveModel(filename);
             }
         });
+        JMenuItem test = new JMenuItem("Test...");
+        save.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (_mvcModelRef.get_model() == null) return;
+                _mvcModelRef.get_model().get_environment().put("1", new String[] {"meat", "sausage", "cheese"});
+                _mvcModelRef.get_model().get_environment().put("2", new String[] {"tomato", "potato", "zrazy"});
+                _mvcModelRef.get_model().get_environment().put("3", new String[] {"milk", "sourcream", "carrot"});
+            }
+        });
         JMenuItem exit = new JMenuItem("Exit");
         exit.addActionListener(new ActionListener() {
             @Override
@@ -176,6 +189,7 @@ public class GraphicUI extends JFrame
         });
         file.add(load);
         file.add(save);
+        file.add(test);
         file.addSeparator();
         file.add(exit);
         _menu.add(file);
