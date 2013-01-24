@@ -172,7 +172,7 @@
 											<string>R7: IF (decision=="1" AND curProduct=="tomato" AND dairy=="yes") THEN {shouldTake = "yes"}</string>
 											<string>R8: IF (decision=="1" OR decision=="2" AND curProduct=="potato" AND meat=="yes") THEN {shouldTake = "yes"}</string>
 											<string>R9: IF (decision=="3" AND curProduct=="carrot" AND meat=="yes") THEN {shouldTake = "yes"}</string>
-											<string>RR1: IF (count=="4") THEN {decision = "-1"}</string>
+											<string>RR1: IF (count=="5") THEN {decision = "-1"}</string>
 											<string>RR2: IF (count!="LaLaLa") THEN {shouldTake = "no"}</string>
 										</__ruleTexts>
 									</ru.tomtrix.agentsocks.mathmodel.ProductionAgent>

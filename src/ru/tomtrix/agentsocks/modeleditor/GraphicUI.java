@@ -10,9 +10,6 @@ import javax.swing.tree.*;
 import org.apache.log4j.Logger;
 import ru.tomtrix.agentsocks.mathmodel.Agent;
 import ru.tomtrix.agentsocks.infrastructure.*;
-import ru.tomtrix.agentsocks.mathmodel.Environment;
-import ru.tomtrix.productions.Variable;
-import ru.tomtrix.productions.VariableType;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
 
